@@ -1,0 +1,622 @@
+{
+ "replay_max_relative_profile_difference": {
+  "GeoCLIP": 0.0,
+  "SatCLIP vit16l10": 1.4266365866433262e-13,
+  "SatCLIP r18l10": 5.625500065775668e-13,
+  "SatCLIP r50l10": 2.0294876890147862e-13,
+  "SatCLIP vit16l40": 1.5114924867276613e-09,
+  "SatCLIP r18l40": 3.772725021278234e-09,
+  "SatCLIP r50l40": 4.961340671627568e-09,
+  "SINR cap1000": 0.0,
+  "SINR cap10": 0.0,
+  "SINR distilled": 0.0,
+  "CSP iNat2018": 0.0,
+  "CSP fMoW": 0.0,
+  "Climplicit": 1.538769112130467e-13
+ },
+ "relu_crossing": {
+  "GeoCLIP 1 km": {
+   "n": 2340,
+   "crossing_fraction": 1.0,
+   "median_error_crossing": 0.044336880248822215,
+   "median_error_within": null,
+   "p95_error_crossing": 0.16689316457094017,
+   "p95_error_within": null,
+   "crossing_fraction_top_error_decile": 1.0,
+   "crossing_fraction_high_A_decile": 1.0,
+   "median_flipped_units": 354.0,
+   "spearman_flips_error": 0.5287101023453887,
+   "median_error_by_flip_tercile": [
+    0.03454788676180522,
+    0.04055553070560892,
+    0.09039045626105482
+   ],
+   "p95_error_by_flip_tercile": [
+    0.09957289099754554,
+    0.12023209165988316,
+    0.39669783573900214
+   ],
+   "median_flips_top_error_decile": 465.0,
+   "median_flips_other": 347.0,
+   "crossing_fraction_by_branch_sigma_1_16_256": [
+    0.6441334700919074,
+    1.0,
+    1.0
+   ]
+  },
+  "GeoCLIP 0.3 km": {
+   "n": 2340,
+   "crossing_fraction": 1.0,
+   "median_error_crossing": 0.021582477735768966,
+   "median_error_within": null,
+   "p95_error_crossing": 0.07785535819810568,
+   "p95_error_within": null,
+   "crossing_fraction_top_error_decile": 1.0,
+   "crossing_fraction_high_A_decile": 1.0,
+   "median_flipped_units": 108.0,
+   "spearman_flips_error": 0.3939220109490797,
+   "median_error_by_flip_tercile": [
+    0.01816225732872019,
+    0.022165111646820956,
+    0.03240423402739526
+   ],
+   "p95_error_by_flip_tercile": [
+    0.05244797925791792,
+    0.06658475466745536,
+    0.181256905172052
+   ],
+   "median_flips_top_error_decile": 139.0,
+   "median_flips_other": 105.0,
+   "crossing_fraction_by_branch_sigma_1_16_256": [
+    0.27197858639519745,
+    0.9959133843172873,
+    1.0
+   ]
+  },
+  "SINR cap1000": {
+   "n": 2340,
+   "crossing_fraction": 0.12181959856673713,
+   "median_error_crossing": 0.006503093092798982,
+   "median_error_within": 3.0395426156811226e-09,
+   "p95_error_crossing": 0.1669616535490866,
+   "p95_error_within": 4.731006389245284e-08,
+   "crossing_fraction_top_error_decile": 1.0,
+   "crossing_fraction_high_A_decile": 0.22381452182887263,
+   "median_flipped_units": 0.0,
+   "spearman_flips_error": 0.1514421943982984,
+   "median_error_by_flip_tercile": [
+    3.0395426156811226e-09,
+    null,
+    0.006503093092798982
+   ],
+   "p95_error_by_flip_tercile": [
+    4.731006389245284e-08,
+    null,
+    0.1669616535490866
+   ],
+   "median_flips_top_error_decile": 1.0,
+   "median_flips_other": 0.0,
+   "crossing_fraction_error_above_0p1pct": 1.0,
+   "crossing_fraction_error_above_1pct": 1.0,
+   "n_error_above_1pct": 111,
+   "jacobian_cache_max_relative_difference": 3.064215547965432e-14
+  },
+  "SINR cap10": {
+   "n": 2340,
+   "crossing_fraction": 0.11558675611931833,
+   "median_error_crossing": 0.0011774692928556746,
+   "median_error_within": 4.557654423004183e-09,
+   "p95_error_crossing": 0.017860926820288725,
+   "p95_error_within": 1.8657847030989863e-07,
+   "crossing_fraction_top_error_decile": 1.0,
+   "crossing_fraction_high_A_decile": 0.05307662837747376,
+   "median_flipped_units": 0.0,
+   "spearman_flips_error": 0.18403565738441796,
+   "median_error_by_flip_tercile": [
+    4.557654423004183e-09,
+    null,
+    0.0011774692928556746
+   ],
+   "p95_error_by_flip_tercile": [
+    1.8657847030989863e-07,
+    null,
+    0.017860926820288725
+   ],
+   "median_flips_top_error_decile": 1.0,
+   "median_flips_other": 0.0,
+   "crossing_fraction_error_above_0p1pct": 1.0,
+   "crossing_fraction_error_above_1pct": 1.0,
+   "n_error_above_1pct": 30,
+   "jacobian_cache_max_relative_difference": null
+  },
+  "SINR distilled": {
+   "n": 2340,
+   "crossing_fraction": 0.0579381878055197,
+   "median_error_crossing": 0.057690957162112005,
+   "median_error_within": 7.411715590674754e-09,
+   "p95_error_crossing": 0.8003049431148972,
+   "p95_error_within": 1.403306510999068e-07,
+   "crossing_fraction_top_error_decile": 0.578749568085759,
+   "crossing_fraction_high_A_decile": 0.137002532642872,
+   "median_flipped_units": 0.0,
+   "spearman_flips_error": 0.05083391672577623,
+   "median_error_by_flip_tercile": [
+    7.411715590674754e-09,
+    null,
+    0.057690957162112005
+   ],
+   "p95_error_by_flip_tercile": [
+    1.403306510999068e-07,
+    null,
+    0.8003049431148972
+   ],
+   "median_flips_top_error_decile": 0.0,
+   "median_flips_other": 0.0,
+   "crossing_fraction_error_above_0p1pct": 1.0,
+   "crossing_fraction_error_above_1pct": 1.0,
+   "n_error_above_1pct": 97,
+   "jacobian_cache_max_relative_difference": null
+  }
+ },
+ "land_only": {
+  "GeoCLIP": {
+   "all": {
+    "median": 1.4639676731201883,
+    "corr60": 0.8750887664667667,
+    "bearing": 0.8830616988032327,
+    "n60": 3528,
+    "n85": 4968
+   },
+   "land": {
+    "median": 1.4663088635602988,
+    "corr60": 0.8552216534486937,
+    "bearing": 0.8720229978127506,
+    "n60": 964,
+    "n85": 1626
+   },
+   "land_area_fraction_85": 0.2908617330290364
+  },
+  "SatCLIP vit16l10": {
+   "all": {
+    "median": 1.5673727543345812,
+    "corr60": 0.10179393770290825,
+    "bearing": 0.4940830045026844,
+    "n60": 3528,
+    "n85": 4968
+   },
+   "land": {
+    "median": 1.840636038126183,
+    "corr60": 0.07271174888607172,
+    "bearing": 0.41775077865156107,
+    "n60": 964,
+    "n85": 1626
+   },
+   "land_area_fraction_85": 0.2908617330290364
+  },
+  "SatCLIP r18l10": {
+   "all": {
+    "median": 1.4973020681788975,
+    "corr60": 0.13490506324802082,
+    "bearing": 0.49371357185078457,
+    "n60": 3528,
+    "n85": 4968
+   },
+   "land": {
+    "median": 1.720147214693616,
+    "corr60": 0.06888136630424826,
+    "bearing": 0.39441276171142514,
+    "n60": 964,
+    "n85": 1626
+   },
+   "land_area_fraction_85": 0.2908617330290364
+  },
+  "SatCLIP r50l10": {
+   "all": {
+    "median": 1.49996869018689,
+    "corr60": 0.13053128750272303,
+    "bearing": 0.548372179485011,
+    "n60": 3528,
+    "n85": 4968
+   },
+   "land": {
+    "median": 1.6705516591119132,
+    "corr60": 0.1137954324502653,
+    "bearing": 0.4434774140534196,
+    "n60": 964,
+    "n85": 1626
+   },
+   "land_area_fraction_85": 0.2908617330290364
+  },
+  "SatCLIP vit16l40": {
+   "all": {
+    "median": 1.437489973699914,
+    "corr60": 0.02240978035877232,
+    "bearing": -0.014287558075382826,
+    "n60": 6914,
+    "n85": 9796
+   },
+   "land": {
+    "median": 1.5609841386516916,
+    "corr60": -0.019819016167866216,
+    "bearing": 0.11536759254718404,
+    "n60": 1842,
+    "n85": 3119
+   },
+   "land_area_fraction_85": 0.2853427306973256
+  },
+  "SatCLIP r18l40": {
+   "all": {
+    "median": 1.4403558856396648,
+    "corr60": 0.02663323908588081,
+    "bearing": 0.024102359027712735,
+    "n60": 6914,
+    "n85": 9796
+   },
+   "land": {
+    "median": 1.5878906065533502,
+    "corr60": -0.013845899642385081,
+    "bearing": 0.1431581842129536,
+    "n60": 1842,
+    "n85": 3119
+   },
+   "land_area_fraction_85": 0.2853427306973256
+  },
+  "SatCLIP r50l40": {
+   "all": {
+    "median": 1.4312650510432268,
+    "corr60": 0.03511675987291779,
+    "bearing": 0.015312960038918725,
+    "n60": 6914,
+    "n85": 9796
+   },
+   "land": {
+    "median": 1.5817873375398406,
+    "corr60": 0.012288845477402962,
+    "bearing": 0.13617845189714484,
+    "n60": 1842,
+    "n85": 3119
+   },
+   "land_area_fraction_85": 0.2853427306973256
+  },
+  "SINR cap1000": {
+   "all": {
+    "median": 2.887869264514821,
+    "corr60": 0.09498944044747513,
+    "bearing": 0.37631429710131026,
+    "n60": 6914,
+    "n85": 9796
+   },
+   "land": {
+    "median": 2.7323193080108372,
+    "corr60": 0.007456525258575288,
+    "bearing": 0.3187813562968222,
+    "n60": 1842,
+    "n85": 3119
+   },
+   "land_area_fraction_85": 0.2853427306973256
+  },
+  "SINR cap10": {
+   "all": {
+    "median": 2.9948918295575058,
+    "corr60": -0.18705095517619802,
+    "bearing": 0.43952728366386534,
+    "n60": 3528,
+    "n85": 4968
+   },
+   "land": {
+    "median": 2.4984718525648955,
+    "corr60": -0.44432142709536826,
+    "bearing": 0.6073434525843558,
+    "n60": 964,
+    "n85": 1626
+   },
+   "land_area_fraction_85": 0.2908617330290364
+  },
+  "SINR distilled": {
+   "all": {
+    "median": 4.879819152971401,
+    "corr60": 0.0638246565094795,
+    "bearing": 0.25300288239893987,
+    "n60": 6914,
+    "n85": 9796
+   },
+   "land": {
+    "median": 3.7103916551166187,
+    "corr60": 0.06238218977371768,
+    "bearing": 0.24005796439600632,
+    "n60": 1842,
+    "n85": 3119
+   },
+   "land_area_fraction_85": 0.2853427306973256
+  },
+  "CSP iNat2018": {
+   "all": {
+    "median": 2.4447389895184757,
+    "corr60": -0.06664830620193814,
+    "bearing": 0.18773580921087013,
+    "n60": 6913,
+    "n85": 9795
+   },
+   "land": {
+    "median": 2.625616004097064,
+    "corr60": -0.14874631592641208,
+    "bearing": 0.17529297044747527,
+    "n60": 1842,
+    "n85": 3119
+   },
+   "land_area_fraction_85": 0.2853427306973256
+  },
+  "CSP fMoW": {
+   "all": {
+    "median": 1.8061600895236807,
+    "corr60": 0.2274113865973371,
+    "bearing": 0.1366482966591322,
+    "n60": 6913,
+    "n85": 9795
+   },
+   "land": {
+    "median": 1.8734564118508015,
+    "corr60": 0.30530833497223286,
+    "bearing": 0.14434665069668534,
+    "n60": 1842,
+    "n85": 3119
+   },
+   "land_area_fraction_85": 0.2853427306973256
+  },
+  "Climplicit": {
+   "all": {
+    "median": 1.76852699974581,
+    "corr60": 0.1859255145560686,
+    "bearing": 0.5578819887056623,
+    "n60": 6913,
+    "n85": 9795
+   },
+   "land": {
+    "median": 1.7786292062795068,
+    "corr60": 0.019182381268416482,
+    "bearing": 0.35145515319565274,
+    "n60": 1842,
+    "n85": 3119
+   },
+   "land_area_fraction_85": 0.2853427306973256
+  }
+ },
+ "common_radius_0p3_fixed_grid": {
+  "GeoCLIP": {
+   "median": 1.4908323296570622,
+   "p95": 3.818139295101501,
+   "fallback": 51
+  },
+  "SatCLIP vit16l10": {
+   "median": 1.5673741717884684,
+   "p95": 2.83811175467274,
+   "fallback": 0
+  },
+  "SatCLIP r18l10": {
+   "median": 1.4973020651464084,
+   "p95": 2.5168689045334744,
+   "fallback": 0
+  },
+  "SatCLIP r50l10": {
+   "median": 1.4999689074010354,
+   "p95": 2.3800045384087936,
+   "fallback": 0
+  },
+  "SatCLIP vit16l40": {
+   "median": 1.438826072589577,
+   "p95": 2.334276759406946,
+   "fallback": 23
+  },
+  "SatCLIP r18l40": {
+   "median": 1.4374823644517343,
+   "p95": 2.343865308389777,
+   "fallback": 46
+  },
+  "SatCLIP r50l40": {
+   "median": 1.4182259780669395,
+   "p95": 2.3335285653585753,
+   "fallback": 46
+  },
+  "SINR cap1000": {
+   "median": 2.913088529807292,
+   "p95": 7.539682241144693,
+   "fallback": 18
+  },
+  "SINR cap10": {
+   "median": 2.9948918295575058,
+   "p95": 7.9469795009198485,
+   "fallback": 9
+  },
+  "SINR distilled": {
+   "median": 4.817831335648223,
+   "p95": 20.17299246383915,
+   "fallback": 37
+  },
+  "CSP iNat2018": {
+   "median": 2.500367767004356,
+   "p95": 7.311185126677026,
+   "fallback": 20
+  },
+  "CSP fMoW": {
+   "median": 1.7998351749477866,
+   "p95": 4.180702380271045,
+   "fallback": 2
+  },
+  "Climplicit": {
+   "median": 1.766846908936105,
+   "p95": 3.32734714306412,
+   "fallback": 0
+  }
+ },
+ "bearing_count": {
+  "GeoCLIP": {
+   "median_rel_A_16_vs_32": 0.00047524321414516013,
+   "p95_rel_A_16_vs_32": 0.001477098541332653,
+   "median_rel_A_64_vs_32": 0.0001087347312648812,
+   "p95_rel_A_64_vs_32": 0.0003487719178776824,
+   "p95_bearing_deg_16_vs_32": 0.15414777647044176,
+   "p95_bearing_deg_64_vs_32": 0.036052127578735646,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    2
+   ]
+  },
+  "SatCLIP vit16l10": {
+   "median_rel_A_16_vs_32": 5.090927679418655e-13,
+   "p95_rel_A_16_vs_32": 2.2917279185463708e-12,
+   "median_rel_A_64_vs_32": 3.467226505904364e-13,
+   "p95_rel_A_64_vs_32": 1.5211720771901578e-12,
+   "p95_bearing_deg_16_vs_32": 1.688861813638401e-10,
+   "p95_bearing_deg_64_vs_32": 1.2075293903644381e-10,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    0
+   ]
+  },
+  "SatCLIP r18l10": {
+   "median_rel_A_16_vs_32": 4.531930386519889e-13,
+   "p95_rel_A_16_vs_32": 2.190453374240064e-12,
+   "median_rel_A_64_vs_32": 3.5560443478743764e-13,
+   "p95_rel_A_64_vs_32": 1.602679100543014e-12,
+   "p95_bearing_deg_16_vs_32": 1.6573266139716902e-10,
+   "p95_bearing_deg_64_vs_32": 1.199638434199722e-10,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    0
+   ]
+  },
+  "SatCLIP r50l10": {
+   "median_rel_A_16_vs_32": 4.746758541784857e-13,
+   "p95_rel_A_16_vs_32": 2.3609503241317497e-12,
+   "median_rel_A_64_vs_32": 3.4772185131259903e-13,
+   "p95_rel_A_64_vs_32": 1.3594014802720256e-12,
+   "p95_bearing_deg_16_vs_32": 1.4973415329393945e-10,
+   "p95_bearing_deg_64_vs_32": 1.404135377999106e-10,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    0
+   ]
+  },
+  "SatCLIP vit16l40": {
+   "median_rel_A_16_vs_32": 1.3918738384077756e-09,
+   "p95_rel_A_16_vs_32": 0.00023414061575055542,
+   "median_rel_A_64_vs_32": 7.319603256839002e-10,
+   "p95_rel_A_64_vs_32": 0.00013918845559949183,
+   "p95_bearing_deg_16_vs_32": 0.006889793992752995,
+   "p95_bearing_deg_64_vs_32": 0.008788453221472599,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    0
+   ]
+  },
+  "SatCLIP r18l40": {
+   "median_rel_A_16_vs_32": 2.84059653576918e-09,
+   "p95_rel_A_16_vs_32": 0.0001918373037376904,
+   "median_rel_A_64_vs_32": 1.0983791653984554e-09,
+   "p95_rel_A_64_vs_32": 0.00020040666626019974,
+   "p95_bearing_deg_16_vs_32": 0.00550214910585373,
+   "p95_bearing_deg_64_vs_32": 0.01272046566362309,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    0
+   ]
+  },
+  "SatCLIP r50l40": {
+   "median_rel_A_16_vs_32": 1.2200702115272577e-09,
+   "p95_rel_A_16_vs_32": 0.00011277529241650562,
+   "median_rel_A_64_vs_32": 1.2014015338124295e-09,
+   "p95_rel_A_64_vs_32": 0.00010340267757550914,
+   "p95_bearing_deg_16_vs_32": 0.008367616022561149,
+   "p95_bearing_deg_64_vs_32": 0.010519862204315238,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    0
+   ]
+  },
+  "SINR cap1000": {
+   "median_rel_A_16_vs_32": 2.3152590955533014e-12,
+   "p95_rel_A_16_vs_32": 0.00012519515515403934,
+   "median_rel_A_64_vs_32": 1.8192114481507815e-12,
+   "p95_rel_A_64_vs_32": 0.00012774815200992107,
+   "p95_bearing_deg_16_vs_32": 0.00038280511003401023,
+   "p95_bearing_deg_64_vs_32": 6.279255288538028e-05,
+   "fallbacks_16_32_64": [
+    0,
+    1,
+    3
+   ]
+  },
+  "SINR cap10": {
+   "median_rel_A_16_vs_32": 2.4267809983768984e-12,
+   "p95_rel_A_16_vs_32": 2.281331589094594e-05,
+   "median_rel_A_64_vs_32": 1.936450999551198e-12,
+   "p95_rel_A_64_vs_32": 5.3914888813677484e-06,
+   "p95_bearing_deg_16_vs_32": 0.0005076225599029166,
+   "p95_bearing_deg_64_vs_32": 0.00014408746473743437,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    2
+   ]
+  },
+  "SINR distilled": {
+   "median_rel_A_16_vs_32": 5.038081063446498e-12,
+   "p95_rel_A_16_vs_32": 2.6018427320964937e-07,
+   "median_rel_A_64_vs_32": 3.703648498998291e-12,
+   "p95_rel_A_64_vs_32": 4.4394069205185166e-07,
+   "p95_bearing_deg_16_vs_32": 9.626678362689996e-07,
+   "p95_bearing_deg_64_vs_32": 6.556319277887834e-08,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    0
+   ]
+  },
+  "CSP iNat2018": {
+   "median_rel_A_16_vs_32": 0.00010930640124795499,
+   "p95_rel_A_16_vs_32": 0.0008894004486932549,
+   "median_rel_A_64_vs_32": 0.00010040095265073656,
+   "p95_rel_A_64_vs_32": 0.0005837755301481282,
+   "p95_bearing_deg_16_vs_32": 0.017988910829397478,
+   "p95_bearing_deg_64_vs_32": 0.01894309940973323,
+   "fallbacks_16_32_64": [
+    0,
+    3,
+    3
+   ]
+  },
+  "CSP fMoW": {
+   "median_rel_A_16_vs_32": 5.340405055309638e-05,
+   "p95_rel_A_16_vs_32": 0.0002102791972308448,
+   "median_rel_A_64_vs_32": 3.379123550212304e-05,
+   "p95_rel_A_64_vs_32": 0.00012980758968445525,
+   "p95_bearing_deg_16_vs_32": 0.01474382075132165,
+   "p95_bearing_deg_64_vs_32": 0.009164062024512427,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    0
+   ]
+  },
+  "Climplicit": {
+   "median_rel_A_16_vs_32": 3.937183912228193e-12,
+   "p95_rel_A_16_vs_32": 1.590727549682924e-11,
+   "median_rel_A_64_vs_32": 3.0419555763216977e-12,
+   "p95_rel_A_64_vs_32": 9.744016704615888e-12,
+   "p95_bearing_deg_16_vs_32": 7.03789323248628e-10,
+   "p95_bearing_deg_64_vs_32": 5.157558846469101e-10,
+   "fallbacks_16_32_64": [
+    0,
+    0,
+    0
+   ]
+  }
+ }
+}

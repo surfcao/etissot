@@ -1,0 +1,22 @@
+{
+  "geoclip_shape_same_sites": {
+    "n": 1764,
+    "finite_vs_reference": {
+      "median": 1.1468327177946185,
+      "p95": 1.33140802246655
+    },
+    "jacobian_vs_reference": {
+      "median": 1.1615770890798225,
+      "p95": 1.3752392189846037
+    },
+    "finite_vs_jacobian": {
+      "median": 1.0665132392426397,
+      "p95": 1.1523560274351394
+    },
+    "isotropic_vs_reference": {
+      "median": 1.3801630916700236,
+      "p95": 2.320412092984893
+    },
+    "jacobian_input_corr": 0.8694515398775108
+  }
+}

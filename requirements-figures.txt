@@ -1,0 +1,3 @@
+# Optional isolated renderer for the October manuscript figures.
+# Install into a separate target directory; the primary study environment uses 3.11.0.
+matplotlib==3.10.9

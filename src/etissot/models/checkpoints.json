@@ -1,0 +1,500 @@
+{
+  "schema_version": 1,
+  "package_version": "0.2.0",
+  "checked_date": "2026-09-30",
+  "scope": "Exact manuscript checkpoint roster; use EncoderAdapter for other models and revisions.",
+  "checkpoints": [
+    {
+      "id": "geoclip",
+      "label": "GeoCLIP",
+      "family": "geoclip",
+      "path": "encoders/geoclip/location_encoder_weights.pth",
+      "aliases": [],
+      "sha256": "94b80ae3af89fca78539e129dd2929d321247f5ceeeb0a31bc2c31041a253394",
+      "bytes": 37806041,
+      "feature_dimension": 512,
+      "normalization": "L2",
+      "radius_km": 1.0,
+      "precision": "float64 weights/input; released float32 accumulator/output",
+      "source": {
+        "kind": "file",
+        "url": "https://raw.githubusercontent.com/VicenteVivan/geo-clip/a32dff094064c2e2b91122fc626f622c0a38719c/geoclip/model/weights/location_encoder_weights.pth",
+        "revision": "a32dff094064c2e2b91122fc626f622c0a38719c",
+        "package_version": "geoclip==1.2.1"
+      },
+      "license": {
+        "id": "MIT",
+        "redistribution": true,
+        "source_url": "https://github.com/VicenteVivan/geo-clip/blob/a32dff094064c2e2b91122fc626f622c0a38719c/LICENSE",
+        "evidence_files": [
+          "resources/licenses/GeoCLIP-MIT.txt"
+        ],
+        "note": "The exact weight file is shipped in the MIT-licensed geoclip 1.2.1 distribution and matches the publisher repository copy. Preserve its license and attribution.",
+        "evidence_sha256": {
+          "resources/licenses/GeoCLIP-MIT.txt": "c272adb7c32db589779b10cc36ee1395af25bbd68aca0be19173f8ef04a23dc3"
+        }
+      },
+      "citation": "Vivanco, Nayak and Shah. GeoCLIP: Clip-Inspired Alignment between Locations and Images for Effective Worldwide Geo-localization. https://arxiv.org/abs/2309.16020",
+      "installed_package": {
+        "name": "geoclip",
+        "version": "1.2.1",
+        "path": "model/weights/location_encoder_weights.pth"
+      }
+    },
+    {
+      "id": "sinr-cap1000",
+      "label": "SINR cap1000",
+      "family": "sinr",
+      "path": "encoders/sinr/pretrained_models/model_an_full_input_enc_sin_cos_hard_cap_num_per_class_1000.pt",
+      "aliases": [],
+      "sha256": "7bf4dacb0f9b4cf8c5323e1c186b1e725267199053b9aa672d4b5dc1c3dbc235",
+      "bytes": 50850160,
+      "feature_dimension": 256,
+      "normalization": "raw",
+      "radius_km": 0.3,
+      "precision": "float64",
+      "source": {
+        "kind": "zip",
+        "url": "https://data.caltech.edu/api/records/dk5g7-rhq64/files/pretrained_models.zip/content",
+        "member": "pretrained_models/model_an_full_input_enc_sin_cos_hard_cap_num_per_class_1000.pt",
+        "archive_sha256": "d48b37b023d15730586a424576f135b2cd38163f09b6e2ac74683a7410a4c751",
+        "archive_bytes": 187924565
+      },
+      "license": {
+        "id": null,
+        "redistribution": false,
+        "source_url": "https://data.caltech.edu/records/dk5g7-rhq64",
+        "evidence_files": [
+          "resources/evidence/SINR-CaltechDATA-record.json"
+        ],
+        "note": "The published CaltechDATA model record has no explicit weight license in its metadata; the code MIT license is not treated as a checkpoint grant.",
+        "evidence_sha256": {
+          "resources/evidence/SINR-CaltechDATA-record.json": "ebd6a2a9ae72bf9e1279c7910915e0caafb4541466cf39df2eb74f73937868bf"
+        }
+      },
+      "citation": "Cole et al. Spatial Implicit Neural Representations for Global-Scale Species Mapping. https://arxiv.org/abs/2306.02564"
+    },
+    {
+      "id": "sinr-cap10",
+      "label": "SINR cap10",
+      "family": "sinr",
+      "path": "encoders/sinr/pretrained_models/model_an_full_input_enc_sin_cos_hard_cap_num_per_class_10.pt",
+      "aliases": [],
+      "sha256": "438265b758df7cf58f2ed39410205be6a9fa944e559d7556d9d5c7c0f501c4ae",
+      "bytes": 50850118,
+      "feature_dimension": 256,
+      "normalization": "raw",
+      "radius_km": 0.3,
+      "precision": "float64",
+      "source": {
+        "kind": "zip",
+        "url": "https://data.caltech.edu/api/records/dk5g7-rhq64/files/pretrained_models.zip/content",
+        "member": "pretrained_models/model_an_full_input_enc_sin_cos_hard_cap_num_per_class_10.pt",
+        "archive_sha256": "d48b37b023d15730586a424576f135b2cd38163f09b6e2ac74683a7410a4c751",
+        "archive_bytes": 187924565
+      },
+      "license": {
+        "id": null,
+        "redistribution": false,
+        "source_url": "https://data.caltech.edu/records/dk5g7-rhq64",
+        "evidence_files": [
+          "resources/evidence/SINR-CaltechDATA-record.json"
+        ],
+        "note": "The published CaltechDATA model record has no explicit weight license in its metadata; the code MIT license is not treated as a checkpoint grant.",
+        "evidence_sha256": {
+          "resources/evidence/SINR-CaltechDATA-record.json": "ebd6a2a9ae72bf9e1279c7910915e0caafb4541466cf39df2eb74f73937868bf"
+        }
+      },
+      "citation": "Cole et al. Spatial Implicit Neural Representations for Global-Scale Species Mapping. https://arxiv.org/abs/2306.02564"
+    },
+    {
+      "id": "sinr-distilled",
+      "label": "SINR distilled",
+      "family": "sinr",
+      "path": "encoders/sinr/pretrained_models/model_an_full_input_enc_sin_cos_distilled_from_env.pt",
+      "aliases": [],
+      "sha256": "e8408dbfdcdc3008cfce801318cba2263149aaec0451a656d52958bf81115547",
+      "bytes": 50849971,
+      "feature_dimension": 256,
+      "normalization": "raw",
+      "radius_km": 0.3,
+      "precision": "float64",
+      "source": {
+        "kind": "zip",
+        "url": "https://data.caltech.edu/api/records/dk5g7-rhq64/files/pretrained_models.zip/content",
+        "member": "pretrained_models/model_an_full_input_enc_sin_cos_distilled_from_env.pt",
+        "archive_sha256": "d48b37b023d15730586a424576f135b2cd38163f09b6e2ac74683a7410a4c751",
+        "archive_bytes": 187924565
+      },
+      "license": {
+        "id": null,
+        "redistribution": false,
+        "source_url": "https://data.caltech.edu/records/dk5g7-rhq64",
+        "evidence_files": [
+          "resources/evidence/SINR-CaltechDATA-record.json"
+        ],
+        "note": "The published CaltechDATA model record has no explicit weight license in its metadata; the code MIT license is not treated as a checkpoint grant.",
+        "evidence_sha256": {
+          "resources/evidence/SINR-CaltechDATA-record.json": "ebd6a2a9ae72bf9e1279c7910915e0caafb4541466cf39df2eb74f73937868bf"
+        }
+      },
+      "citation": "Cole et al. Spatial Implicit Neural Representations for Global-Scale Species Mapping. https://arxiv.org/abs/2306.02564"
+    },
+    {
+      "id": "satclip-vit16-l10",
+      "label": "SatCLIP vit16l10",
+      "family": "satclip",
+      "path": "encoders/satclip/satclip-vit16-l10.ckpt",
+      "aliases": [
+        "other/satclip-vit16-l10.ckpt",
+        "satclip-vit16-l10.ckpt"
+      ],
+      "sha256": "c7596a5f7aacf72a7c49587a2a5a80f23cf61000a36b46e471c1422b273ca9c0",
+      "bytes": 102550795,
+      "feature_dimension": 256,
+      "normalization": "L2",
+      "radius_km": 1.0,
+      "precision": "float64",
+      "source": {
+        "kind": "file",
+        "url": "https://huggingface.co/microsoft/SatCLIP-ViT16-L10/resolve/829a79064fade0233c68bf01b7a3155be1b8778b/satclip-vit16-l10.ckpt",
+        "repo": "microsoft/SatCLIP-ViT16-L10",
+        "revision": "829a79064fade0233c68bf01b7a3155be1b8778b"
+      },
+      "license": {
+        "id": "MIT",
+        "redistribution": true,
+        "source_url": "https://huggingface.co/microsoft/SatCLIP-ViT16-L10/blob/829a79064fade0233c68bf01b7a3155be1b8778b/README.md",
+        "evidence_files": [
+          "resources/licenses/SatCLIP-MIT.txt",
+          "resources/cards/SatCLIP-ViT16-L10.md"
+        ],
+        "note": "Each publisher model card explicitly declares MIT. Preserve the copyright, license and model card.",
+        "evidence_sha256": {
+          "resources/licenses/SatCLIP-MIT.txt": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+          "resources/cards/SatCLIP-ViT16-L10.md": "bbca3d3cc4558f9400e9d84b398b480146672c00d145110240113573e92377e2"
+        }
+      },
+      "citation": "Klemmer, Rolf, Robinson, Mackey and Russwurm. SatCLIP: Global, General-Purpose Location Embeddings with Satellite Imagery. https://doi.org/10.1609/aaai.v39i4.32457"
+    },
+    {
+      "id": "satclip-vit16-l40",
+      "label": "SatCLIP vit16l40",
+      "family": "satclip",
+      "path": "encoders/satclip/satclip-vit16-l40.ckpt",
+      "aliases": [
+        "other/satclip-vit16-l40.ckpt",
+        "satclip-vit16-l40.ckpt"
+      ],
+      "sha256": "c54c794cb8f95d4a141506656581240008570194b309c91217d86a6d4da5399f",
+      "bytes": 120982795,
+      "feature_dimension": 256,
+      "normalization": "L2",
+      "radius_km": 1.0,
+      "precision": "float64",
+      "source": {
+        "kind": "file",
+        "url": "https://huggingface.co/microsoft/SatCLIP-ViT16-L40/resolve/0ef2acc0b91d3c8cfdf4a0cc03207095989287ab/satclip-vit16-l40.ckpt",
+        "repo": "microsoft/SatCLIP-ViT16-L40",
+        "revision": "0ef2acc0b91d3c8cfdf4a0cc03207095989287ab"
+      },
+      "license": {
+        "id": "MIT",
+        "redistribution": true,
+        "source_url": "https://huggingface.co/microsoft/SatCLIP-ViT16-L40/blob/0ef2acc0b91d3c8cfdf4a0cc03207095989287ab/README.md",
+        "evidence_files": [
+          "resources/licenses/SatCLIP-MIT.txt",
+          "resources/cards/SatCLIP-ViT16-L40.md"
+        ],
+        "note": "Each publisher model card explicitly declares MIT. Preserve the copyright, license and model card.",
+        "evidence_sha256": {
+          "resources/licenses/SatCLIP-MIT.txt": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+          "resources/cards/SatCLIP-ViT16-L40.md": "4619e60254d16120ee506924c9d541d6cd97155eaf5fcf43af051f69b7f6b54e"
+        }
+      },
+      "citation": "Klemmer, Rolf, Robinson, Mackey and Russwurm. SatCLIP: Global, General-Purpose Location Embeddings with Satellite Imagery. https://doi.org/10.1609/aaai.v39i4.32457"
+    },
+    {
+      "id": "satclip-resnet18-l10",
+      "label": "SatCLIP r18l10",
+      "family": "satclip",
+      "path": "encoders/satclip/satclip-resnet18-l10.ckpt",
+      "aliases": [],
+      "sha256": "c4af9559afb43d9c8be2781d4f70ce3f8a1087ea5a3773906c7c50ed05479ebd",
+      "bytes": 57201927,
+      "feature_dimension": 256,
+      "normalization": "L2",
+      "radius_km": 1.0,
+      "precision": "float64",
+      "source": {
+        "kind": "file",
+        "url": "https://huggingface.co/microsoft/SatCLIP-ResNet18-L10/resolve/5263ff2455427581783c399808bdaa6c83857578/satclip-resnet18-l10.ckpt",
+        "repo": "microsoft/SatCLIP-ResNet18-L10",
+        "revision": "5263ff2455427581783c399808bdaa6c83857578"
+      },
+      "license": {
+        "id": "MIT",
+        "redistribution": true,
+        "source_url": "https://huggingface.co/microsoft/SatCLIP-ResNet18-L10/blob/5263ff2455427581783c399808bdaa6c83857578/README.md",
+        "evidence_files": [
+          "resources/licenses/SatCLIP-MIT.txt",
+          "resources/cards/SatCLIP-ResNet18-L10.md"
+        ],
+        "note": "Each publisher model card explicitly declares MIT. Preserve the copyright, license and model card.",
+        "evidence_sha256": {
+          "resources/licenses/SatCLIP-MIT.txt": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+          "resources/cards/SatCLIP-ResNet18-L10.md": "42e0cf21be9c0d590ce2a9e06df821801f6ae0ce24a5b493e13477b52629cfb3"
+        }
+      },
+      "citation": "Klemmer, Rolf, Robinson, Mackey and Russwurm. SatCLIP: Global, General-Purpose Location Embeddings with Satellite Imagery. https://doi.org/10.1609/aaai.v39i4.32457"
+    },
+    {
+      "id": "satclip-resnet18-l40",
+      "label": "SatCLIP r18l40",
+      "family": "satclip",
+      "path": "encoders/satclip/satclip-resnet18-l40.ckpt",
+      "aliases": [],
+      "sha256": "6e2ed15146566170829bae8dd506d8274cd6fe4534c0ef407668dc3ccb04d2f1",
+      "bytes": 75633927,
+      "feature_dimension": 256,
+      "normalization": "L2",
+      "radius_km": 1.0,
+      "precision": "float64",
+      "source": {
+        "kind": "file",
+        "url": "https://huggingface.co/microsoft/SatCLIP-ResNet18-L40/resolve/983a9d9d1f2f933f9a6a6225a214917fb58659d8/satclip-resnet18-l40.ckpt",
+        "repo": "microsoft/SatCLIP-ResNet18-L40",
+        "revision": "983a9d9d1f2f933f9a6a6225a214917fb58659d8"
+      },
+      "license": {
+        "id": "MIT",
+        "redistribution": true,
+        "source_url": "https://huggingface.co/microsoft/SatCLIP-ResNet18-L40/blob/983a9d9d1f2f933f9a6a6225a214917fb58659d8/README.md",
+        "evidence_files": [
+          "resources/licenses/SatCLIP-MIT.txt",
+          "resources/cards/SatCLIP-ResNet18-L40.md"
+        ],
+        "note": "Each publisher model card explicitly declares MIT. Preserve the copyright, license and model card.",
+        "evidence_sha256": {
+          "resources/licenses/SatCLIP-MIT.txt": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+          "resources/cards/SatCLIP-ResNet18-L40.md": "f9cca2d11cea361a4d3d4c7e2d9d24efbecfa75815aad212f88d334b6d8a746a"
+        }
+      },
+      "citation": "Klemmer, Rolf, Robinson, Mackey and Russwurm. SatCLIP: Global, General-Purpose Location Embeddings with Satellite Imagery. https://doi.org/10.1609/aaai.v39i4.32457"
+    },
+    {
+      "id": "satclip-resnet50-l10",
+      "label": "SatCLIP r50l10",
+      "family": "satclip",
+      "path": "encoders/satclip/satclip-resnet50-l10.ckpt",
+      "aliases": [],
+      "sha256": "87ad5e8ca152e9564896f48de033e8d4278665bce049d36b3794847a430e69b1",
+      "bytes": 111491067,
+      "feature_dimension": 256,
+      "normalization": "L2",
+      "radius_km": 1.0,
+      "precision": "float64",
+      "source": {
+        "kind": "file",
+        "url": "https://huggingface.co/microsoft/SatCLIP-ResNet50-L10/resolve/f41ed774863f2b0297e6f096eb3e3490888c03c2/satclip-resnet50-l10.ckpt",
+        "repo": "microsoft/SatCLIP-ResNet50-L10",
+        "revision": "f41ed774863f2b0297e6f096eb3e3490888c03c2"
+      },
+      "license": {
+        "id": "MIT",
+        "redistribution": true,
+        "source_url": "https://huggingface.co/microsoft/SatCLIP-ResNet50-L10/blob/f41ed774863f2b0297e6f096eb3e3490888c03c2/README.md",
+        "evidence_files": [
+          "resources/licenses/SatCLIP-MIT.txt",
+          "resources/cards/SatCLIP-ResNet50-L10.md"
+        ],
+        "note": "Each publisher model card explicitly declares MIT. Preserve the copyright, license and model card.",
+        "evidence_sha256": {
+          "resources/licenses/SatCLIP-MIT.txt": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+          "resources/cards/SatCLIP-ResNet50-L10.md": "cd2c9565bfc4634a5b4b31c331860792a70bb8075116f3611a8ee3985a497d84"
+        }
+      },
+      "citation": "Klemmer, Rolf, Robinson, Mackey and Russwurm. SatCLIP: Global, General-Purpose Location Embeddings with Satellite Imagery. https://doi.org/10.1609/aaai.v39i4.32457"
+    },
+    {
+      "id": "satclip-resnet50-l40",
+      "label": "SatCLIP r50l40",
+      "family": "satclip",
+      "path": "encoders/satclip/satclip-resnet50-l40.ckpt",
+      "aliases": [],
+      "sha256": "50df6453c20ce82b51ceba89811dcf1a21e7fa9d625cbc630f4cdcc4fc0de53a",
+      "bytes": 129923067,
+      "feature_dimension": 256,
+      "normalization": "L2",
+      "radius_km": 1.0,
+      "precision": "float64",
+      "source": {
+        "kind": "file",
+        "url": "https://huggingface.co/microsoft/SatCLIP-ResNet50-L40/resolve/b66714c7308a55d12849d1ea43f892440d78e41a/satclip-resnet50-l40.ckpt",
+        "repo": "microsoft/SatCLIP-ResNet50-L40",
+        "revision": "b66714c7308a55d12849d1ea43f892440d78e41a"
+      },
+      "license": {
+        "id": "MIT",
+        "redistribution": true,
+        "source_url": "https://huggingface.co/microsoft/SatCLIP-ResNet50-L40/blob/b66714c7308a55d12849d1ea43f892440d78e41a/README.md",
+        "evidence_files": [
+          "resources/licenses/SatCLIP-MIT.txt",
+          "resources/cards/SatCLIP-ResNet50-L40.md"
+        ],
+        "note": "Each publisher model card explicitly declares MIT. Preserve the copyright, license and model card.",
+        "evidence_sha256": {
+          "resources/licenses/SatCLIP-MIT.txt": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+          "resources/cards/SatCLIP-ResNet50-L40.md": "4b211f102ee43e261c39a0f95933c0b98520521152841b67e67e7b12caacfb8e"
+        }
+      },
+      "citation": "Klemmer, Rolf, Robinson, Mackey and Russwurm. SatCLIP: Global, General-Purpose Location Embeddings with Satellite Imagery. https://doi.org/10.1609/aaai.v39i4.32457"
+    },
+    {
+      "id": "csp-inat2018",
+      "label": "CSP iNat2018",
+      "family": "csp",
+      "path": "encoders/csp/model_dir/model_inat_2018/model_inat_2018_gridcell_0.0010_32_0.1000000_1_512_leakyrelu_UNSUPER-contsoftmax_0.000500_1.000_1_1.000_TMP20.0000_1.0000_1.0000.pth.tar",
+      "aliases": [],
+      "sha256": "024318427fb0c9aad3125f3455bac90806b2cba12a2215183942ac90b70a3262",
+      "bytes": 36116977,
+      "feature_dimension": 256,
+      "normalization": "L2 after float32 forward",
+      "radius_km": 0.1,
+      "precision": "float32 forward; outputs cast to float64",
+      "source": {
+        "kind": "zip",
+        "url": "https://www.dropbox.com/s/qxr644rj1qxekn2/model_dir.zip?dl=1",
+        "member": "model_dir/model_inat_2018/model_inat_2018_gridcell_0.0010_32_0.1000000_1_512_leakyrelu_UNSUPER-contsoftmax_0.000500_1.000_1_1.000_TMP20.0000_1.0000_1.0000.pth.tar",
+        "archive_sha256": "1040779e3b026935f9ddd7ed07c4034600f8d6e1be4a931a8099a9d3923a0790",
+        "archive_bytes": 94186705
+      },
+      "license": {
+        "id": null,
+        "redistribution": false,
+        "source_url": "https://gengchenmai.github.io/csp-website/",
+        "evidence_files": [],
+        "note": "No checkpoint redistribution terms were established from the publisher project/model link; website licensing is not treated as a checkpoint grant.",
+        "evidence_sha256": {}
+      },
+      "citation": "Mai et al. CSP: Self-Supervised Contrastive Spatial Pre-Training for Geospatial-Visual Representations. https://arxiv.org/abs/2305.01118"
+    },
+    {
+      "id": "csp-fmow",
+      "label": "CSP fMoW",
+      "family": "csp",
+      "path": "encoders/csp/model_dir/model_fmow/model_fmow_gridcell_0.0010_32_0.1000000_1_512_gelu_UNSUPER-contsoftmax_0.000050_1.000_1_0.100_TMP1.0000_1.0000_1.0000.pth.tar",
+      "aliases": [],
+      "sha256": "463b19f2971ae01ce82a676bad223f8d6776548e2c39241709bf3c6960641f9d",
+      "bytes": 8753582,
+      "feature_dimension": 256,
+      "normalization": "L2 after float32 forward",
+      "radius_km": 0.1,
+      "precision": "float32 forward; outputs cast to float64",
+      "source": {
+        "kind": "zip",
+        "url": "https://www.dropbox.com/s/qxr644rj1qxekn2/model_dir.zip?dl=1",
+        "member": "model_dir/model_fmow/model_fmow_gridcell_0.0010_32_0.1000000_1_512_gelu_UNSUPER-contsoftmax_0.000050_1.000_1_0.100_TMP1.0000_1.0000_1.0000.pth.tar",
+        "archive_sha256": "1040779e3b026935f9ddd7ed07c4034600f8d6e1be4a931a8099a9d3923a0790",
+        "archive_bytes": 94186705
+      },
+      "license": {
+        "id": null,
+        "redistribution": false,
+        "source_url": "https://gengchenmai.github.io/csp-website/",
+        "evidence_files": [],
+        "note": "No checkpoint redistribution terms were established from the publisher project/model link; website licensing is not treated as a checkpoint grant.",
+        "evidence_sha256": {}
+      },
+      "citation": "Mai et al. CSP: Self-Supervised Contrastive Spatial Pre-Training for Geospatial-Visual Representations. https://arxiv.org/abs/2305.01118"
+    },
+    {
+      "id": "climplicit",
+      "label": "Climplicit",
+      "family": "climplicit",
+      "path": "encoders/climplicit/climplicit-3341daa2.pth",
+      "aliases": [],
+      "sha256": "3341daa23877530bb93cd6af008651103796ea3c30f8cd6030de4455ed08543b",
+      "bytes": 16317538,
+      "feature_dimension": 1024,
+      "normalization": "raw; concatenate months 3,6,9,12",
+      "radius_km": 0.1,
+      "precision": "float64 direct location_encoder path",
+      "source": {
+        "kind": "file",
+        "url": "https://huggingface.co/Jobedo/climplicit/resolve/fe3426016d96aa68a8799db31e6a095bb435feab/climplicit-3341daa2.pth",
+        "repo": "Jobedo/climplicit",
+        "revision": "fe3426016d96aa68a8799db31e6a095bb435feab"
+      },
+      "license": {
+        "id": "CC-BY-4.0",
+        "redistribution": true,
+        "source_url": "https://huggingface.co/Jobedo/climplicit/blob/fe3426016d96aa68a8799db31e6a095bb435feab/README.md",
+        "evidence_files": [
+          "resources/licenses/Climplicit-CC-BY-4.0.txt",
+          "resources/cards/climplicit.md"
+        ],
+        "note": "Publisher model card declares CC BY 4.0. This is an unmodified copy; preserve author attribution, the source URL and license.",
+        "evidence_sha256": {
+          "resources/licenses/Climplicit-CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+          "resources/cards/climplicit.md": "7a02c80bfe7bd711c58330b5a1147a28dfb2813926aa7c93bde81c24cd86352d"
+        }
+      },
+      "citation": "Dollinger, Robert, Plekhanova, Drees and Wegner. Climplicit: Climatic Implicit Embeddings for Global Ecological Tasks. https://arxiv.org/abs/2504.05089"
+    }
+  ],
+  "external_sources": [
+    {
+      "id": "csp-source-SpatialRelationEncoder.py",
+      "family": "csp",
+      "path": "csp/main/SpatialRelationEncoder.py",
+      "sha256": "9dd1ac6e1b0799a01c8b609c2ed147bb26122101d05e625646c19b742c02661d",
+      "bytes": 54597,
+      "source": {
+        "kind": "file",
+        "url": "https://raw.githubusercontent.com/gengchenmai/csp/67f34075c944ad3845499892a23c7363691cf3bf/main/SpatialRelationEncoder.py",
+        "revision": "67f34075c944ad3845499892a23c7363691cf3bf"
+      },
+      "note": "Obtained directly from the publisher for local evaluation; not included in the redistributed bundle."
+    },
+    {
+      "id": "csp-source-module.py",
+      "family": "csp",
+      "path": "csp/main/module.py",
+      "sha256": "0d2a27819601763709cc7cedfc3e85aa265245f8fe201f78b2a77532a5541589",
+      "bytes": 9171,
+      "source": {
+        "kind": "file",
+        "url": "https://raw.githubusercontent.com/gengchenmai/csp/67f34075c944ad3845499892a23c7363691cf3bf/main/module.py",
+        "revision": "67f34075c944ad3845499892a23c7363691cf3bf"
+      },
+      "note": "Obtained directly from the publisher for local evaluation; not included in the redistributed bundle."
+    },
+    {
+      "id": "csp-source-data_utils.py",
+      "family": "csp",
+      "path": "csp/main/data_utils.py",
+      "sha256": "722caf4f8c77ae81e72ea8c41bc4ad7a1cae2ff3c9e33b8c883f8a5bb849add8",
+      "bytes": 5322,
+      "source": {
+        "kind": "file",
+        "url": "https://raw.githubusercontent.com/gengchenmai/csp/67f34075c944ad3845499892a23c7363691cf3bf/main/data_utils.py",
+        "revision": "67f34075c944ad3845499892a23c7363691cf3bf"
+      },
+      "note": "Obtained directly from the publisher for local evaluation; not included in the redistributed bundle."
+    },
+    {
+      "id": "csp-source-paths.py",
+      "family": "csp",
+      "path": "csp/main/paths.py",
+      "sha256": "358c295774ab931bc82993d1122a84909707aa71a49f9cb4fd8fe3020ab088fd",
+      "bytes": 234,
+      "source": {
+        "kind": "file",
+        "url": "https://raw.githubusercontent.com/gengchenmai/csp/67f34075c944ad3845499892a23c7363691cf3bf/main/paths.py",
+        "revision": "67f34075c944ad3845499892a23c7363691cf3bf"
+      },
+      "note": "Obtained directly from the publisher for local evaluation; not included in the redistributed bundle."
+    }
+  ]
+}

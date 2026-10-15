@@ -1,0 +1,43 @@
+\begin{table}[htbp]\centering\small
+\caption{Per-window and per-target relative RMSE, averaged across the three paired splits.}
+\label{tab:paired5}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Window / target&SatCLIP&SINR&Climplicit&GeoCLIP&Shuffled\\\midrule
+CONUS / elevation&0.980&1.004&0.978&1.000&0.999\\
+CONUS / tree cover&1.002&0.998&1.015&1.001&0.999\\
+CONUS / soil moisture&0.973&0.987&0.981&0.999&1.000\\
+Europe / elevation&0.988&1.000&1.003&1.000&1.000\\
+Europe / tree cover&0.991&0.998&0.992&1.000&1.003\\
+Europe / soil moisture&0.977&0.992&0.988&1.009&1.002\\
+Australia / elevation&0.973&1.021&1.093&1.000&1.000\\
+Australia / tree cover&1.000&1.278&1.132&1.001&1.009\\
+Australia / soil moisture&0.998&1.002&1.001&1.000&1.000\\
+TropSAm / elevation&1.239&1.730&1.485&1.002&0.996\\
+TropSAm / tree cover&0.997&1.005&1.007&1.000&1.001\\
+TropSAm / soil moisture&0.994&1.073&0.978&1.028&1.006\\
+\bottomrule\end{tabular}
+
+\end{table}
+\begin{table}[htbp]\centering\small
+\caption{Per-window and per-target relative RMSE, averaged across the three paired splits.}
+\label{tab:paired4}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Window / target&Target&Feature&Spatial+F&Tensor+F\\\midrule
+CONUS / elevation&0.936&0.929&0.934&0.933\\
+CONUS / tree cover&0.967&0.966&0.963&0.966\\
+CONUS / soil moisture&0.929&0.948&0.937&0.947\\
+Europe / elevation&0.945&0.983&0.987&0.979\\
+Europe / tree cover&0.989&0.985&0.978&0.975\\
+Europe / soil moisture&0.964&0.980&0.953&0.960\\
+Australia / elevation&0.915&0.929&0.920&0.920\\
+Australia / tree cover&0.968&0.985&0.986&0.982\\
+Australia / soil moisture&0.958&0.998&0.964&0.964\\
+TropSAm / elevation&1.047&0.969&0.972&1.091\\
+TropSAm / tree cover&0.978&0.982&0.985&0.984\\
+TropSAm / soil moisture&0.911&0.934&0.886&0.934\\
+\bottomrule\end{tabular}
+
+\end{table}
+\paragraph{Adverse cases.} The largest paired relative RMSE for each method is SatCLIP-L40 shape 1.289 (TropSAm, elevation, split 0); SINR shape 1.794 (TropSAm, elevation, split 1); Climplicit shape 1.651 (TropSAm, elevation, split 1); GeoCLIP shape 1.083 (TropSAm, soil moisture, split 2); Shuffled tensor 1.028 (Australia, tree cover, split 1); Target-derived tensor 1.087 (TropSAm, elevation, split 2); Embedding kernel 1.030 (TropSAm, soil moisture, split 1); Spatial + embedding 1.014 (Australia, tree cover, split 2); Tensor + embedding 1.178 (TropSAm, elevation, split 2). These are descriptive extrema, not independently replicated effects.

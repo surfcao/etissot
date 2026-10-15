@@ -1,0 +1,7 @@
+# Saved measurements for complete manuscript reproduction
+
+- `released_checkpoints.json`: original boundary distances, replay discrepancies and all radius profiles, augmented with full automatic-Jacobian metrics from a fresh evaluation of the same pinned files. Derived anisotropies, tensor errors and refinement decisions are not stored as analysis inputs here; `diagnostics.replay` recomputes them. The added metrics reproduce every original Jacobian anisotropy exactly.
+- `neighbour_candidates.npz`: 20 synthetic queries and 1,200 gallery queries, their candidate coordinates in radians, measured GeoCLIP similarities, ragged-array offsets, group IDs and requested neighbour counts. Selection, elongation, medians and proportions are recomputed. `neighbour_provenance.json` identifies the original checkpoint and gallery by SHA-256. These are location-only candidate measurements, not image retrieval predictions.
+- `hidden_space_seeds.npz`: the four historical miniature architectures' five per-seed angular-extrema fields and held-out R2 scores, plus input/target fields. Extracted without numerical changes from the retained training caches. Analysis recomputes geographic correlations and across-seed means/SDs; held-out scores are recorded measurements, not newly rerun training.
+
+Cached reproduction performs no network access or model deserialization. Fresh checkpoint measurement commands require the trusted external models/dependencies listed in `docs/models.md`.

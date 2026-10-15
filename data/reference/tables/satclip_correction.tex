@@ -1,0 +1,16 @@
+\begin{table}[htbp]\centering\small
+\caption{Paired SatCLIP correction at 35 selected sites and 1\,km radius. Entries are latitude-weighted medians of fitted anisotropy; cosine compares the released and corrected unit output vectors at the centres.}
+\label{tab:satclipcorrection}
+\begin{tabular}{@{}lrrrrr@{}}\toprule
+&\multicolumn{2}{c}{Input $A$}&\multicolumn{2}{c}{Output $A$}&\\
+Checkpoint&Released&Corrected&Released&Corrected&Cosine\\\midrule
+vit16-L10&1.369&1.000&1.680&1.536&0.937\\
+vit16-L40&1.095&1.000&1.397&1.432&0.979\\
+resnet18-L10&1.369&1.000&1.575&1.417&0.928\\
+resnet18-L40&1.095&1.000&1.421&1.424&0.974\\
+resnet50-L10&1.369&1.000&1.509&1.367&0.927\\
+resnet50-L40&1.095&1.000&1.513&1.511&0.975\\
+\bottomrule\end{tabular}
+\par\smallskip\parbox{.97\textwidth}{\footnotesize Medians include flagged fallback values. Released/corrected fallback counts at 1 km, in row order: 0/0, 1/0, 0/0, 0/0, 0/0, 0/0. This selected grid is a paired intervention diagnostic, not the primary global sampling design.}
+\end{table}
+The corrected L10 input has fitted anisotropy 1 to the displayed precision. The corrected L40 input reaches $A=1.00277$ at 1 km and $A=1.00828$ at 0.5 km; dividing latitude-only channels by $\pi$ does not remove the expanded-polynomial numerical errors. Output anisotropy remains above one, with no consistent reduction across the L40 checkpoints. In the compensated control, the maximum absolute difference between corresponding unit-output components is $1.9\times10^{-16}$. These tests assess geometry and numerical equivalence, not predictive performance.

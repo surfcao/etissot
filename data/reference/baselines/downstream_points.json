@@ -1,0 +1,170 @@
+[
+  {
+    "model": "cap1000",
+    "space": "feat",
+    "metric": "brier_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": 0.023539499552016157,
+      "partial": 0.04654304095442843
+    },
+    "legacy": {
+      "raw": 0.023486944957422724,
+      "partial": 0.04671121187462983
+    }
+  },
+  {
+    "model": "cap1000",
+    "space": "feat",
+    "metric": "lauc_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": 0.03854964516695895,
+      "partial": 0.06723994993224204
+    },
+    "legacy": {
+      "raw": 0.03802908304261606,
+      "partial": 0.06720847057087243
+    }
+  },
+  {
+    "model": "cap1000",
+    "space": "logit",
+    "metric": "brier_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": -0.148314545479858,
+      "partial": 0.06551530753257302
+    },
+    "legacy": {
+      "raw": -0.14838321101089472,
+      "partial": 0.06559612620524076
+    }
+  },
+  {
+    "model": "cap1000",
+    "space": "logit",
+    "metric": "lauc_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": 0.06773842939700013,
+      "partial": 0.057067027244319155
+    },
+    "legacy": {
+      "raw": 0.06689029089348451,
+      "partial": 0.05799130084006474
+    }
+  },
+  {
+    "model": "cap10",
+    "space": "feat",
+    "metric": "brier_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": -0.3185951579944668,
+      "partial": 0.15220423492753696
+    },
+    "legacy": {
+      "raw": -0.31857601711882855,
+      "partial": 0.15201716954517572
+    }
+  },
+  {
+    "model": "cap10",
+    "space": "feat",
+    "metric": "lauc_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": -0.2365308237523689,
+      "partial": 0.099012873291573
+    },
+    "legacy": {
+      "raw": -0.23623489601063002,
+      "partial": 0.09915360479955461
+    }
+  },
+  {
+    "model": "cap10",
+    "space": "logit",
+    "metric": "brier_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": -0.3582334693678921,
+      "partial": 0.1382591736196781
+    },
+    "legacy": {
+      "raw": -0.3586162150664181,
+      "partial": 0.13829586743783656
+    }
+  },
+  {
+    "model": "cap10",
+    "space": "logit",
+    "metric": "lauc_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": -0.08614669240303599,
+      "partial": 0.0800112152170966
+    },
+    "legacy": {
+      "raw": -0.08590987590934225,
+      "partial": 0.07953947657904491
+    }
+  },
+  {
+    "model": "distilled",
+    "space": "feat",
+    "metric": "brier_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": -0.09954733449976776,
+      "partial": 0.06161572413625303
+    },
+    "legacy": {
+      "raw": -0.10009839667424529,
+      "partial": 0.060887886589412486
+    }
+  },
+  {
+    "model": "distilled",
+    "space": "feat",
+    "metric": "lauc_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": 0.14781235799304718,
+      "partial": 0.04557143935885604
+    },
+    "legacy": {
+      "raw": 0.14736546696018513,
+      "partial": 0.04533621201385015
+    }
+  },
+  {
+    "model": "distilled",
+    "space": "logit",
+    "metric": "brier_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": -0.11852048904178865,
+      "partial": 0.07749195515297844
+    },
+    "legacy": {
+      "raw": -0.11828985944607005,
+      "partial": 0.07813420124672159
+    }
+  },
+  {
+    "model": "distilled",
+    "space": "logit",
+    "metric": "lauc_cell",
+    "land_cells": 13045,
+    "current": {
+      "raw": 0.18866903635603177,
+      "partial": 0.04086692740376896
+    },
+    "legacy": {
+      "raw": 0.18689992159965732,
+      "partial": 0.04139385866700157
+    }
+  }
+]

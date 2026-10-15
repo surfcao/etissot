@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "scientific_baseline": "manuscript revision 19",
+  "source_release_sha256": "94f47a3426b8cebdb299136f43c1aa4e37c306c085909826cf0400e31acf75e1",
+  "organisation": "Functional src/localdistortion package; separate data and outputs",
+  "changes": [
+    "Moved reusable geometric/statistical functions into library modules",
+    "Separated GaussianProcess model from regional evaluation",
+    "Replaced import-time script execution with explicit workflow functions",
+    "Added pyproject metadata, installable wheel, public API, CLI and tests",
+    "Renamed all experiment-numbered data files by purpose",
+    "Removed local project dependency paths; require installed dependencies",
+    "Separated external checkpoints, immutable input data and generated results",
+    "Full reproduction does not seed finished outputs",
+    "Added cached-checkpoint replay with full Jacobian metrics",
+    "Added analytic validity, harmonic, conditional mixture, historical five-seed and neighbour analyses",
+    "Recomputed all 360 stored GP objectives and held-out scores",
+    "Added manuscript figure/table/prose verification and 46-test suite"
+  ],
+  "numerics": "NPZ data byte-identical to source release; scientific summary values unchanged; downstream protocol strings updated to new names",
+  "legacy_name_mapping": "docs/file_migration.json",
+  "public_upload": false,
+  "manuscript_corrections": [
+    "20 synthetic queries total, not per latitude",
+    "Tie-aware gallery elongation share 49\u201361%",
+    "Supplement spherical maximum refinement error rounds to 3.45e-5"
+  ]
+}

@@ -1,0 +1,22 @@
+\begin{table}[htbp]\centering\small
+\caption{Three-way neighbourhood comparison. Entries are median overlaps for $k=40$ among 400 candidates within 1 km; tensors use independent 0.3 km probes. E/G compares actual embedding neighbours with geographic neighbours, T/G compares tensor-predicted neighbours with geographic neighbours, and E/T compares embedding and tensor selections directly. The same valid queries enter all three comparisons.}
+\label{tab:neighbourhoods}
+\begin{tabular}{@{}lrrrr@{}}\toprule
+Checkpoint&Queries&E/G&T/G&E/T\\\midrule
+GeoCLIP&20&0.788&0.788&0.975\\
+SatCLIP L10 released&20&0.762&0.762&1.000\\
+SatCLIP L10 corrected&20&0.900&0.900&1.000\\
+SatCLIP L40 released&20&0.875&0.875&1.000\\
+SatCLIP L40 corrected&20&0.850&0.863&1.000\\
+SINR cap1000&20&0.637&0.637&1.000\\
+SINR cap10&20&0.575&0.575&1.000\\
+SINR distilled&19&0.575&0.575&1.000\\
+SatCLIP r18l10&20&0.788&0.788&1.000\\
+SatCLIP r18l40&20&0.825&0.825&1.000\\
+SatCLIP r50l10&20&0.775&0.775&1.000\\
+SatCLIP r50l40&20&0.875&0.875&1.000\\
+CSP iNat2018&20&0.713&0.713&1.000\\
+CSP fMoW&20&0.850&0.850&1.000\\
+Climplicit&20&0.788&0.788&1.000\\
+\bottomrule\end{tabular}
+\end{table}

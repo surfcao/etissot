@@ -1,0 +1,1648 @@
+{
+  "scope": "Reproduction of every empirical figure/table and reported numerical result from packaged profiles, candidate similarities, per-seed measurements and selected GP parameters. Analytic examples run from their definitions. Saved measurements are not a rerun of upstream model training or raw raster acquisition. Fresh boundary/neighbor collection and GP optimization have separate commands.; reorganized journal supplement and relocated package evidence retain all existing numerical checks",
+  "numerical_claims": [
+    {
+      "id": "sinusoid fitted anisotropy",
+      "summary": "estimator_validity.json",
+      "path": [
+        "counterexamples",
+        3,
+        "fitted"
+      ],
+      "expected": 9.235,
+      "atol": 0.0005,
+      "literal": "9.235",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "sinusoid fitted error percent",
+      "summary": "estimator_validity.json",
+      "path": [
+        "counterexamples",
+        3,
+        "relative_error_percent"
+      ],
+      "expected": -7.653,
+      "atol": 0.0005,
+      "literal": "$-7.653$",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "sinusoid residual",
+      "summary": "estimator_validity.json",
+      "path": [
+        "counterexamples",
+        3,
+        "residual"
+      ],
+      "expected": 0.00225,
+      "atol": 5e-06,
+      "literal": "0.00225",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "sinusoid axis-only error",
+      "summary": "estimator_validity.json",
+      "path": [
+        "counterexamples",
+        3,
+        "axis_error_percent"
+      ],
+      "expected": -0.635,
+      "atol": 0.0005,
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "local refinement count",
+      "summary": "estimator_validity.json",
+      "path": [
+        "sinusoidal_cases"
+      ],
+      "expected": 119,
+      "atol": 0,
+      "literal": "119",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "local refinement maximum error",
+      "summary": "estimator_validity.json",
+      "path": [
+        "max_refined_error"
+      ],
+      "expected": 7.46e-05,
+      "atol": 5e-08,
+      "literal": "7.46\\times10^{-5}",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "spherical refinement halvings at 60",
+      "summary": "estimator_validity.json",
+      "path": [
+        "spherical",
+        0,
+        "halvings"
+      ],
+      "expected": 4,
+      "atol": 0,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "spherical refinement halvings at 75",
+      "summary": "estimator_validity.json",
+      "path": [
+        "spherical",
+        1,
+        "halvings"
+      ],
+      "expected": 5,
+      "atol": 0,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "spherical refinement halvings at 80",
+      "summary": "estimator_validity.json",
+      "path": [
+        "spherical",
+        2,
+        "halvings"
+      ],
+      "expected": 5,
+      "atol": 0,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "spherical refinement halvings at 85",
+      "summary": "estimator_validity.json",
+      "path": [
+        "spherical",
+        3,
+        "halvings"
+      ],
+      "expected": 6,
+      "atol": 0,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "spherical refinement halvings at 89",
+      "summary": "estimator_validity.json",
+      "path": [
+        "spherical",
+        4,
+        "halvings"
+      ],
+      "expected": 9,
+      "atol": 0,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "bounded profile perturbations",
+      "summary": "estimator_validity.json",
+      "path": [
+        "perturbation_checks"
+      ],
+      "expected": 1000,
+      "atol": 0,
+      "literal": "1,000",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "finite bearing rotation 0",
+      "summary": "estimator_validity.json",
+      "path": [
+        "finite_bearing_rotation",
+        0,
+        "bearing_error_degrees"
+      ],
+      "expected": -0.09568,
+      "atol": 5e-06,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "finite bearing rotation 1",
+      "summary": "estimator_validity.json",
+      "path": [
+        "finite_bearing_rotation",
+        1,
+        "bearing_error_degrees"
+      ],
+      "expected": -0.000955,
+      "atol": 5e-07,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "SatCLIP vit16l10 Jacobian tail",
+      "summary": "geometry.json",
+      "path": [
+        "jacobian_tails",
+        "SatCLIP vit16l10",
+        "p95_error"
+      ],
+      "expected": 0.00017,
+      "atol": 5e-06,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "SatCLIP vit16l40 Jacobian tail",
+      "summary": "geometry.json",
+      "path": [
+        "jacobian_tails",
+        "SatCLIP vit16l40",
+        "p95_error"
+      ],
+      "expected": 0.24,
+      "atol": 0.005,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "Climplicit Jacobian tail",
+      "summary": "geometry.json",
+      "path": [
+        "jacobian_tails",
+        "Climplicit",
+        "p95_error"
+      ],
+      "expected": 0.00065,
+      "atol": 5e-06,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "SINR cap1000 Jacobian tail",
+      "summary": "geometry.json",
+      "path": [
+        "jacobian_tails",
+        "SINR cap1000",
+        "p95_error"
+      ],
+      "expected": 1.15,
+      "atol": 0.005,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "GeoCLIP Jacobian tail",
+      "summary": "geometry.json",
+      "path": [
+        "jacobian_tails",
+        "GeoCLIP",
+        "p95_error"
+      ],
+      "expected": 16.69,
+      "atol": 0.005,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "SINR upper-decile error",
+      "summary": "geometry.json",
+      "path": [
+        "jacobian_tails",
+        "SINR cap1000",
+        "high_A_p95_error"
+      ],
+      "expected": 16.1,
+      "atol": 0.05,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "GeoCLIP upper-decile error",
+      "summary": "geometry.json",
+      "path": [
+        "jacobian_tails",
+        "GeoCLIP",
+        "high_A_p95_error"
+      ],
+      "expected": 52,
+      "atol": 0.05,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "GeoCLIP median at 1.0",
+      "summary": "geometry.json",
+      "path": [
+        "geoclip_radius",
+        "1.0",
+        "median_error60"
+      ],
+      "expected": 3.9,
+      "atol": 0.005,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "GeoCLIP p95 at 1.0",
+      "summary": "geometry.json",
+      "path": [
+        "geoclip_radius",
+        "1.0",
+        "p95_error60"
+      ],
+      "expected": 11.92,
+      "atol": 0.005,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "GeoCLIP median at 0.3",
+      "summary": "geometry.json",
+      "path": [
+        "geoclip_radius",
+        "0.3",
+        "median_error60"
+      ],
+      "expected": 1.96,
+      "atol": 0.005,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "GeoCLIP p95 at 0.3",
+      "summary": "geometry.json",
+      "path": [
+        "geoclip_radius",
+        "0.3",
+        "p95_error60"
+      ],
+      "expected": 6.11,
+      "atol": 0.005,
+      "literal": "",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "accepted released refinements",
+      "summary": "audit_summary.json",
+      "path": [
+        "total_converged"
+      ],
+      "expected": 34,
+      "atol": 0,
+      "literal": "34",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "released refinement total",
+      "summary": "audit_summary.json",
+      "path": [
+        "total_tested"
+      ],
+      "expected": 50,
+      "atol": 0,
+      "literal": "50",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "maximum accepted anisotropy error",
+      "summary": "audit_summary.json",
+      "path": [
+        "radius_by_checkpoint",
+        0,
+        "max_accepted_A_error_pct"
+      ],
+      "expected": 0.141,
+      "atol": 0.0005,
+      "literal": "0.141\\%",
+      "document": "additional_results.tex",
+      "scale": 1
+    },
+    {
+      "id": "maximum accepted tensor error",
+      "summary": "audit_summary.json",
+      "path": [
+        "radius_by_checkpoint",
+        0,
+        "max_accepted_tensor_error_pct"
+      ],
+      "expected": 0.78,
+      "atol": 0.0005,
+      "literal": "0.780\\%",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "maximum accepted shape discrepancy",
+      "summary": "audit_summary.json",
+      "path": [
+        "radius_by_checkpoint",
+        0,
+        "max_accepted_shape_discrepancy"
+      ],
+      "expected": 1.001411,
+      "atol": 5e-07,
+      "literal": "1.001411",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "L10 input anisotropy range 0",
+      "summary": "harmonics.json",
+      "path": [
+        "degree10_anisotropy_range",
+        0
+      ],
+      "expected": 1.29,
+      "atol": 0.005,
+      "literal": "1.29 to 1.65",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "L10 input anisotropy range 1",
+      "summary": "harmonics.json",
+      "path": [
+        "degree10_anisotropy_range",
+        1
+      ],
+      "expected": 2.56,
+      "atol": 0.005,
+      "literal": "2.56 at $85^\\circ$",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "GP fit count",
+      "summary": "kriging.json",
+      "path": [
+        "fits"
+      ],
+      "expected": 360,
+      "atol": 0,
+      "literal": "360",
+      "document": "additional_results.tex",
+      "scale": 1
+    },
+    {
+      "id": "GP starts",
+      "summary": "kriging.json",
+      "path": [
+        "starts"
+      ],
+      "expected": 1080,
+      "atol": 0,
+      "literal": "1,080",
+      "document": "additional_results.tex",
+      "scale": 1
+    },
+    {
+      "id": "GP convergence",
+      "summary": "kriging.json",
+      "path": [
+        "converged_starts"
+      ],
+      "expected": 1080,
+      "atol": 0,
+      "literal": "1080",
+      "document": "additional_results.tex",
+      "scale": 1
+    },
+    {
+      "id": "GP objective spread count",
+      "summary": "kriging.json",
+      "path": [
+        "nll_spread_above1"
+      ],
+      "expected": 64,
+      "atol": 0,
+      "literal": "64",
+      "document": "main.tex",
+      "scale": 1
+    },
+    {
+      "id": "synthetic query count",
+      "summary": "neighbours.json",
+      "path": [
+        "synthetic",
+        19,
+        "group"
+      ],
+      "expected": -1,
+      "atol": 0,
+      "literal": "20 queries in total",
+      "document": "additional_results.tex",
+      "scale": 1
+    },
+    {
+      "id": "historical target ensemble correlation length",
+      "summary": "hidden_space.json",
+      "path": [
+        "target_ensemble_correlation_length_km"
+      ],
+      "expected": 1720,
+      "atol": 5,
+      "literal": "1,720\\,km",
+      "document": "additional_results.tex",
+      "scale": 1
+    },
+    {
+      "id": "neighbourhood_0_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        0,
+        "geographic_overlap"
+      ],
+      "expected": 0.7875000000000001,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_0_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        0,
+        "tensor_overlap"
+      ],
+      "expected": 0.975,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_0_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        0,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_1_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        1,
+        "geographic_overlap"
+      ],
+      "expected": 0.7625,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_1_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        1,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_1_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        1,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_2_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        2,
+        "geographic_overlap"
+      ],
+      "expected": 0.9,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_2_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        2,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_2_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        2,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_3_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        3,
+        "geographic_overlap"
+      ],
+      "expected": 0.875,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_3_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        3,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_3_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        3,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_4_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        4,
+        "geographic_overlap"
+      ],
+      "expected": 0.85,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_4_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        4,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_4_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        4,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_5_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        5,
+        "geographic_overlap"
+      ],
+      "expected": 0.6375,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_5_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        5,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_5_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        5,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_6_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        6,
+        "geographic_overlap"
+      ],
+      "expected": 0.575,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_6_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        6,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_6_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        6,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_7_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        7,
+        "geographic_overlap"
+      ],
+      "expected": 0.575,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_7_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        7,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_7_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        7,
+        "queries"
+      ],
+      "expected": 19,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_8_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        8,
+        "geographic_overlap"
+      ],
+      "expected": 0.7875000000000001,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_8_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        8,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_8_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        8,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_9_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        9,
+        "geographic_overlap"
+      ],
+      "expected": 0.825,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_9_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        9,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_9_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        9,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_10_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        10,
+        "geographic_overlap"
+      ],
+      "expected": 0.775,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_10_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        10,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_10_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        10,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_11_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        11,
+        "geographic_overlap"
+      ],
+      "expected": 0.875,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_11_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        11,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_11_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        11,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_12_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        12,
+        "geographic_overlap"
+      ],
+      "expected": 0.7125,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_12_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        12,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_12_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        12,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_13_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        13,
+        "geographic_overlap"
+      ],
+      "expected": 0.85,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_13_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        13,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_13_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        13,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_14_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        14,
+        "geographic_overlap"
+      ],
+      "expected": 0.7875000000000001,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_14_tensor_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        14,
+        "tensor_overlap"
+      ],
+      "expected": 1,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_14_queries",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        14,
+        "queries"
+      ],
+      "expected": 20,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_0_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        0,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.7875000000000001,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_1_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        1,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.7625,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_2_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        2,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.9,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_3_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        3,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.875,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_4_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        4,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.8625,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_5_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        5,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.6375,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_6_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        6,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.575,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_7_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        7,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.575,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_8_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        8,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.7875000000000001,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_9_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        9,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.825,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_10_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        10,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.775,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_11_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        11,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.875,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_12_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        12,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.7125,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_13_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        13,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.85,
+      "atol": 1e-12
+    },
+    {
+      "id": "neighbourhood_14_tensor_geographic_overlap",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "summary",
+        14,
+        "tensor_geographic_overlap"
+      ],
+      "expected": 0.7875000000000001,
+      "atol": 1e-12
+    },
+    {
+      "id": "overlap_distribution_total",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "overlap_distribution",
+        "total"
+      ],
+      "expected": 299,
+      "atol": 0
+    },
+    {
+      "id": "overlap_distribution_exact",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "overlap_distribution",
+        "exact"
+      ],
+      "expected": 265,
+      "atol": 0
+    },
+    {
+      "id": "overlap_distribution_nonexact",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "overlap_distribution",
+        "nonexact"
+      ],
+      "expected": 34,
+      "atol": 0
+    },
+    {
+      "id": "overlap_distribution_count_0",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "overlap_distribution",
+        "counts",
+        0
+      ],
+      "expected": 1,
+      "atol": 0
+    },
+    {
+      "id": "overlap_distribution_count_1",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "overlap_distribution",
+        "counts",
+        1
+      ],
+      "expected": 1,
+      "atol": 0
+    },
+    {
+      "id": "overlap_distribution_count_2",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "overlap_distribution",
+        "counts",
+        2
+      ],
+      "expected": 32,
+      "atol": 0
+    },
+    {
+      "id": "overlap_distribution_count_3",
+      "document": "main.tex",
+      "summary": "neighbourhoods.json",
+      "path": [
+        "overlap_distribution",
+        "counts",
+        3
+      ],
+      "expected": 265,
+      "atol": 0
+    },
+    {
+      "id": "SINR adverse relative RMSE",
+      "document": "additional_results.tex",
+      "literal": "1.794",
+      "summary": "kriging.json",
+      "path": [
+        "worst_cases",
+        1,
+        "ratio"
+      ],
+      "expected": 1.794,
+      "atol": 0.0005
+    },
+    {
+      "id": "SatCLIP adverse relative RMSE",
+      "document": "additional_results.tex",
+      "literal": "1.289",
+      "summary": "kriging.json",
+      "path": [
+        "worst_cases",
+        0,
+        "ratio"
+      ],
+      "expected": 1.289,
+      "atol": 0.0005
+    },
+    {
+      "id": "Spatial plus embedding adverse relative RMSE",
+      "document": "additional_results.tex",
+      "literal": "1.014",
+      "summary": "kriging.json",
+      "path": [
+        "worst_cases",
+        7,
+        "ratio"
+      ],
+      "expected": 1.014,
+      "atol": 0.0005
+    },
+    {
+      "id": "Tensor plus embedding adverse relative RMSE",
+      "document": "additional_results.tex",
+      "literal": "1.178",
+      "summary": "kriging.json",
+      "path": [
+        "worst_cases",
+        8,
+        "ratio"
+      ],
+      "expected": 1.178,
+      "atol": 0.0005
+    },
+    {
+      "id": "CSP-iNat double-precision median error",
+      "summary": "csp_precision.json",
+      "path": [
+        "models",
+        "CSP iNat2018",
+        "summary",
+        "f64_median_err"
+      ],
+      "expected": 0.0017,
+      "atol": 5e-05,
+      "literal": "0.0017&0.97",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "CSP-iNat released 95th percentile error",
+      "summary": "csp_precision.json",
+      "path": [
+        "models",
+        "CSP iNat2018",
+        "summary",
+        "f32_p95_err"
+      ],
+      "expected": 0.97,
+      "atol": 0.005,
+      "literal": "0.022&0.97",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "CSP-fMoW released median error",
+      "summary": "csp_precision.json",
+      "path": [
+        "models",
+        "CSP fMoW",
+        "summary",
+        "f32_median_err"
+      ],
+      "expected": 0.0053,
+      "atol": 5e-05,
+      "literal": "0.0053&0.021",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "CSP-fMoW double-precision 95th percentile error",
+      "summary": "csp_precision.json",
+      "path": [
+        "models",
+        "CSP fMoW",
+        "summary",
+        "f64_p95_err"
+      ],
+      "expected": 0.0041,
+      "atol": 5e-05,
+      "literal": "0.0006&0.0041",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "CSP-iNat crossing fraction",
+      "summary": "csp_precision.json",
+      "path": [
+        "models",
+        "CSP iNat2018",
+        "summary",
+        "crossing_fraction"
+      ],
+      "expected": 21,
+      "atol": 0.5,
+      "literal": "21\\%",
+      "document": "main.tex",
+      "scale": 100
+    },
+    {
+      "id": "submission_neighborhood_comparisons",
+      "document": "main.tex",
+      "summary": "neighbourhood_nulls.json",
+      "path": [
+        "comparisons"
+      ],
+      "expected": 299,
+      "atol": 1e-12
+    },
+    {
+      "id": "submission_neighborhood_tensor_exact",
+      "document": "main.tex",
+      "summary": "neighbourhood_nulls.json",
+      "path": [
+        "tensor",
+        "exact"
+      ],
+      "expected": 265,
+      "atol": 1e-12
+    },
+    {
+      "id": "submission_neighborhood_geographic_exact",
+      "document": "main.tex",
+      "summary": "neighbourhood_nulls.json",
+      "path": [
+        "isotropic",
+        "exact"
+      ],
+      "expected": 5,
+      "atol": 1e-12
+    },
+    {
+      "id": "submission_neighborhood_rotated_exact",
+      "document": "main.tex",
+      "summary": "neighbourhood_nulls.json",
+      "path": [
+        "swapped",
+        "exact"
+      ],
+      "expected": 0,
+      "atol": 1e-12
+    },
+    {
+      "id": "submission_neighborhood_land_exact",
+      "document": "main.tex",
+      "summary": "neighbourhood_nulls.json",
+      "path": [
+        "land",
+        "tensor_exact"
+      ],
+      "expected": 143,
+      "atol": 1e-12
+    },
+    {
+      "id": "submission_neighborhood_land_comparisons",
+      "document": "main.tex",
+      "summary": "neighbourhood_nulls.json",
+      "path": [
+        "land",
+        "comparisons"
+      ],
+      "expected": 164,
+      "atol": 1e-12
+    },
+    {
+      "id": "submission_neighborhood_ocean_exact",
+      "document": "main.tex",
+      "summary": "neighbourhood_nulls.json",
+      "path": [
+        "ocean",
+        "tensor_exact"
+      ],
+      "expected": 122,
+      "atol": 1e-12
+    },
+    {
+      "id": "submission_neighborhood_ocean_comparisons",
+      "document": "main.tex",
+      "summary": "neighbourhood_nulls.json",
+      "path": [
+        "ocean",
+        "comparisons"
+      ],
+      "expected": 135,
+      "atol": 1e-12
+    },
+    {
+      "id": "submission_neighborhood_bootstrap_low",
+      "document": "main.tex",
+      "summary": "neighbourhood_nulls.json",
+      "path": [
+        "tensor_exact_fraction_query_bootstrap_95",
+        0
+      ],
+      "expected": 0.85,
+      "atol": 1e-12
+    },
+    {
+      "id": "submission_neighborhood_bootstrap_high",
+      "document": "main.tex",
+      "summary": "neighbourhood_nulls.json",
+      "path": [
+        "tensor_exact_fraction_query_bootstrap_95",
+        1
+      ],
+      "expected": 0.9194630872483222,
+      "atol": 1e-12
+    }
+  ],
+  "coverage": [
+    {
+      "section": "Main \u00a73, supplement S1\u2013S2: estimator bound, counterexamples, refinement and finite bearings",
+      "summaries": [
+        "estimator_validity.json"
+      ]
+    },
+    {
+      "section": "Main Table 1 and \u00a74.1; supplement S6: analytic references and harmonic implementation",
+      "summaries": [
+        "harmonics.json"
+      ]
+    },
+    {
+      "section": "Main Table 2, \u00a74\u20135; supplement S3\u2013S4: global fields, resampling and Jacobian tails",
+      "summaries": [
+        "geometry.json",
+        "dense_summary.json"
+      ]
+    },
+    {
+      "section": "Main \u00a74.3; supplement S3\u2013S4 and S8: coordinate boundaries, refinement and checkpoints",
+      "summaries": [
+        "released_audit.json",
+        "audit_summary.json",
+        "checkpoint_metadata.json"
+      ]
+    },
+    {
+      "section": "Main \u00a75.2; supplement S5: shape discrepancies and neighbour geometry",
+      "summaries": [
+        "shape.json",
+        "neighbours.json"
+      ]
+    },
+    {
+      "section": "Main \u00a75.5; supplement S8: conditional mixtures",
+      "summaries": [
+        "mixtures.json"
+      ]
+    },
+    {
+      "section": "Package additional results R1: historical five-seed regression summaries",
+      "summaries": [
+        "hidden_space.json"
+      ]
+    },
+    {
+      "section": "Main \u00a76.1; supplement S7: regional error associations",
+      "summaries": [
+        "downstream.json"
+      ]
+    },
+    {
+      "section": "Main Table 3 and \u00a76.2; supplement S11\u2013S8: matched prediction and optimization",
+      "summaries": [
+        "kriging.json",
+        "prediction_replay.json"
+      ]
+    },
+    {
+      "section": "Supplement S6: paired pi-only correction of six SatCLIP checkpoints",
+      "summaries": [
+        "satclip_correction.json"
+      ]
+    },
+    {
+      "study": "Matched geometry case studies",
+      "summaries": [
+        "geometry_case_studies.json"
+      ]
+    },
+    {
+      "section": "Main Section 5: all-family neighbourhood comparison",
+      "summaries": [
+        "neighbourhoods.json"
+      ]
+    },
+    {
+      "section": "Main \u00a74.2; supplement S4.1: CSP double-precision check",
+      "summaries": [
+        "csp_precision.json"
+      ]
+    },
+    {
+      "content": "New checkpoint audits, common-radius profiles and neighborhood null controls",
+      "summaries": [
+        "review_followups.json",
+        "neighbourhood_nulls.json",
+        "csp_precision.json"
+      ]
+    }
+  ],
+  "documents": [
+    "main.tex",
+    "additional_results.tex"
+  ]
+}

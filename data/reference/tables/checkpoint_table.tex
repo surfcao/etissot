@@ -1,0 +1,22 @@
+\begin{table}[htbp]\centering\small
+\caption{Checkpoint protocol and identifiers. The twelve-character SHA-256 prefixes identify the exact local files used for the bounded evaluation; full hashes and relative filenames are in the accompanying metadata.}
+\label{tab:checkpoints}
+\begin{tabular}{@{}lrlrll@{}}\toprule
+Checkpoint&Dim.&Vector&Lag (km)&Precision&SHA-256 prefix\\\midrule
+GeoCLIP&512&L2&1&M32&\texttt{94b80ae3af89}\\
+SINR cap-1000&256&raw&0.3&F64&\texttt{7bf4dacb0f9b}\\
+SINR cap-10&256&raw&0.3&F64&\texttt{438265b758df}\\
+SINR distilled&256&raw&0.3&F64&\texttt{e8408dbfdcdc}\\
+SatCLIP ViT-L10&256&L2&1&F64&\texttt{c7596a5f7aac}\\
+SatCLIP ViT-L40&256&L2&1&F64&\texttt{c54c794cb8f9}\\
+SatCLIP R18-L10&256&L2&1&F64&\texttt{c4af9559afb4}\\
+SatCLIP R18-L40&256&L2&1&F64&\texttt{6e2ed1514656}\\
+SatCLIP R50-L10&256&L2&1&F64&\texttt{87ad5e8ca152}\\
+SatCLIP R50-L40&256&L2&1&F64&\texttt{50df6453c20c}\\
+CSP-iNat&256&L2&0.1&F32&\texttt{024318427fb0}\\
+CSP-fMoW&256&L2&0.1&F32&\texttt{463b19f2971a}\\
+Climplicit&1024&raw&0.1&F64&\texttt{3341daa23877}\\
+\bottomrule\end{tabular}
+\par\smallskip\parbox{.97\textwidth}{\footnotesize F64: float64 operative path; M32: float64 weights/input with released float32 accumulator/output; F32: float32 forward, then float64 output storage. CSP is normalised after casting; GeoCLIP and SatCLIP use normalised outputs. SINR uses pre-head raw features. Climplicit concatenates raw 256-dimensional outputs for months 3, 6, 9 and 12 (1,024 dimensions).}
+\end{table}
+GeoCLIP is the bundled location encoder in package 1.2.1, file \texttt{location\_encoder\_weights.pth}. SatCLIP filenames follow \texttt{satclip-}, followed by backbone (vit16, resnet18 or resnet50) and degree (l10 or l40), with extension \texttt{.ckpt}. SINR files have prefix \texttt{model\_an\_full\_}\allowbreak\texttt{input\_enc\_}\allowbreak\texttt{sin\_cos\_}, with cap-10, cap-1000 or environment-distilled suffixes. CSP uses the iNat2018 and fMoW \texttt{UNSUPER} grid-cell checkpoints, not the subsequent supervised variants. Climplicit uses \texttt{climplicit-3341daa2.pth}, with a direct float64 \texttt{location\_encoder} path and explicit month features. Longitudes are wrapped to $[-180^\circ,180^\circ)$ before encoding; raw pole/seam equivalence is assessed separately. The metadata records complete filenames, dimensions, normalisation, precision and full hashes in one machine-readable table.

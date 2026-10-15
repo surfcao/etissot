@@ -1,0 +1,507 @@
+{
+  "status": "passed",
+  "scope": "Reproduction of reported empirical tables/figures from declared measurements and selected parameters; not upstream retraining or raw raster acquisition",
+  "version": "0.2.0",
+  "unit_tests_passed": 46,
+  "figures_pixel_identical_to_previous_manuscript": 6,
+  "table_count": 16,
+  "generated_blocks": 17,
+  "numerical_prose_checks": 38,
+  "analytic_reference_tables": 1,
+  "pdf_pages": {
+    "main": 19,
+    "supplement": 12
+  },
+  "pdf_visual_review": "All pages rendered; full-document contact sheets and changed supplement pages inspected; no clipping or unresolved final references",
+  "fresh_boundary_evaluation": {
+    "checkpoints": 13,
+    "cases": 50,
+    "accepted": 34,
+    "added_Jacobian_anisotropies_identical_to_original": true
+  },
+  "fresh_neighbour_collection": {
+    "synthetic_queries": 20,
+    "gallery_queries": 1200,
+    "measurements": "data/measurements/neighbour_candidates.npz"
+  },
+  "corrections": [
+    "20 synthetic queries total, not per latitude",
+    "Gallery strict-comparison tie handling at relative tolerance 1e-10 gives 49\u201361%",
+    "Supplement spherical maximum error rounds to 3.45e-5",
+    "Target correlation length explicitly identified as the ensemble 1/e scale"
+  ],
+  "limitations": [
+    "No upstream encoder retraining or raw-data recollection",
+    "Historical miniature means use saved per-seed fields and held-out scores",
+    "Full GP optimization available separately; replay uses selected stored parameters"
+  ],
+  "pipeline": [
+    {
+      "module": "diagnostics.replay",
+      "status": "passed",
+      "seconds": 0.65
+    },
+    {
+      "module": "diagnostics.geographic",
+      "status": "passed",
+      "seconds": 10.75
+    },
+    {
+      "module": "diagnostics.shape",
+      "status": "passed",
+      "seconds": 0.07
+    },
+    {
+      "module": "diagnostics.dense_cached",
+      "status": "passed",
+      "seconds": 3.99
+    },
+    {
+      "module": "diagnostics.estimator",
+      "status": "passed",
+      "seconds": 0.08
+    },
+    {
+      "module": "diagnostics.historical",
+      "status": "passed",
+      "seconds": 0.26
+    },
+    {
+      "module": "diagnostics.neighbours",
+      "status": "passed",
+      "seconds": 0.15
+    },
+    {
+      "module": "diagnostics.harmonics",
+      "status": "passed",
+      "seconds": 0.04
+    },
+    {
+      "module": "diagnostics.mixtures",
+      "status": "passed",
+      "seconds": 7.76
+    },
+    {
+      "module": "diagnostics.prediction_replay",
+      "status": "passed",
+      "seconds": 25.18
+    },
+    {
+      "module": "reporting.summary",
+      "status": "passed",
+      "seconds": 10.01
+    },
+    {
+      "module": "reporting.audit",
+      "status": "passed",
+      "seconds": 0.03
+    },
+    {
+      "module": "reporting.maps",
+      "status": "passed",
+      "seconds": 2.47
+    },
+    {
+      "module": "diagnostics.downstream",
+      "status": "passed",
+      "seconds": 29.22
+    },
+    {
+      "module": "reporting.supplement",
+      "status": "passed",
+      "seconds": 0.01
+    },
+    {
+      "module": "validation.geometry",
+      "status": "passed",
+      "seconds": 0.14
+    },
+    {
+      "module": "validation.dense",
+      "status": "passed",
+      "seconds": 3.25
+    },
+    {
+      "module": "validation.downstream",
+      "status": "passed",
+      "seconds": 0.02
+    }
+  ],
+  "manuscript_verification": {
+    "status": "passed",
+    "scope": "Reproduction of every empirical figure/table and reported numerical result from packaged profiles, candidate similarities, per-seed measurements and selected GP parameters. Analytic examples run from their definitions. Saved measurements are not a rerun of upstream model training or raw raster acquisition. Fresh boundary/neighbor collection and GP optimization have separate commands.",
+    "generated_blocks": [
+      "released_main",
+      "encoder_table",
+      "kriging_table",
+      "counterexamples",
+      "sampling_table",
+      "dense_protocol",
+      "bearing_table",
+      "boundaries",
+      "tail_table",
+      "released_supplement",
+      "shape_table",
+      "neighbours",
+      "hidden_space",
+      "downstream_table",
+      "optimisation",
+      "kriging_windows",
+      "checkpoint_table"
+    ],
+    "numerical_macros": true,
+    "figures": [
+      {
+        "file": "dense_regional_maps.png",
+        "pixels_identical": true
+      },
+      {
+        "file": "fig_indicatrix.png",
+        "pixels_identical": true
+      },
+      {
+        "file": "fig_kriging.png",
+        "pixels_identical": true
+      },
+      {
+        "file": "fig_validation.png",
+        "pixels_identical": true
+      },
+      {
+        "file": "geoclip_distortion_maps.png",
+        "pixels_identical": true
+      },
+      {
+        "file": "satclip_backbones_maps.png",
+        "pixels_identical": true
+      }
+    ],
+    "table_count": 16,
+    "analytic_tables": [
+      {
+        "file": "main.tex",
+        "kind": "analytic formula table; checked by analytic geometry and harmonic diagnostics"
+      }
+    ],
+    "numerical_claims": [
+      {
+        "id": "sinusoid fitted anisotropy",
+        "value": 9.234662958898078,
+        "expected": 9.235,
+        "absolute_tolerance": 0.0005
+      },
+      {
+        "id": "sinusoid fitted error percent",
+        "value": -7.653370411019223,
+        "expected": -7.65,
+        "absolute_tolerance": 0.005
+      },
+      {
+        "id": "sinusoid residual",
+        "value": 0.0022536283309404653,
+        "expected": 0.00225,
+        "absolute_tolerance": 5e-06
+      },
+      {
+        "id": "sinusoid axis-only error",
+        "value": -0.6349302825510827,
+        "expected": -0.635,
+        "absolute_tolerance": 0.0005
+      },
+      {
+        "id": "local refinement count",
+        "value": 119.0,
+        "expected": 119,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "local refinement maximum error",
+        "value": 7.45597695307465e-05,
+        "expected": 7.46e-05,
+        "absolute_tolerance": 5e-08
+      },
+      {
+        "id": "spherical refinement halvings at 60",
+        "value": 4.0,
+        "expected": 4,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "spherical refinement halvings at 75",
+        "value": 5.0,
+        "expected": 5,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "spherical refinement halvings at 80",
+        "value": 5.0,
+        "expected": 5,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "spherical refinement halvings at 85",
+        "value": 6.0,
+        "expected": 6,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "spherical refinement halvings at 89",
+        "value": 9.0,
+        "expected": 9,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "bounded profile perturbations",
+        "value": 1000.0,
+        "expected": 1000,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "finite bearing rotation 0",
+        "value": -0.0956819670058735,
+        "expected": -0.09568,
+        "absolute_tolerance": 5e-06
+      },
+      {
+        "id": "finite bearing rotation 1",
+        "value": -0.0009549485582169837,
+        "expected": -0.000955,
+        "absolute_tolerance": 5e-07
+      },
+      {
+        "id": "SatCLIP vit16l10 Jacobian tail",
+        "value": 0.00016639484215398822,
+        "expected": 0.00017,
+        "absolute_tolerance": 5e-06
+      },
+      {
+        "id": "SatCLIP vit16l40 Jacobian tail",
+        "value": 0.23951330955922515,
+        "expected": 0.24,
+        "absolute_tolerance": 0.005
+      },
+      {
+        "id": "Climplicit Jacobian tail",
+        "value": 0.0006454733268014807,
+        "expected": 0.00065,
+        "absolute_tolerance": 5e-06
+      },
+      {
+        "id": "SINR cap1000 Jacobian tail",
+        "value": 1.154048891352603,
+        "expected": 1.15,
+        "absolute_tolerance": 0.005
+      },
+      {
+        "id": "GeoCLIP Jacobian tail",
+        "value": 16.689316457094016,
+        "expected": 16.69,
+        "absolute_tolerance": 0.005
+      },
+      {
+        "id": "SINR upper-decile error",
+        "value": 16.10584125044201,
+        "expected": 16.1,
+        "absolute_tolerance": 0.05
+      },
+      {
+        "id": "GeoCLIP upper-decile error",
+        "value": 52.01563275987793,
+        "expected": 52,
+        "absolute_tolerance": 0.05
+      },
+      {
+        "id": "GeoCLIP median at 1.0",
+        "value": 3.9045777321423336,
+        "expected": 3.9,
+        "absolute_tolerance": 0.005
+      },
+      {
+        "id": "GeoCLIP p95 at 1.0",
+        "value": 11.919032351569046,
+        "expected": 11.92,
+        "absolute_tolerance": 0.005
+      },
+      {
+        "id": "GeoCLIP median at 0.3",
+        "value": 1.960555785237049,
+        "expected": 1.96,
+        "absolute_tolerance": 0.005
+      },
+      {
+        "id": "GeoCLIP p95 at 0.3",
+        "value": 6.108209195612382,
+        "expected": 6.11,
+        "absolute_tolerance": 0.005
+      },
+      {
+        "id": "accepted released refinements",
+        "value": 34.0,
+        "expected": 34,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "released refinement total",
+        "value": 50.0,
+        "expected": 50,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "maximum accepted anisotropy error",
+        "value": 0.14085852070486737,
+        "expected": 0.141,
+        "absolute_tolerance": 0.0005
+      },
+      {
+        "id": "maximum accepted tensor error",
+        "value": 0.7799526109224139,
+        "expected": 0.78,
+        "absolute_tolerance": 0.0005
+      },
+      {
+        "id": "maximum accepted shape discrepancy",
+        "value": 1.0014110945129748,
+        "expected": 1.001411,
+        "absolute_tolerance": 5e-07
+      },
+      {
+        "id": "L10 input anisotropy range 0",
+        "value": 1.2891340498833024,
+        "expected": 1.29,
+        "absolute_tolerance": 0.005
+      },
+      {
+        "id": "L10 input anisotropy range 1",
+        "value": 2.560117599908572,
+        "expected": 2.56,
+        "absolute_tolerance": 0.005
+      },
+      {
+        "id": "GP fit count",
+        "value": 360.0,
+        "expected": 360,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "GP starts",
+        "value": 1080.0,
+        "expected": 1080,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "GP convergence",
+        "value": 1080.0,
+        "expected": 1080,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "GP objective spread count",
+        "value": 64.0,
+        "expected": 64,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "synthetic query count",
+        "value": -1.0,
+        "expected": -1,
+        "absolute_tolerance": 0
+      },
+      {
+        "id": "historical target ensemble correlation length",
+        "value": 1721.0263368012775,
+        "expected": 1720,
+        "absolute_tolerance": 5
+      }
+    ],
+    "coverage": [
+      {
+        "section": "Main \u00a73, supplement S1\u2013S3: estimator bound, counterexamples, refinement and finite bearings",
+        "summaries": [
+          "estimator_validity.json"
+        ]
+      },
+      {
+        "section": "Main Table 1 and \u00a74.1; supplement S7: analytic references and harmonic implementation",
+        "summaries": [
+          "harmonics.json"
+        ]
+      },
+      {
+        "section": "Main Table 2, \u00a74\u20135; supplement S4\u2013S5: global fields, resampling and Jacobian tails",
+        "summaries": [
+          "geometry.json",
+          "dense_summary.json"
+        ]
+      },
+      {
+        "section": "Main \u00a74.3; supplement S4\u2013S5 and S12: coordinate boundaries, refinement and checkpoints",
+        "summaries": [
+          "released_audit.json",
+          "audit_summary.json",
+          "checkpoint_metadata.json"
+        ]
+      },
+      {
+        "section": "Main \u00a75.2; supplement S6: shape discrepancies and neighbour geometry",
+        "summaries": [
+          "shape.json",
+          "neighbours.json"
+        ]
+      },
+      {
+        "section": "Main \u00a75.5; supplement S8: conditional mixtures",
+        "summaries": [
+          "mixtures.json"
+        ]
+      },
+      {
+        "section": "Supplement S9: historical five-seed regression summaries",
+        "summaries": [
+          "hidden_space.json"
+        ]
+      },
+      {
+        "section": "Main \u00a76.1; supplement S10: regional error associations",
+        "summaries": [
+          "downstream.json"
+        ]
+      },
+      {
+        "section": "Main Table 3 and \u00a76.2; supplement S11\u2013S12: matched prediction and optimization",
+        "summaries": [
+          "kriging.json",
+          "prediction_replay.json"
+        ]
+      }
+    ],
+    "tex_sha256": {
+      "main.tex": "34e0e0d30ca2902b053514db5e638678a3fa5eb63084cf4156e8d145b36f1292",
+      "supplement.tex": "eb3899d168848f55edcfdbdf27d8236c010799c80d702b32b66782aab99e28f7",
+      "numbers.tex": "68fce26fcd14bdfed795930d82a86d9b6b66216ee4709a9e23607d5fc7b3992f"
+    }
+  },
+  "prediction_replay": {
+    "cases": 360,
+    "max_nll_absolute_error": 0.0,
+    "max_rmse_absolute_error": 0.0
+  },
+  "installed_wheel": {
+    "file": "localdistortion-0.2.0-py3-none-any.whl",
+    "sha256": "aec688407ef9b4d33e947ad16c9ff93cae458c708c0a78f4aa5c37133accba26",
+    "unit_tests_passed": 46,
+    "working_directory": "outside project",
+    "reference_output_directories_removed": [
+      "reference/figures",
+      "reference/tables",
+      "reference/summaries"
+    ],
+    "source_code_used": "installed wheel only"
+  },
+  "input_measurements_sha256": {
+    "measurements/released_checkpoints.json": "b008ba0533cf4874b82ed054d2e5c5c932b4bba2f8c01816f7467406cd5962d0",
+    "measurements/neighbour_candidates.npz": "188ac828cfd557f87f202b8f741b8e84b64edfbfa7a599fe77e6e126f74a5b61",
+    "measurements/neighbour_provenance.json": "287188f785d0271f399b1ffb344364b1410d9d73516b1126f05fef277eabe1e5",
+    "measurements/README.md": "cb421892e9e39cb207c32abeb19cf9e5e6057b81d5375c9d8194834f5930d222",
+    "measurements/hidden_space_seeds.npz": "507a24e75153401626e96b0860a43c67dce1a4939714660dee3ef01f7ec310c5"
+  }
+}

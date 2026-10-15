@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.DS_Store
+.venv/
+/build/
+/dist/
+/outputs/
+/models/
+/data/raw/
+/data/prediction/
+/data/downstream/

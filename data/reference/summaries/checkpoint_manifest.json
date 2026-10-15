@@ -1,0 +1,106 @@
+{
+  "GeoCLIP": {
+    "dim": 512,
+    "normalization": "L2",
+    "radius": 1.0,
+    "checkpoint": ".cache/revision17-deps/geoclip/model/weights/location_encoder_weights.pth",
+    "precision": "float64 weights/input; released float32 accumulator/output",
+    "sha256": "94b80ae3af89fca78539e129dd2929d321247f5ceeeb0a31bc2c31041a253394"
+  },
+  "SINR cap1000": {
+    "dim": 256,
+    "normalization": "raw",
+    "radius": 0.3,
+    "checkpoint": "encoders/sinr/pretrained_models/model_an_full_input_enc_sin_cos_hard_cap_num_per_class_1000.pt",
+    "precision": "float64",
+    "sha256": "7bf4dacb0f9b4cf8c5323e1c186b1e725267199053b9aa672d4b5dc1c3dbc235"
+  },
+  "SINR cap10": {
+    "dim": 256,
+    "normalization": "raw",
+    "radius": 0.3,
+    "checkpoint": "encoders/sinr/pretrained_models/model_an_full_input_enc_sin_cos_hard_cap_num_per_class_10.pt",
+    "precision": "float64",
+    "sha256": "438265b758df7cf58f2ed39410205be6a9fa944e559d7556d9d5c7c0f501c4ae"
+  },
+  "SINR distilled": {
+    "dim": 256,
+    "normalization": "raw",
+    "radius": 0.3,
+    "checkpoint": "encoders/sinr/pretrained_models/model_an_full_input_enc_sin_cos_distilled_from_env.pt",
+    "precision": "float64",
+    "sha256": "e8408dbfdcdc3008cfce801318cba2263149aaec0451a656d52958bf81115547"
+  },
+  "SatCLIP vit16l10": {
+    "dim": 256,
+    "normalization": "L2",
+    "radius": 1.0,
+    "checkpoint": "satclip-vit16-l10.ckpt",
+    "precision": "float64",
+    "sha256": "c7596a5f7aacf72a7c49587a2a5a80f23cf61000a36b46e471c1422b273ca9c0"
+  },
+  "SatCLIP vit16l40": {
+    "dim": 256,
+    "normalization": "L2",
+    "radius": 1.0,
+    "checkpoint": "satclip-vit16-l40.ckpt",
+    "precision": "float64",
+    "sha256": "c54c794cb8f95d4a141506656581240008570194b309c91217d86a6d4da5399f"
+  },
+  "SatCLIP r18l10": {
+    "dim": 256,
+    "normalization": "L2",
+    "radius": 1.0,
+    "checkpoint": "encoders/satclip/satclip-resnet18-l10.ckpt",
+    "precision": "float64",
+    "sha256": "c4af9559afb43d9c8be2781d4f70ce3f8a1087ea5a3773906c7c50ed05479ebd"
+  },
+  "SatCLIP r18l40": {
+    "dim": 256,
+    "normalization": "L2",
+    "radius": 1.0,
+    "checkpoint": "encoders/satclip/satclip-resnet18-l40.ckpt",
+    "precision": "float64",
+    "sha256": "6e2ed15146566170829bae8dd506d8274cd6fe4534c0ef407668dc3ccb04d2f1"
+  },
+  "SatCLIP r50l10": {
+    "dim": 256,
+    "normalization": "L2",
+    "radius": 1.0,
+    "checkpoint": "encoders/satclip/satclip-resnet50-l10.ckpt",
+    "precision": "float64",
+    "sha256": "87ad5e8ca152e9564896f48de033e8d4278665bce049d36b3794847a430e69b1"
+  },
+  "SatCLIP r50l40": {
+    "dim": 256,
+    "normalization": "L2",
+    "radius": 1.0,
+    "checkpoint": "encoders/satclip/satclip-resnet50-l40.ckpt",
+    "precision": "float64",
+    "sha256": "50df6453c20ce82b51ceba89811dcf1a21e7fa9d625cbc630f4cdcc4fc0de53a"
+  },
+  "CSP iNat2018": {
+    "dim": 256,
+    "normalization": "L2 after float32 forward",
+    "radius": 0.1,
+    "checkpoint": "encoders/csp/model_dir/model_inat_2018/model_inat_2018_gridcell_0.0010_32_0.1000000_1_512_leakyrelu_UNSUPER-contsoftmax_0.000500_1.000_1_1.000_TMP20.0000_1.0000_1.0000.pth.tar",
+    "precision": "float32 forward; outputs cast to float64",
+    "sha256": "024318427fb0c9aad3125f3455bac90806b2cba12a2215183942ac90b70a3262"
+  },
+  "CSP fMoW": {
+    "dim": 256,
+    "normalization": "L2 after float32 forward",
+    "radius": 0.1,
+    "checkpoint": "encoders/csp/model_dir/model_fmow/model_fmow_gridcell_0.0010_32_0.1000000_1_512_gelu_UNSUPER-contsoftmax_0.000050_1.000_1_0.100_TMP1.0000_1.0000_1.0000.pth.tar",
+    "precision": "float32 forward; outputs cast to float64",
+    "sha256": "463b19f2971ae01ce82a676bad223f8d6776548e2c39241709bf3c6960641f9d"
+  },
+  "Climplicit": {
+    "dim": 1024,
+    "normalization": "raw; concatenate months 3,6,9,12",
+    "radius": 0.1,
+    "checkpoint": "encoders/climplicit/climplicit-3341daa2.pth",
+    "precision": "float64 direct location_encoder path",
+    "sha256": "3341daa23877530bb93cd6af008651103796ea3c30f8cd6030de4455ed08543b"
+  }
+}

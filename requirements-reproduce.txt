@@ -1,0 +1,7 @@
+numpy==2.3.5
+scipy==1.17.1
+torch==2.12.0
+matplotlib==3.11.0
+pyproj==3.8.0
+pillow==12.1.0
+einops==0.8.2

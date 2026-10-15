@@ -1,0 +1,6 @@
+include README.md
+include LICENSE
+include RIGHTS_AND_ATTRIBUTION.md
+recursive-include src/etissot/models/vendor *.py LICENSE
+include src/etissot/models/checkpoints.json
+recursive-include src/etissot/models/resources *

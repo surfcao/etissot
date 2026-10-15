@@ -1,0 +1,25 @@
+For boundary tests, all outputs are L2-normalised solely to test coordinate equivalence in a bounded scale. This does not change the raw-feature estimand used in the main SINR/Climplicit audit. At latitudes $0,45,75^\circ$, paired longitudes $180^\circ-\epsilon$ and $-180^\circ+\epsilon$ use $\epsilon=10^{-2},10^{-4},10^{-6}$ degrees. A separate pole test compares $(90^\circ,0^\circ)$ with $(90^\circ,-180^\circ)$, which denote the same geographic point. Full trajectories and checkpoint hashes are retained.
+\begin{table}[htbp]\centering\small
+\caption{Coordinate-boundary checks on released outputs. Seam distances are ranges across the three test latitudes at the smallest longitude offset; pole distances compare two descriptions of one point.}
+\label{tab:boundary}
+\begin{tabular}{@{}lrr@{}}\toprule
+Checkpoint&Seam distance&Same-pole distance\\\midrule
+GeoCLIP&1.04--1.3&1.09\\
+SINR cap-1000&2.92e-08--3.64e-08&0.497\\
+SINR cap-10&4.62e-09--8.31e-09&0.178\\
+SINR distilled&1.79e-08--4.14e-08&0.336\\
+SatCLIP ViT-L10&1.25e-08--8.83e-08&0\\
+SatCLIP ViT-L40&2.05e-07--6.95e-07&0\\
+SatCLIP R18-L10&1.71e-08--9.54e-08&0\\
+SatCLIP R18-L40&2.16e-07--7.71e-07&0\\
+SatCLIP R50-L10&1.64e-08--7.96e-08&0\\
+SatCLIP R50-L40&2.18e-07--7.47e-07&0\\
+CSP-iNat&0.029--0.162&0.0523\\
+CSP-fMoW&0.0616--0.239&0.238\\
+Climplicit&0.795--1.22&1.15\\
+\bottomrule\end{tabular}
+\par\smallskip\parbox{.97\textwidth}{\footnotesize All distances here are between unit-normalised feature vectors. A vanishing seam distance does not by itself certify differentiability. Testing beyond the primary latitude band diagnoses coordinate equivalence, not in-domain prediction performance.}
+\end{table}
+GeoCLIP, CSP and Climplicit retain finite jumps as the longitude gap shrinks. The sampled SINR and SatCLIP seam distances decrease towards zero. The SINR and chart-dependent outputs do not identify the tested pole coordinates; SatCLIP gives identical pole outputs in this test. These checks distinguish global coordinate compatibility from local directional stretching.
+
+For chart-dependent models, a probe ring is rejected from the smooth-field summary if its disc intersects the antimeridian. For a centre in the adjacent longitude half-plane, the clearance is $R\arcsin(|\cos\varphi\sin(\pi-|\lambda|)|)$. Near-seam refinement halves the starting radius until it is smaller than this clearance. Polar-coordinate singularities are excluded; the reported primary centres lie within $85^\circ$. Models demonstrated periodic across the seam may retain crossing rings as finite responses, without extending a smoothness certificate beyond its assumptions. The two randomised grids contain one excluded ring for each CSP checkpoint and one for Climplicit; no fixed-grid GeoCLIP ring crosses the seam.

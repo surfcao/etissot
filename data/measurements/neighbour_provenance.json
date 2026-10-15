@@ -1,0 +1,9 @@
+{
+  "seed": 0,
+  "checkpoint_sha256": "94b80ae3af89fca78539e129dd2929d321247f5ceeeb0a31bc2c31041a253394",
+  "gallery_sha256": "3a00b1ba58f13443db726533b6399b39609e292df09d4e58792fa5949d1838b1",
+  "synthetic_queries": 20,
+  "gallery_queries": 1200,
+  "candidate_count": 524393,
+  "protocol": "Original experiment-33 query ordering and precision; coordinates radians"
+}

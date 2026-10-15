@@ -1,0 +1,4241 @@
+[
+  {
+    "file": "downstream/feature_head_profiles.npz",
+    "fields": [
+      {
+        "key": "prof_feat_global__cap1000",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof_feat_cells__cap1000",
+        "shape": [
+          47289,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12105984
+      },
+      {
+        "key": "prof_logit_global__cap1000",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof_logit_cells__cap1000",
+        "shape": [
+          47289,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12105984
+      },
+      {
+        "key": "prof_feat_global__cap10",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof_feat_cells__cap10",
+        "shape": [
+          47289,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12105984
+      },
+      {
+        "key": "prof_logit_global__cap10",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof_logit_cells__cap10",
+        "shape": [
+          47289,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12105984
+      },
+      {
+        "key": "prof_feat_global__distilled",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof_feat_cells__distilled",
+        "shape": [
+          47289,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12105984
+      },
+      {
+        "key": "prof_logit_global__distilled",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof_logit_cells__distilled",
+        "shape": [
+          47289,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12105984
+      }
+    ]
+  },
+  {
+    "file": "prediction/regions_original.npz",
+    "fields": [
+      {
+        "key": "sites__CONUS",
+        "shape": [
+          6000,
+          2
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 96000
+      },
+      {
+        "key": "xy__CONUS",
+        "shape": [
+          6000,
+          2
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 96000
+      },
+      {
+        "key": "A__CONUS__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "E__CONUS__SatCLIP-L40",
+        "shape": [
+          6000,
+          256
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12288000
+      },
+      {
+        "key": "A__CONUS__SatCLIP-L10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-L10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "E__CONUS__SINR",
+        "shape": [
+          6000,
+          256
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12288000
+      },
+      {
+        "key": "A__CONUS__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "E__CONUS__Climplicit",
+        "shape": [
+          6000,
+          1024
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 49152000
+      },
+      {
+        "key": "A__CONUS__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__CONUS__ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__oracle-ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__oracle-ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__CONUS__TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__oracle-TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__oracle-TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__CONUS__SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__oracle-SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__oracle-SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "sites__Europe",
+        "shape": [
+          6000,
+          2
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 96000
+      },
+      {
+        "key": "xy__Europe",
+        "shape": [
+          6000,
+          2
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 96000
+      },
+      {
+        "key": "A__Europe__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "E__Europe__SatCLIP-L40",
+        "shape": [
+          6000,
+          256
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12288000
+      },
+      {
+        "key": "A__Europe__SatCLIP-L10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-L10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "E__Europe__SINR",
+        "shape": [
+          6000,
+          256
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12288000
+      },
+      {
+        "key": "A__Europe__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "E__Europe__Climplicit",
+        "shape": [
+          6000,
+          1024
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 49152000
+      },
+      {
+        "key": "A__Europe__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__Europe__ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__oracle-ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__oracle-ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__Europe__TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__oracle-TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__oracle-TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__Europe__SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__oracle-SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__oracle-SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      }
+    ]
+  },
+  {
+    "file": "prediction/regions_additional.npz",
+    "fields": [
+      {
+        "key": "sites__Australia",
+        "shape": [
+          6000,
+          2
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 96000
+      },
+      {
+        "key": "xy__Australia",
+        "shape": [
+          6000,
+          2
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 96000
+      },
+      {
+        "key": "A__Australia__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "E__Australia__SatCLIP-L40",
+        "shape": [
+          6000,
+          256
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12288000
+      },
+      {
+        "key": "A__Australia__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Australia__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Australia__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__Australia__ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Australia__oracle-ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__oracle-ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__Australia__TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Australia__oracle-TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__oracle-TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__Australia__SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Australia__oracle-SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__oracle-SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__Australia__POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Australia__oracle-POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__oracle-POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "sites__TropSAm",
+        "shape": [
+          6000,
+          2
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 96000
+      },
+      {
+        "key": "xy__TropSAm",
+        "shape": [
+          6000,
+          2
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 96000
+      },
+      {
+        "key": "A__TropSAm__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "E__TropSAm__SatCLIP-L40",
+        "shape": [
+          6000,
+          256
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 12288000
+      },
+      {
+        "key": "A__TropSAm__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__TropSAm__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__TropSAm__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__TropSAm__ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__TropSAm__oracle-ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__oracle-ELEVATION",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__TropSAm__TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__TropSAm__oracle-TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__oracle-TREE_COVER",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__TropSAm__SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__TropSAm__oracle-SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__oracle-SOIL_MOISTURE",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__TropSAm__POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__TropSAm__oracle-POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__oracle-POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__CONUS__POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__oracle-POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__oracle-POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "y__Europe__POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__oracle-POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__oracle-POPULATION_DENSITY",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      }
+    ]
+  },
+  {
+    "file": "profiles/geoclip_multiradius.npz",
+    "fields": [
+      {
+        "key": "prof_0.3",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof_0.5",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof_1.0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      }
+    ]
+  },
+  {
+    "file": "downstream/historical_cell_summaries.npz",
+    "fields": [
+      {
+        "key": "cap1000|feat|Brier",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "cap1000|feat|1-localAUC",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "cap1000|logit|Brier",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "cap1000|logit|1-localAUC",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "cap10|feat|Brier",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "cap10|feat|1-localAUC",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "cap10|logit|Brier",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "cap10|logit|1-localAUC",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "distilled|feat|Brier",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "distilled|feat|1-localAUC",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "distilled|logit|Brier",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      },
+      {
+        "key": "distilled|logit|1-localAUC",
+        "shape": [
+          6
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48
+      }
+    ]
+  },
+  {
+    "file": "profiles/input_references.npz",
+    "fields": [
+      {
+        "key": "in__GeoCLIP",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "in__SatCLIP vit16l10",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "in__SINR cap1000",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "in__CSP fMoW",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "in__CSP iNat2018",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "in__Climplicit",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "in__SatCLIP vit16l40",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "curve__GeoCLIP",
+        "shape": [
+          9
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 72
+      },
+      {
+        "key": "curve__SatCLIP vit16l10",
+        "shape": [
+          9
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 72
+      },
+      {
+        "key": "curve__SatCLIP vit16l40",
+        "shape": [
+          9
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 72
+      },
+      {
+        "key": "curve__SINR cap1000",
+        "shape": [
+          9
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 72
+      },
+      {
+        "key": "curve__CSP fMoW",
+        "shape": [
+          9
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 72
+      },
+      {
+        "key": "curve__CSP iNat2018",
+        "shape": [
+          9
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 72
+      },
+      {
+        "key": "curve__Climplicit",
+        "shape": [
+          9
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 72
+      }
+    ]
+  },
+  {
+    "file": "geometry/jacobians.npz",
+    "fields": [
+      {
+        "key": "AJ__SatCLIP vit16l40",
+        "shape": [
+          2340
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 18720
+      },
+      {
+        "key": "THJ__SatCLIP vit16l40",
+        "shape": [
+          2340
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 18720
+      },
+      {
+        "key": "AJ__SatCLIP vit16l10",
+        "shape": [
+          2340
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 18720
+      },
+      {
+        "key": "THJ__SatCLIP vit16l10",
+        "shape": [
+          2340
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 18720
+      },
+      {
+        "key": "AJ__Climplicit",
+        "shape": [
+          2340
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 18720
+      },
+      {
+        "key": "THJ__Climplicit",
+        "shape": [
+          2340
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 18720
+      },
+      {
+        "key": "AJ__GeoCLIP",
+        "shape": [
+          2340
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 18720
+      },
+      {
+        "key": "THJ__GeoCLIP",
+        "shape": [
+          2340
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 18720
+      },
+      {
+        "key": "AJ__SINR cap1000",
+        "shape": [
+          2340
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 18720
+      },
+      {
+        "key": "THJ__SINR cap1000",
+        "shape": [
+          2340
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 18720
+      }
+    ]
+  },
+  {
+    "file": "profiles/randomized_primary.npz",
+    "fields": [
+      {
+        "key": "lat__CSP iNat2018 grid (norm)__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__CSP iNat2018 grid (norm)__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__CSP iNat2018 grid (norm)__-1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__CSP iNat2018 grid (norm)__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__CSP iNat2018 grid (norm)__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__CSP iNat2018 grid (norm)__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__CSP iNat2018 grid (norm)__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__CSP iNat2018 grid (norm)__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__CSP iNat2018 grid (norm)__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__CSP fMoW grid (norm)__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__CSP fMoW grid (norm)__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__CSP fMoW grid (norm)__-1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__CSP fMoW grid (norm)__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__CSP fMoW grid (norm)__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__CSP fMoW grid (norm)__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__CSP fMoW grid (norm)__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__CSP fMoW grid (norm)__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__CSP fMoW grid (norm)__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SINR cap1000 (raw)__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SINR cap1000 (raw)__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__SINR cap1000 (raw)__-1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SINR cap1000 (raw)__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SINR cap1000 (raw)__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__SINR cap1000 (raw)__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SINR cap1000 (raw)__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SINR cap1000 (raw)__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__SINR cap1000 (raw)__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SINR distilled-env (raw)__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SINR distilled-env (raw)__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__SINR distilled-env (raw)__-1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SINR distilled-env (raw)__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SINR distilled-env (raw)__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__SINR distilled-env (raw)__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SINR distilled-env (raw)__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SINR distilled-env (raw)__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__SINR distilled-env (raw)__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__Climplicit 4-month (raw)__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__Climplicit 4-month (raw)__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__Climplicit 4-month (raw)__-1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__Climplicit 4-month (raw)__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__Climplicit 4-month (raw)__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__Climplicit 4-month (raw)__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__Climplicit 4-month (raw)__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__Climplicit 4-month (raw)__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__Climplicit 4-month (raw)__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SatCLIP vit16l40__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SatCLIP vit16l40__-1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__SatCLIP vit16l40__-1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "profin__SatCLIP vit16l40__-1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SatCLIP vit16l40__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SatCLIP vit16l40__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__SatCLIP vit16l40__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "profin__SatCLIP vit16l40__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SatCLIP vit16l40__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SatCLIP vit16l40__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "prof__SatCLIP vit16l40__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "profin__SatCLIP vit16l40__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      }
+    ]
+  },
+  {
+    "file": "prediction/geometry_fields.npz",
+    "fields": [
+      {
+        "key": "A__CONUS__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__CONUS__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__CONUS__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__CONUS__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__CONUS__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__CONUS__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__CONUS__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__CONUS__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__CONUS__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__CONUS__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__CONUS__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__CONUS__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__CONUS__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__CONUS__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__CONUS__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__CONUS__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__CONUS__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__CONUS__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__CONUS__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__CONUS__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__CONUS__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__CONUS__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__CONUS__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Europe__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Europe__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Europe__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Europe__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Europe__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Europe__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Europe__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Europe__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Europe__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Europe__GeoCLIP-cap0-300km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Europe__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Europe__CSP-iNat",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Europe__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Europe__SatCLIP-r18l40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Europe__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Europe__SatCLIP-L40-r10",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Europe__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Europe__SatCLIP-L40-r30",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Europe__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Europe__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Europe__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Europe__SatCLIP-L40-r100",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Australia__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Australia__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Australia__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Australia__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Australia__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Australia__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Australia__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Australia__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Australia__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__Australia__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__Australia__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__Australia__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__Australia__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__TropSAm__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__TropSAm__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__TropSAm__SatCLIP-L40",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__TropSAm__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__TropSAm__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__TropSAm__SINR",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__TropSAm__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__TropSAm__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__TropSAm__Climplicit",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "A__TropSAm__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "B__TropSAm__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Aleg__TropSAm__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      },
+      {
+        "key": "Bleg__TropSAm__GeoCLIP-1km",
+        "shape": [
+          6000
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 48000
+      }
+    ]
+  },
+  {
+    "file": "profiles/randomized_satclip.npz",
+    "fields": [
+      {
+        "key": "lat__SatCLIP r18l40__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SatCLIP r18l40__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "profin__SatCLIP r18l40__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof__SatCLIP r18l40__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SatCLIP r18l40__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SatCLIP r18l40__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "profin__SatCLIP r18l40__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof__SatCLIP r18l40__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SatCLIP r50l40__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SatCLIP r50l40__0",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "profin__SatCLIP r50l40__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof__SatCLIP r50l40__0",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "lat__SatCLIP r50l40__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "lon__SatCLIP r50l40__1",
+        "shape": [
+          4968
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "profin__SatCLIP r50l40__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof__SatCLIP r50l40__1",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      }
+    ]
+  },
+  {
+    "file": "profiles/dense_regional.npz",
+    "fields": [
+      {
+        "key": "prof__CSP iNat2018__NA",
+        "shape": [
+          60501,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 15488256
+      },
+      {
+        "key": "lat__CSP iNat2018__NA",
+        "shape": [
+          201
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1608
+      },
+      {
+        "key": "lon__CSP iNat2018__NA",
+        "shape": [
+          301
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 2408
+      },
+      {
+        "key": "r__CSP iNat2018__NA",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__CSP iNat2018__NA",
+        "shape": [
+          201,
+          301
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 484008
+      },
+      {
+        "key": "B__CSP iNat2018__NA",
+        "shape": [
+          201,
+          301
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 484008
+      },
+      {
+        "key": "fallback__CSP iNat2018__NA",
+        "shape": [
+          201,
+          301
+        ],
+        "dtype": "bool",
+        "bytes_uncompressed": 60501
+      },
+      {
+        "key": "prof__CSP iNat2018__AF",
+        "shape": [
+          40401,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 10342656
+      },
+      {
+        "key": "lat__CSP iNat2018__AF",
+        "shape": [
+          201
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1608
+      },
+      {
+        "key": "lon__CSP iNat2018__AF",
+        "shape": [
+          201
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1608
+      },
+      {
+        "key": "r__CSP iNat2018__AF",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__CSP iNat2018__AF",
+        "shape": [
+          201,
+          201
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 323208
+      },
+      {
+        "key": "B__CSP iNat2018__AF",
+        "shape": [
+          201,
+          201
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 323208
+      },
+      {
+        "key": "fallback__CSP iNat2018__AF",
+        "shape": [
+          201,
+          201
+        ],
+        "dtype": "bool",
+        "bytes_uncompressed": 40401
+      },
+      {
+        "key": "prof__SINR cap1000__NA",
+        "shape": [
+          11421,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 2923776
+      },
+      {
+        "key": "lat__SINR cap1000__NA",
+        "shape": [
+          81
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 648
+      },
+      {
+        "key": "lon__SINR cap1000__NA",
+        "shape": [
+          141
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1128
+      },
+      {
+        "key": "r__SINR cap1000__NA",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__SINR cap1000__NA",
+        "shape": [
+          81,
+          141
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 91368
+      },
+      {
+        "key": "B__SINR cap1000__NA",
+        "shape": [
+          81,
+          141
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 91368
+      },
+      {
+        "key": "fallback__SINR cap1000__NA",
+        "shape": [
+          81,
+          141
+        ],
+        "dtype": "bool",
+        "bytes_uncompressed": 11421
+      },
+      {
+        "key": "prof__Climplicit__NA",
+        "shape": [
+          11421,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 2923776
+      },
+      {
+        "key": "lat__Climplicit__NA",
+        "shape": [
+          81
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 648
+      },
+      {
+        "key": "lon__Climplicit__NA",
+        "shape": [
+          141
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1128
+      },
+      {
+        "key": "r__Climplicit__NA",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__Climplicit__NA",
+        "shape": [
+          81,
+          141
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 91368
+      },
+      {
+        "key": "B__Climplicit__NA",
+        "shape": [
+          81,
+          141
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 91368
+      },
+      {
+        "key": "fallback__Climplicit__NA",
+        "shape": [
+          81,
+          141
+        ],
+        "dtype": "bool",
+        "bytes_uncompressed": 11421
+      },
+      {
+        "key": "prof__SatCLIP r18l40__NA",
+        "shape": [
+          11421,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 2923776
+      },
+      {
+        "key": "lat__SatCLIP r18l40__NA",
+        "shape": [
+          81
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 648
+      },
+      {
+        "key": "lon__SatCLIP r18l40__NA",
+        "shape": [
+          141
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1128
+      },
+      {
+        "key": "r__SatCLIP r18l40__NA",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__SatCLIP r18l40__NA",
+        "shape": [
+          81,
+          141
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 91368
+      },
+      {
+        "key": "B__SatCLIP r18l40__NA",
+        "shape": [
+          81,
+          141
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 91368
+      },
+      {
+        "key": "fallback__SatCLIP r18l40__NA",
+        "shape": [
+          81,
+          141
+        ],
+        "dtype": "bool",
+        "bytes_uncompressed": 11421
+      }
+    ]
+  },
+  {
+    "file": "downstream/land_mask.npz",
+    "fields": [
+      {
+        "key": "cap1000",
+        "shape": [
+          47289
+        ],
+        "dtype": "bool",
+        "bytes_uncompressed": 47289
+      },
+      {
+        "key": "cap10",
+        "shape": [
+          47289
+        ],
+        "dtype": "bool",
+        "bytes_uncompressed": 47289
+      },
+      {
+        "key": "distilled",
+        "shape": [
+          47289
+        ],
+        "dtype": "bool",
+        "bytes_uncompressed": 47289
+      }
+    ]
+  },
+  {
+    "file": "downstream/cell_outcomes.npz",
+    "fields": [
+      {
+        "key": "cells__cap1000",
+        "shape": [
+          47289
+        ],
+        "dtype": "int64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "brier_cell__cap1000",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "logl_cell__cap1000",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "lauc_cell__cap1000",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "rich_cell__cap1000",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "dens_cell__cap1000",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "A_cell__cap1000",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "B_cell__cap1000",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "cells__cap10",
+        "shape": [
+          47289
+        ],
+        "dtype": "int64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "brier_cell__cap10",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "logl_cell__cap10",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "lauc_cell__cap10",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "rich_cell__cap10",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "dens_cell__cap10",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "A_cell__cap10",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "B_cell__cap10",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "cells__distilled",
+        "shape": [
+          47289
+        ],
+        "dtype": "int64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "brier_cell__distilled",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "logl_cell__distilled",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "lauc_cell__distilled",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "rich_cell__distilled",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "dens_cell__distilled",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "A_cell__distilled",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      },
+      {
+        "key": "B_cell__distilled",
+        "shape": [
+          47289
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 378312
+      }
+    ]
+  },
+  {
+    "file": "reference/maps/coastlines.npz",
+    "fields": [
+      {
+        "key": "lat",
+        "shape": [
+          341
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 2728
+      },
+      {
+        "key": "lon",
+        "shape": [
+          721
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 5768
+      },
+      {
+        "key": "land",
+        "shape": [
+          341,
+          721
+        ],
+        "dtype": "bool",
+        "bytes_uncompressed": 245861
+      }
+    ]
+  },
+  {
+    "file": "profiles/global.npz",
+    "fields": [
+      {
+        "key": "r__SatCLIP r18l10",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__SatCLIP r18l40",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__SatCLIP r50l10",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__SatCLIP r50l40",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__SINR cap1000 (raw)",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__SINR cap10 (raw)",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__SINR distilled-env (raw)",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__CSP iNat2018 grid (norm)",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__CSP iNat2018 grid (raw)",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__CSP fMoW grid (norm)",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__SINR cap1000 @3km (raw)",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__Climplicit 4-month (raw)",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r__Climplicit June (raw)",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__GeoCLIP",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__GeoCLIP",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__SatCLIP vit16l10",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__SatCLIP vit16l10",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__SatCLIP vit16l40",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__SatCLIP vit16l40",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__SatCLIP r18l10",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof__SatCLIP r18l40",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof__SatCLIP r50l10",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof__SatCLIP r50l40",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "prof__SINR cap1000",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__SINR cap1000",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__SINR cap10",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__SINR cap10",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__SINR distilled",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__SINR distilled",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__CSP iNat2018",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__CSP iNat2018",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__CSP fMoW",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__CSP fMoW",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__Climplicit",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__Climplicit",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__ref grid",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__ref grid",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__ref cart3d",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__ref cart3d",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "prof__ref SINR-input",
+        "shape": [
+          4968,
+          32
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 1271808
+      },
+      {
+        "key": "r__ref SINR-input",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      }
+    ]
+  },
+  {
+    "file": "measurements/hidden_space_seeds.npz",
+    "bytes": 819073,
+    "sha256": "507a24e75153401626e96b0860a43c67dce1a4939714660dee3ef01f7ec310c5",
+    "fields": [
+      {
+        "key": "A__rff1-mlp__0",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__rff1-mlp__0",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__rff1-mlp__1",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__rff1-mlp__1",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__rff16-mlp__0",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__rff16-mlp__0",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__rff16-mlp__1",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__rff16-mlp__1",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r2__rff16-mlp__2",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__rff16-mlp__2",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__rff16-mlp__3",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__rff16-mlp__3",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__rff16-mlp__4",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__rff16-mlp__4",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "A__geoclip-3cap__0",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__geoclip-3cap__0",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__geoclip-3cap__1",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__geoclip-3cap__1",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r2__geoclip-3cap__2",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__geoclip-3cap__2",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__geoclip-3cap__3",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__geoclip-3cap__3",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__geoclip-3cap__4",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__geoclip-3cap__4",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__rff1-mlp__2",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__rff1-mlp__2",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__rff1-mlp__3",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__rff1-mlp__3",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__rff1-mlp__4",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__rff1-mlp__4",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "A__siren__0",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__siren__0",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__siren__1",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__siren__1",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "r2__siren__2",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__siren__2",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__siren__3",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__siren__3",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "r2__siren__4",
+        "shape": [],
+        "dtype": "float64",
+        "bytes_uncompressed": 8
+      },
+      {
+        "key": "A__siren__4",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "input_anisotropy",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      },
+      {
+        "key": "target_anisotropy",
+        "shape": [
+          69,
+          72
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 39744
+      }
+    ]
+  },
+  {
+    "file": "measurements/neighbour_candidates.npz",
+    "bytes": 6537976,
+    "sha256": "188ac828cfd557f87f202b8f741b8e84b64edfbfa7a599fe77e6e126f74a5b61",
+    "fields": [
+      {
+        "key": "query_radians",
+        "shape": [
+          1220,
+          2
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 19520
+      },
+      {
+        "key": "candidate_radians",
+        "shape": [
+          524393,
+          2
+        ],
+        "dtype": "float64",
+        "bytes_uncompressed": 8390288
+      },
+      {
+        "key": "similarity",
+        "shape": [
+          524393
+        ],
+        "dtype": "float32",
+        "bytes_uncompressed": 2097572
+      },
+      {
+        "key": "offsets",
+        "shape": [
+          1221
+        ],
+        "dtype": "int64",
+        "bytes_uncompressed": 9768
+      },
+      {
+        "key": "group",
+        "shape": [
+          1220
+        ],
+        "dtype": "int64",
+        "bytes_uncompressed": 9760
+      },
+      {
+        "key": "k",
+        "shape": [
+          1220
+        ],
+        "dtype": "int64",
+        "bytes_uncompressed": 9760
+      }
+    ]
+  },
+  {
+    "file": "measurements/neighbour_provenance.json",
+    "bytes": 368,
+    "sha256": "287188f785d0271f399b1ffb344364b1410d9d73516b1126f05fef277eabe1e5"
+  },
+  {
+    "file": "measurements/released_checkpoints.json",
+    "bytes": 570308,
+    "sha256": "b008ba0533cf4874b82ed054d2e5c5c932b4bba2f8c01816f7467406cd5962d0"
+  }
+]

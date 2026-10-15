@@ -1,0 +1,186 @@
+{
+  "means": {
+    "iso": {
+      "original": 1.0,
+      "added": 1.0,
+      "pooled": 1.0,
+      "windows": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "SatCLIP-L40": {
+      "original": 0.9852351429561433,
+      "added": 1.033424337305197,
+      "pooled": 1.00932974013067,
+      "windows": [
+        0.9848297905082237,
+        0.985640495404063,
+        0.9903860063264734,
+        1.076462668283921
+      ]
+    },
+    "SINR": {
+      "original": 0.9962209434888819,
+      "added": 1.1848594204366885,
+      "pooled": 1.090540181962785,
+      "windows": [
+        0.9959274453206797,
+        0.9965144416570841,
+        1.1004860134418237,
+        1.269232827431553
+      ]
+    },
+    "Climplicit": {
+      "original": 0.9927420384701485,
+      "added": 1.1160320258123273,
+      "pooled": 1.0543870321412379,
+      "windows": [
+        0.9913672198886778,
+        0.9941168570516195,
+        1.0752259794003118,
+        1.1568380722243425
+      ]
+    },
+    "GeoCLIP-1km": {
+      "original": 1.0014686136248718,
+      "added": 1.0050582024481547,
+      "pooled": 1.003263408036513,
+      "windows": [
+        1.000102558987207,
+        1.0028346682625369,
+        1.0002752462633167,
+        1.0098411586329925
+      ]
+    },
+    "shuffled": {
+      "original": 1.0006986519207979,
+      "added": 1.0020448457998823,
+      "pooled": 1.00137174886034,
+      "windows": [
+        0.9995669313144684,
+        1.0018303725271276,
+        1.003128673537804,
+        1.000961018061961
+      ]
+    },
+    "oracle": {
+      "original": 0.9548733468008673,
+      "added": 0.962941269737049,
+      "pooled": 0.9589073082689582,
+      "windows": [
+        0.9439323256887149,
+        0.9658143679130197,
+        0.9471802421314153,
+        0.9787022973426827
+      ]
+    },
+    "embedding": {
+      "original": 0.9650825496049296,
+      "added": 0.9664325806324668,
+      "pooled": 0.965757565118698,
+      "windows": [
+        0.9474992640935712,
+        0.9826658351162876,
+        0.9708787700849606,
+        0.9619863911799731
+      ]
+    },
+    "spatial+embedding": {
+      "original": 0.9585840388399531,
+      "added": 0.9522676552878373,
+      "pooled": 0.9554258470638951,
+      "windows": [
+        0.9445677814621045,
+        0.9726002962178018,
+        0.9568996294938447,
+        0.9476356810818299
+      ]
+    },
+    "tensor+embedding": {
+      "original": 0.960334604994974,
+      "added": 0.979210770711678,
+      "pooled": 0.969772687853326,
+      "windows": [
+        0.9490318103457669,
+        0.9716373996441808,
+        0.9551658885283972,
+        1.0032556528949585
+      ]
+    }
+  },
+  "worst_cases": [
+    {
+      "method": "SatCLIP-L40",
+      "ratio": 1.2885872273828358,
+      "window": "TropSAm",
+      "target": "ELEVATION",
+      "split": 0
+    },
+    {
+      "method": "SINR",
+      "ratio": 1.7940063658353307,
+      "window": "TropSAm",
+      "target": "ELEVATION",
+      "split": 1
+    },
+    {
+      "method": "Climplicit",
+      "ratio": 1.651422513160431,
+      "window": "TropSAm",
+      "target": "ELEVATION",
+      "split": 1
+    },
+    {
+      "method": "GeoCLIP-1km",
+      "ratio": 1.0827802858811684,
+      "window": "TropSAm",
+      "target": "SOIL_MOISTURE",
+      "split": 2
+    },
+    {
+      "method": "shuffled",
+      "ratio": 1.02829419726441,
+      "window": "Australia",
+      "target": "TREE_COVER",
+      "split": 1
+    },
+    {
+      "method": "oracle",
+      "ratio": 1.0873739931277495,
+      "window": "TropSAm",
+      "target": "ELEVATION",
+      "split": 2
+    },
+    {
+      "method": "embedding",
+      "ratio": 1.0303726062169816,
+      "window": "TropSAm",
+      "target": "SOIL_MOISTURE",
+      "split": 1
+    },
+    {
+      "method": "spatial+embedding",
+      "ratio": 1.0135087351617031,
+      "window": "Australia",
+      "target": "TREE_COVER",
+      "split": 2
+    },
+    {
+      "method": "tensor+embedding",
+      "ratio": 1.1781816809572738,
+      "window": "TropSAm",
+      "target": "ELEVATION",
+      "split": 2
+    }
+  ],
+  "fits": 360,
+  "starts": 1080,
+  "converged_starts": 1080,
+  "selected_converged": 360,
+  "nll_spread_above1": 64,
+  "max_combined_nested_nll_difference": -1.0231815394945443e-12,
+  "max_nested_nll_difference": 3.410605131648481e-13
+}

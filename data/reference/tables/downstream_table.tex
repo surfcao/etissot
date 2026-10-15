@@ -1,0 +1,20 @@
+\begin{table}[htbp]\centering\small
+\caption{Regional error against current fitted anisotropy in SINR. Intervals describe geographic block-resampling sensitivity. Positive correlations indicate greater error at greater anisotropy.}
+\label{tab:downfull}
+\begin{tabular}{@{}lllrr@{}}\toprule
+Model&Space&Error&Raw $\rho$&Partial $\rho$\\\midrule
+cap-1000&feature&Brier&0.02 [-0.04, 0.09]&0.05 [0.00, 0.10]\\
+cap-1000&feature&$1-$AUC&0.04 [-0.03, 0.11]&0.07 [0.02, 0.12]\\
+cap-1000&head&Brier&-0.15 [-0.22, -0.08]&0.07 [0.00, 0.12]\\
+cap-1000&head&$1-$AUC&0.07 [0.00, 0.13]&0.06 [-0.01, 0.12]\\
+cap-10&feature&Brier&-0.32 [-0.42, -0.21]&0.15 [0.07, 0.23]\\
+cap-10&feature&$1-$AUC&-0.24 [-0.33, -0.13]&0.10 [0.00, 0.20]\\
+cap-10&head&Brier&-0.36 [-0.45, -0.25]&0.14 [0.05, 0.24]\\
+cap-10&head&$1-$AUC&-0.09 [-0.20, 0.03]&0.08 [-0.04, 0.19]\\
+distilled&feature&Brier&-0.10 [-0.16, -0.04]&0.06 [0.00, 0.13]\\
+distilled&feature&$1-$AUC&0.15 [0.08, 0.21]&0.05 [-0.01, 0.09]\\
+distilled&head&Brier&-0.12 [-0.19, -0.05]&0.08 [0.01, 0.14]\\
+distilled&head&$1-$AUC&0.19 [0.12, 0.25]&0.04 [-0.02, 0.10]\\
+\bottomrule\end{tabular}
+\par\smallskip\parbox{.97\textwidth}{\footnotesize Each row uses 13,045 land cells with equal cell weights. Partial correlations adjust ranks for training density, absolute latitude and richness. Percentile intervals use 500 resamples of $10^\circ\times10^\circ$ blocks, seed 0; ranks and regressions are refitted in each draw.}
+\end{table}
