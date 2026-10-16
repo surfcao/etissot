@@ -43,6 +43,7 @@ def stage(destination, include_manuscript=False):
     for name in ['README.md','LICENSE','RIGHTS_AND_ATTRIBUTION.md','requirements-reproduce.txt','requirements-figures.txt','pyproject.toml','MANIFEST.in']:
         shutil.copy2(ROOT/name,destination/name)
     (destination/'docs').mkdir();(destination/'docs/validation').mkdir()
+    if (ROOT/'docs/images').is_dir():shutil.copytree(ROOT/'docs/images',destination/'docs/images')
     for p in (ROOT/'docs').iterdir():
         if p.is_file() and p.name not in ('writing_style.md','revision_2026-10-13.md'):shutil.copy2(p,destination/'docs'/p.name)
     validation_names = {'reproduction_v0.2.0.json'}

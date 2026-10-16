@@ -4,6 +4,24 @@
 
 An installable Python package for auditing local geographic distortion in learned location encoders. Version 0.2.0 reproduces the numerical analyses accompanying the manuscript. Author: Guofeng Cao, STARlab, University of Colorado Boulder.
 
+## What eTissot measures
+
+![Tissot's indicatrix, the forward indicatrix of an encoder, and the reach ellipse](docs/images/fig_tissot_schematic.png)
+
+Tissot's indicatrix records how a map projection stretches a small circle on the Earth into an ellipse (a). eTissot applies the same idea to a location encoder: it evaluates the encoder on a ring of 32 geodesic probes around a location and fits the ellipse that describes how feature distance grows with geographic displacement in each direction (b). The fitted tensor also defines the *reach ellipse* (c), the geographic displacements with equal predicted feature distance, which is longest across the direction of greatest stretch.
+
+![Anisotropy and principal bearing of the Equal Earth projection and of GeoCLIP](docs/images/geoclip_equal_earth.png)
+
+Anisotropy (top) and principal bearing (bottom) of the analytic Equal Earth projection and of GeoCLIP's embedding at a 1 km probe radius. GeoCLIP feeds Equal Earth coordinates into its encoder, and its learned field follows the projection's shape distortion. White ellipses show the local stretch shape; pink crosses mark flagged fallback fits.
+
+![Dense regional anisotropy maps for CSP, SINR, Climplicit and SatCLIP](docs/images/dense_regional_v2.png)
+
+Densely sampled anisotropy and principal bearing for four encoder families. Fine structure that a coarse global grid misses becomes visible: rectilinear patterns in CSP, streaks in SINR, and spatially varying orientation in Climplicit and SatCLIP.
+
+![Geographic, embedding and tensor-predicted neighbors around five query locations](docs/images/neighbourhood_maps_v2.png)
+
+Embedding neighborhoods. Around each query (star), forty neighbors are chosen from 400 candidates within 1 km by geographic distance (blue circles), by actual feature distance (orange dots) and by the fitted tensor alone (green crosses). The reach ellipse (orange line) shows the directional extent of embedding similarity. The histograms count shared neighbors over all 299 query-checkpoint comparisons.
+
 ## Repository contents
 
 | Folder | Purpose |
