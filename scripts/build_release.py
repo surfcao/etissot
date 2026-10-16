@@ -19,15 +19,15 @@ NAME=f"{PROJECT['name']}-{VERSION}"
 def digest(path):
     with path.open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
 
-def stage(destination):
+def stage(destination, include_manuscript=False):
     destination=Path(destination).resolve()
     if destination.exists():raise FileExistsError(destination)
     destination.mkdir(parents=True)
-    for name in ['src','tests','examples','manuscript']:
+    for name in ['src','tests','examples']+(['manuscript'] if include_manuscript else []):
         excluded = ['__pycache__', '*.pyc', '.DS_Store', 'build', '*.egg-info']
         if name == 'manuscript':
             excluded += ['output', '*.pdf', '*.aux', '*.bbl', '*.blg', '*.fls', '*.fdb_latexmk',
-                         '*.synctex.gz', '*.toc', '*.out', '*.log', '*_backup_*', 'review_*.md', 'README.md']
+                         '*.synctex.gz', '*.toc', '*.out', '*.log', '*_backup_*', 'review_*.md', 'README.md', 'backups', 'notes']
         shutil.copytree(ROOT/name,destination/name,ignore=shutil.ignore_patterns(*excluded))
         if name == 'manuscript':
             for auxiliary in ['main2.tex', 'tags', 'main.pdf', 'SHA256SUMS.txt', 'SOURCE_PROVENANCE.json', 'VERIFICATION.json']:
@@ -46,8 +46,6 @@ def stage(destination):
     for p in (ROOT/'docs').iterdir():
         if p.is_file() and p.name not in ('writing_style.md','revision_2026-10-13.md'):shutil.copy2(p,destination/'docs'/p.name)
     validation_names = {'reproduction_v0.2.0.json'}
-    for date in ['2026-09-29', '2026-09-30', '2026-10-15']:
-        validation_names.update(p.name for p in (ROOT/'docs/validation').glob(f'*{date}.json'))
     for name in sorted(validation_names):
         path = ROOT/'docs/validation'/name
         if path.exists():shutil.copy2(path,destination/'docs/validation'/name)
@@ -80,10 +78,10 @@ def package(source):
     return dict(archive=archive.name,sha256=digest(archive),bytes=archive.stat().st_size,verified_files=len(paths),wheel=f'{NAME}-py3-none-any.whl')
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--stage',type=Path);p.add_argument('--pack',type=Path);a=p.parse_args()
-    if a.stage:stage(a.stage)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--stage',type=Path);p.add_argument('--pack',type=Path);p.add_argument('--with-manuscript',action='store_true',help='include the manuscript sources (after publication)');a=p.parse_args()
+    if a.stage:stage(a.stage,a.with_manuscript)
     elif a.pack:print(json.dumps(package(a.pack),indent=2))
     else:
-        with tempfile.TemporaryDirectory(prefix='ld-release-') as temp:print(json.dumps(package(stage(Path(temp)/NAME)),indent=2))
+        with tempfile.TemporaryDirectory(prefix='ld-release-') as temp:print(json.dumps(package(stage(Path(temp)/NAME,a.with_manuscript)),indent=2))
 
 if __name__=='__main__':main()

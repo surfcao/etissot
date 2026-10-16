@@ -16,7 +16,7 @@ An installable Python package for auditing local geographic distortion in learne
 
 Model weights are not included; `etissot models download` obtains them from their publishers with SHA-256 verification. The original SINR training and evaluation data are not redistributed.
 
-The repository contains the cached profiles, measurements, reference summaries and Jacobians needed to regenerate the main study tables and figures. The regional prediction and downstream inputs (`data/prediction`, `data/downstream`) exceed GitHub's file-size limit and are distributed with the full release archive (`etissot-0.2.0.zip`, attached to the GitHub release), which also contains the manuscript sources used by the numerical manuscript check.
+The repository contains the cached profiles, measurements, reference summaries and Jacobians needed to regenerate the main study tables and figures. The regional prediction and downstream inputs (`data/prediction`, `data/downstream`) exceed GitHub's file-size limit and are distributed with the full release archive (`etissot-0.2.0.zip`, attached to the GitHub release). The manuscript sources used by the numerical manuscript check will be added after publication.
 
 ## Package name
 
@@ -39,7 +39,7 @@ etissot environment
 
 On Windows use `.venv\Scripts\activate`. Python 3.11+ is declared; the tested environment is Python 3.13.2 with the exact versions in `requirements-reproduce.txt`. Other compatible dependency versions have not been numerically validated. Installation needs access to the dependency packages; cached analysis makes no downloads.
 
-The lightweight wheel installs code only. Study data stay in the separate `data/` directory supplied in this full release, alongside the matching manuscript. This keeps the library usable on your own encoder without installing hundreds of megabytes of reference data. If using the supplied wheel, install it with `python -m pip install dist/etissot-0.2.0-py3-none-any.whl`.
+The lightweight wheel installs code only. Study data stay in the separate `data/` directory supplied in this full release. This keeps the library usable on your own encoder without installing hundreds of megabytes of reference data. If using the supplied wheel, install it with `python -m pip install dist/etissot-0.2.0-py3-none-any.whl`.
 
 ## Optional encoder checkpoints
 
@@ -112,6 +112,8 @@ See [the complete runnable example](examples/custom_encoder.py). The fixed `mode
 etissot check --data ./data --output ./outputs
 etissot reproduce --data ./data --output ./reproduced --manuscript ./manuscript --numerical-only
 ```
+
+The `--manuscript` verification needs the manuscript sources, which are not yet public; they will be released after publication.
 
 The full workflow regenerates the empirical tables and all 15 figures across the current manuscript and additional package results, analytic examples, historical five-seed summaries, neighbour statistics and downstream bootstrap results. It replays all 360 selected GP predictions, then checks 20 generated manuscript blocks, the complete CSP precision table and 124 numerical claims against independent baselines. See [the complete reproduction guide](docs/reproducibility.md). It does not download model files or rerun GP fitting. Data and output directories must not overlap. Input data are never overwritten. Full reproduction does not copy finished figures, tables or summaries into outputs; standalone steps may seed reference prerequisites. Results are saved under `outputs/summaries`, `outputs/tables` and `outputs/figures`; a run report and logs record success or failure.
 
