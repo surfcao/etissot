@@ -133,4 +133,10 @@ def run(workspace):
     for n, x in geom['primary'].items():
         assert x['bearing_n'] <= x['n']
         assert x['bearing_sensitivity']['1.05']['area_retained'] <= x['bearing_sensitivity']['1.01']['area_retained'] <= x['bearing_area_retained'] + 1e-12
-    print('360 selections, 36 combined nesting candidates, 50 radius trails, 13 bearing masks and 3 seam exclusions verified.')
+    # The land table's "All" columns are copied from a separate review run; they
+    # must equal the primary summaries regenerated here.
+    land = json.loads((P / 'summaries/review_followups.json').read_text())['land_only']
+    for n, x in geom['primary'].items():
+        for key in ('median', 'corr60', 'bearing'):
+            assert abs(land[n]['all'][key] - x[key]) <= 1e-12, (n, key)
+    print('360 selections, 36 combined nesting candidates, 50 radius trails, 13 bearing masks, 3 seam exclusions and the land-table totals verified.')

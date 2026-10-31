@@ -1,7 +1,15 @@
 """Explicit, separate input data and generated-output locations."""
 from dataclasses import dataclass
 from pathlib import Path
+import hashlib
+import json
 import shutil
+
+SEED_RECORD = '.seeded_reference.json'
+
+
+def _digest(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 @dataclass(frozen=True)
 class Workspace:
@@ -15,19 +23,62 @@ class Workspace:
             raise ValueError('Data and output directories must not overlap.')
 
     def prepare(self, seed_reference=True):
-        """Seed reference summaries for checks without changing supplied data."""
+        """Seed reference inputs without changing supplied data.
+
+        Baselines are always copied. With ``seed_reference``, the distributed
+        reference summaries, tables and figures are also copied so that a single
+        analysis can run without its upstream steps; these copies are recorded in
+        ``.seeded_reference.json`` so that checks can refuse to treat them as
+        regenerated outputs.
+        """
         reference = self.data / 'reference'
         if not reference.is_dir():
             raise FileNotFoundError(f'Missing study reference data: {reference}')
         self.output.mkdir(parents=True, exist_ok=True)
+        record = self._seed_record()
         for source in reference.rglob('*'):
-            if source.is_file() and (seed_reference or source.relative_to(reference).parts[0] == 'baselines'):
-                target = self.output / source.relative_to(reference)
+            baseline = source.relative_to(reference).parts[0] == 'baselines'
+            if source.is_file() and (seed_reference or baseline):
+                relative = source.relative_to(reference)
+                target = self.output / relative
                 target.parent.mkdir(parents=True, exist_ok=True)
                 if not target.exists():
                     shutil.copyfile(source, target)
+                    if not baseline:
+                        record[relative.as_posix()] = _digest(target)
+        (self.output / SEED_RECORD).write_text(json.dumps(record, indent=1, sort_keys=True) + '\n')
         for name in ['prediction', 'profiles', 'figures', 'summaries', 'tables', 'logs']:
             (self.output / name).mkdir(exist_ok=True)
+        return self
+
+    def _seed_record(self):
+        path = self.output / SEED_RECORD
+        return json.loads(path.read_text()) if path.is_file() else {}
+
+    def seeded_copies(self):
+        """Seeded reference copies that no analysis has since overwritten."""
+        return sorted(name for name, digest in self._seed_record().items()
+                      if (self.output / name).is_file() and _digest(self.output / name) == digest)
+
+    def discard_seeded_copies(self):
+        """Remove seeded reference copies that no analysis has overwritten.
+
+        They are byte-identical to files in the data folder, so nothing is lost;
+        removing them stops a later check from reading them as regenerated outputs.
+        """
+        stale = self.seeded_copies()
+        for name in stale:
+            (self.output / name).unlink()
+        record = {k: v for k, v in self._seed_record().items() if k not in stale and (self.output / k).is_file()}
+        (self.output / SEED_RECORD).write_text(json.dumps(record, indent=1, sort_keys=True) + '\n')
+        return stale
+
+    def require_regenerated(self):
+        """Refuse an output folder that still contains unregenerated reference copies."""
+        stale = self.seeded_copies()
+        if stale:
+            raise ValueError(f'{len(stale)} output file(s) are unmodified copies of the distributed reference '
+                             f'(e.g. {stale[0]}). Run `etissot reproduce` into a fresh output directory before checking.')
         return self
 
     def fit_path(self, region):

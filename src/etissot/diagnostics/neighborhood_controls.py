@@ -146,7 +146,7 @@ def run(workspace):
     # LaTeX tables
     s = summary
     t = [r'\begin{table}[htbp]\centering\small',
-         r'\caption{Null and ablation predictors for the primary neighborhood comparison ($k=40$ of 400 candidates within 1\,km; tensors from separate 0.3\,km probes; ' + f'{n}' + r' valid query--model comparisons). Each predictor ranks the same candidates; entries compare its 40 selections with the 40 actual embedding neighbors.}',
+         r'\caption{Null and ablation predictors for the primary neighborhood comparison ($k=40$ of 400 candidates within 1\,km; tensors from separate 0.3\,km probes; ' + f'{n}' + r' valid query-model comparisons). Each predictor ranks the same candidates; entries compare its 40 selections with the 40 actual embedding neighbors.}',
          r'\label{tab:neighbournulls}',
          r'\begin{tabular}{@{}lrrr@{}}\toprule',
          r'Predictor&Identical sets&Median overlap&Mean overlap\\\midrule',

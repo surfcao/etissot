@@ -53,6 +53,7 @@ def make_design(data):
 
 
 def encoders(models,data):
+    models=Path(models)
     import torch,types,importlib,os
     from etissot.models.loaders import package_root
     from etissot.models.satclip_correction import correct_zonal_normalization

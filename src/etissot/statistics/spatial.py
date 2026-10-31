@@ -46,6 +46,8 @@ def wcorr(a, b, w=None, mask=None):
     if not ok.any():
         raise ValueError('No finite paired observations with positive weight.')
     a, b, w = (a[ok], b[ok], w[ok])
+    if np.ptp(a) == 0 or np.ptp(b) == 0:
+        return float('nan')  # a constant variable has no correlation (avoids 1-ulp residues)
     ma, mb = (np.average(a, weights=w), np.average(b, weights=w))
     denominator = np.sqrt(np.sum(w * (a - ma) ** 2) * np.sum(w * (b - mb) ** 2))
     return np.sum(w * (a - ma) * (b - mb)) / denominator if denominator > 0 else float('nan')
@@ -68,7 +70,10 @@ def block_bootstrap_corr(a, b, mask=None, n_boot=1000, seed=0, bl_lat=15.0, bl_l
     if mask is not None:
         w = w * np.asarray(mask).ravel()
     ids = block_ids(bl_lat, bl_lon)
-    ub = np.unique(ids[w > 0])
+    # Draw only blocks that contain at least one usable pair, so excluding sites
+    # with NaN and excluding them with a mask give the same resampling pool.
+    usable = (w > 0) & np.isfinite(a) & np.isfinite(b)
+    ub = np.unique(ids[usable])
     rng = np.random.default_rng(seed)
     est = []
     for _ in range(n_boot):

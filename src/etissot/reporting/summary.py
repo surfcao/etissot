@@ -35,14 +35,30 @@ def run(workspace):
     sgn = lambda t: '$-$' + t[1:] if t.startswith('-') else t
     ci = lambda v, ab: f'{sgn(f"{v:.2f}")} [{sgn(f"{ab[0]:.2f}")}, {sgn(f"{ab[1]:.2f}")}]'
     followups = P / 'summaries/review_followups.json'
-    common = json.loads(followups.read_text()).get('common_radius_0p3_fixed_grid', {}) if followups.exists() else {}
+    if not followups.exists():
+        # Single-step runs: regenerate the common-radius medians rather than printing placeholders.
+        from etissot.reporting.checkpoint_audits import run as checkpoint_audits
+        checkpoint_audits(workspace)
+    common = json.loads(followups.read_text())['common_radius_0p3_fixed_grid']
     body = []
     def common_median(n):
-        return f"{common[n]['median']:.2f}" if n in common else '---'
+        if n not in common:
+            raise KeyError(f'No common-radius median for {n} in review_followups.json.')
+        return f"{common[n]['median']:.2f}"
+
+    # Radius and vector type come from the checkpoint metadata used for measurement.
+    metadata = json.loads((workspace.output / 'summaries/released_audit.json').read_text())['metadata']
+    def vector(n):
+        normalization = metadata[n]['normalization']
+        if normalization.startswith('L2'):
+            return 'U'
+        if normalization.startswith('raw'):
+            return 'R'
+        raise ValueError(f'Unknown output normalization for {n}: {normalization}')
 
     for n, r in G['primary'].items():
         name = short[n] + ('$^\\dagger$' if r['sample'] != 'fixed' else '')
-        body.append(f"{name}&{(1.0 if n.startswith(('GeoCLIP', 'SatCLIP')) else 0.3 if n.startswith('SINR') else 0.1):g}&{('U' if n.startswith(('GeoCLIP', 'SatCLIP', 'CSP')) else 'R')}&{r['median']:.2f}&{common_median(n)}&{ci(r['corr60'], r['corr_ci'])}&{ci(r['bearing'], r['bearing_ci'])}" + '\\\\')
+        body.append(f"{name}&{metadata[n]['radius']:g}&{vector(n)}&{r['median']:.2f}&{common_median(n)}&{ci(r['corr60'], r['corr_ci'])}&{ci(r['bearing'], r['bearing_ci'])}" + '\\\\')
     def wide(lines):
         lines = list(lines)
         i = next(k for k, l in enumerate(lines) if l.startswith('\\begin{tabular}'))
@@ -50,7 +66,7 @@ def run(workspace):
         lines[i] = '\\begin{adjustbox}{max width=\\textwidth}\n' + lines[i]
         lines[j] = lines[j] + '\n\\end{adjustbox}'
         return lines
-    write('tables/encoder_table.tex', wide(table('Geometry of released checkpoints and association with input references. Intervals describe geographic resampling sensitivity.', 'tab:enc', '@{}lrcrrrr@{}', 'Encoder & Radius (km)&Vector&Median $A$&$A$, 0.3\\,km & $r_A$ [95\\% interval] & $C_\\theta$ [95\\% interval]', body, '$r_A$: area-weighted correlation between log output and log input-reference anisotropy. $C_\\theta$: agreement between directions of greatest stretch. U: unit-normalized output; R: raw features. Probe radii and feature conventions differ across families; $A$, 0.3\\,km gives the median anisotropy of each checkpoint re-evaluated at a common 0.3\\,km radius on the fixed grid. $^\\dagger$Two pooled randomized grids; other rows use the fixed grid. Median $A$: $|\\varphi|\\le85^\\circ$; correlation and bearing: $|\\varphi|\\le60^\\circ$. Bearings require both anisotropies to exceed $1+10^{-6}$. Probe discs crossing the antimeridian are excluded for GeoCLIP, CSP and Climplicit, whose outputs jump there. Input references are analytic Equal Earth (GeoCLIP), equally scaled longitude--latitude sinusoids (CSP), and 2:1 wrap/scaled coordinates (SINR/Climplicit); SatCLIP uses unnormalized harmonic-input profiles at 1 km from the implementation used here.')))
+    write('tables/encoder_table.tex', wide(table('Geometry of released checkpoints and association with input references. Intervals describe geographic resampling sensitivity.', 'tab:enc', '@{}lrcrrrr@{}', 'Encoder & Radius (km)&Vector&Median $A$&$A$, 0.3\\,km & $r_A$ [95\\% interval] & $C_\\theta$ [95\\% interval]', body, '$r_A$: area-weighted correlation between log output and log input-reference anisotropy. $C_\\theta$: agreement between directions of greatest stretch. U: unit-normalized output; R: raw features. Probe radii and feature conventions differ across families; $A$, 0.3\\,km gives the median anisotropy of each checkpoint re-evaluated at a common 0.3\\,km radius on the fixed grid. $^\\dagger$Two pooled randomized grids; other rows use the fixed grid. Median $A$: $|\\varphi|\\le85^\\circ$; correlation and bearing: $|\\varphi|\\le60^\\circ$. Bearings require both anisotropies to exceed $1+10^{-6}$. Probe discs crossing the antimeridian are excluded for GeoCLIP, CSP and Climplicit, whose outputs jump there. Input references are analytic Equal Earth (GeoCLIP), equally scaled longitude-latitude sinusoids (CSP), and 2:1 wrap/scaled coordinates (SINR/Climplicit); SatCLIP uses unnormalized harmonic-input profiles at 1 km from the implementation used here.')))
     body = []
     for n, phases in G['randomized_phases'].items():
         f = G['fixed_grid'][n]
@@ -108,9 +124,9 @@ def run(workspace):
     spread = sum((r['nll_spread'] > 1 for r in R.values()))
     write('tables/optimization.tex', [f'All 360 method--case fits and 1,080 starts were completed. Optimizers reported convergence in {success} starts; {selected} of the 360 selected starts reported convergence. In {spread} fits the worst and best final training objectives differed by more than 1 NLL unit. Every selected pure tensor fit matched or improved its nested isotropic training objective, and all 36 tensor-plus-embedding fits matched or improved their contained spatial-plus-embedding solution (numerical tolerance $10^{{-5}}$). Selection was verified against the minimum stored candidate objective in all 360 fits. These checks do not establish a global optimum.'])
     mac = {'GeoCorr': G['primary']['GeoCLIP']['corr60'], 'GeoDezonal': G['geoclip_shape']['dezonal_corr'], 'GeoShapeMed': G['geoclip_shape']['median_relative_anisotropy'], 'GeoShapeP': G['geoclip_shape']['p95_relative_anisotropy'], 'CSPJitterCorr': G['primary']['CSP iNat2018']['corr60'], 'CSPJitterBearing': G['primary']['CSP fMoW']['bearing']}
-    lines = [f'\\newcommand{{\\{k}}}{{{v:.2f}}}' for k, v in mac.items()]
+    lines = [f'\\newcommand{{\\{k}}}{{{v:.2f}}}'.replace('{-', '{$-$') for k, v in mac.items()]
     mac.update({'SatMid': vals['SatCLIP-L40'][:2].mean(), 'SatNew': vals['SatCLIP-L40'][2:].mean(), 'SatPooled': vals['SatCLIP-L40'].mean(), 'EmbPooled': vals['embedding'].mean(), 'SpatialEmbPooled': vals['spatial+embedding'].mean(), 'TensorEmbPooled': vals['tensor+embedding'].mean()})
-    lines += [f'\\newcommand{{\\{k}}}{{{mac[k]:.3f}}}' for k in ['SatMid', 'SatNew', 'SatPooled', 'EmbPooled', 'SpatialEmbPooled', 'TensorEmbPooled']]
+    lines += [f'\\newcommand{{\\{k}}}{{{mac[k]:.3f}}}'.replace('{-', '{$-$') for k in ['SatMid', 'SatNew', 'SatPooled', 'EmbPooled', 'SpatialEmbPooled', 'TensorEmbPooled']]
     write('tables/numbers.tex', lines)
     report = {'means': {v: {'original': float(x[:2].mean()), 'added': float(x[2:].mean()), 'pooled': float(x.mean()), 'windows': x.mean(axis=(1, 2)).tolist()} for v, x in vals.items()}, 'worst_cases': worsts, 'fits': len(R), 'starts': len(allruns), 'converged_starts': success, 'selected_converged': selected, 'nll_spread_above1': spread, 'max_combined_nested_nll_difference': max(combo_nested), 'max_nested_nll_difference': max(nested)}
     (P / 'summaries/kriging.json').write_text(json.dumps(report, indent=2) + '\n')

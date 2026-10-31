@@ -11,7 +11,8 @@ def run(workspace):
     ROOT = workspace.data
     P = workspace.output
     d = json.loads((P / 'summaries/downstream.json').read_text())
-    old = json.loads((P / 'baselines/downstream_points.json').read_text())
+    B = workspace.data / 'reference/baselines'  # baselines come from the data folder, never from outputs
+    old = json.loads((B / 'downstream_points.json').read_text())
     assert len(d['rows']) == len(old) == 12
     for r, o in zip(d['rows'], old):
         assert (r['model'], r['space'], r['metric']) == (o['model'], o['space'], o['metric'])
@@ -21,7 +22,7 @@ def run(workspace):
         np.testing.assert_array_equal(np.percentile(reps, [2.5, 97.5], axis=0), np.array([r['raw_ci'], r['partial_ci']]).T)
     assert 0.152 < d['max_partial'] < 0.153
     assert 0.613 < d['global_feature_head_logA_correlation']['cap1000'] < 0.615
-    assert json.loads((P / 'summaries/kriging.json').read_text()) == json.loads((P / 'baselines/kriging_before_downstream_update.json').read_text())
+    assert json.loads((P / 'summaries/kriging.json').read_text()) == json.loads((B / 'kriging_before_downstream_update.json').read_text())
     table = P / 'tables/encoder_table.tex'
     if table.exists():  # wording check applies only when the table has been generated in this output directory
         assert re.search(r'unnormali[sz]ed(?: numerical)? harmonic-input profiles at 1 km', table.read_text())

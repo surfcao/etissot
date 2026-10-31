@@ -47,17 +47,29 @@ def run(workspace):
 
 
 def collect(workspace, model_dir=None):
-    """Replay the original seed/order with installed GeoCLIP weights and gallery.
+    """Replay the original seed/order with GeoCLIP weights and the installed gallery.
 
-    Saves candidate coordinates and similarities, not formatted manuscript results.
-    No model/data download is performed by this function.
+    Weights are read from ``model_dir/encoders/geoclip/location_encoder_weights.pth``
+    when present, otherwise from the installed geoclip package (as in load_all),
+    and must match the study checkpoint manifest. Saves candidate coordinates and
+    similarities, not formatted manuscript results. No download is performed.
     """
     import torch, importlib, types, sys, hashlib
     from scipy.spatial import cKDTree
     from etissot.models.loaders import package_root
     torch.set_num_threads(2)
     root=package_root('geoclip');pkg=types.ModuleType('neighbour_geo');pkg.__path__=[str(root/'model')];sys.modules['neighbour_geo']=pkg
-    encoder=importlib.import_module('neighbour_geo.location_encoder').LocationEncoder().double().eval()
+    def sha(p):
+        with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+    # Same resolution as models.loaders.load_all: model folder first, installed package otherwise.
+    weights=Path(model_dir)/'encoders/geoclip/location_encoder_weights.pth' if model_dir is not None else None
+    if weights is None or not weights.is_file():
+        weights=root/'model/weights/location_encoder_weights.pth'
+    expected=json.loads((workspace.data/'reference/summaries/checkpoint_manifest.json').read_text())['GeoCLIP']['sha256']
+    if sha(weights)!=expected:raise ValueError(f'GeoCLIP weights do not match the study manifest: {weights}')
+    encoder=importlib.import_module('neighbour_geo.location_encoder').LocationEncoder()
+    encoder.load_state_dict(torch.load(weights,map_location='cpu',weights_only=True))
+    encoder=encoder.double().eval()
     def encode(lat,lon):
         x=torch.tensor(np.stack([np.degrees(lat),(np.degrees(lon)+180)%360-180],1),dtype=torch.float64)
         out=[]
@@ -87,7 +99,5 @@ def collect(workspace, model_dir=None):
         print('Collected neighbour latitude band',lo,hi,flush=True)
     out=workspace.output/'measurements';out.mkdir(exist_ok=True)
     path=out/'neighbour_candidates.npz';np.savez_compressed(path,query_radians=queries,candidate_radians=np.concatenate(points),similarity=np.concatenate(scores),offsets=offsets,group=groups,k=ks)
-    def sha(p):
-        with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
-    (out/'neighbour_provenance.json').write_text(json.dumps(dict(seed=0,checkpoint_sha256=sha(root/'model/weights/location_encoder_weights.pth'),gallery_sha256=sha(gallery_path),synthetic_queries=20,gallery_queries=1200,candidate_count=offsets[-1],protocol='Original experiment-33 query ordering and precision; coordinates radians'),indent=2)+'\n')
+    (out/'neighbour_provenance.json').write_text(json.dumps(dict(seed=0,checkpoint_sha256=sha(weights),checkpoint_path=str(weights),gallery_sha256=sha(gallery_path),synthetic_queries=20,gallery_queries=1200,candidate_count=offsets[-1],protocol='Original experiment-33 query ordering and precision; coordinates radians'),indent=2)+'\n')
     print('Saved',path,flush=True)

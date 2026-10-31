@@ -15,6 +15,24 @@ def destination_point(lat, lon, bearing, r, R=R_EARTH):
     lon2 = lon + np.arctan2(np.sin(bearing) * np.sin(d) * np.cos(lat), np.cos(d) - np.sin(lat) * np.sin(lat2))
     return (lat2, lon2)
 
+def disc_crossings(lat, lon, r, R=R_EARTH):
+    """Report whether the probe disc of radius r (km) around (lat, lon) in radians
+    contains a pole or crosses the antimeridian (longitude +/-pi).
+
+    These are coordinate discontinuities: an encoder may give different outputs
+    for equivalent coordinates there, and the finite-radius fit then measures
+    that jump rather than local geometry.
+    """
+    lat, lon, r = float(lat), float(lon), float(r)
+    d = r / R
+    contains_pole = (np.pi / 2 - abs(lat)) <= d
+    if contains_pole:
+        return {'contains_pole': True, 'crosses_antimeridian': True}
+    # Largest longitude offset of a spherical cap that does not contain a pole.
+    extent = np.arcsin(min(1.0, np.sin(d) / np.cos(lat)))
+    wrapped = (lon + np.pi) % (2 * np.pi) - np.pi
+    return {'contains_pole': False, 'crosses_antimeridian': bool(abs(wrapped) + extent >= np.pi)}
+
 def probe_points(lat, lon, r, n_dir=32):
     """Center + ring of n_dir geodesic neighbours at radius r.
     Returns (lats, lons) arrays of length n_dir+1; index 0 is the center."""
@@ -29,7 +47,11 @@ def probe_points(lat, lon, r, n_dir=32):
     return (np.concatenate([[lat], la2]), np.concatenate([[lon], lo2]), bearings)
 
 def summarize(emb, r, bearings):
-    """emb: (n_dir+1, d) embeddings, row 0 = center."""
+    """Summarize one probe ring; emb is (n_dir+1, d) with row 0 the center.
+
+    Anisotropy and bearing are taken from the harmonic tensor fit, so they agree
+    with measure_indicatrix. Prefer measure_locations for new code.
+    """
     emb, bearings = np.asarray(emb, dtype=float), np.asarray(bearings, dtype=float)
     if (emb.ndim != 2 or emb.shape[0] != bearings.size + 1 or emb.shape[1] == 0
             or bearings.ndim != 1 or bearings.size == 0 or not np.isfinite(emb).all()
@@ -38,8 +60,12 @@ def summarize(emb, r, bearings):
     s = np.linalg.norm(emb[1:] - emb[0], axis=1) / r
     if not np.isfinite(s).all() or not np.any(s > 0):
         raise ValueError('No finite measurable directional change at this radius.')
+    from .fitting import fit_ellipse  # local import: fitting does not depend on probing
+    fit = fit_ellipse(s, bearings)
     s_pos = np.clip(s, 1e-30, None)
-    return {'anisotropy': float(s.max() / max(s.min(), 1e-30)), 'scale': float(np.exp(np.mean(np.log(s_pos)))), 'bearing': float(bearings[int(np.argmax(s))]), 'profile': s}
+    # Anisotropy and bearing come from the fitted tensor (Equations 5-6), as in
+    # measure_indicatrix; the bearing is the principal axis modulo pi.
+    return {'anisotropy': fit['A_fit'], 'scale': float(np.exp(np.mean(np.log(s_pos)))), 'bearing': fit['theta_fit'], 'fallback': fit['fallback'], 'profile': s}
 
 def local_distortion(f, lat, lon, r, n_dir=32):
     """f: scalar-call encoder f(lat, lon) -> (d,) array."""

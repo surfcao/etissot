@@ -7,7 +7,7 @@ Subcommands (default: all):
   land        Table 2 statistics restricted to land sites
   bearings    16/32/64-bearing sensitivity at 200 sites per checkpoint
 
-Outputs: outputs/summaries/review_followups.json (merged across subcommands),
+Outputs: outputs/measurements/review/review_followups.json (merged across subcommands),
 outputs/profiles/common_radius_0p3.npz, outputs/tables/review_followups.tex.
 Usage: python scripts/review_followups.py [--models MODELS_DIR] [subcommand ...]
 """
@@ -42,7 +42,9 @@ JITTER = {'SatCLIP vit16l40': 'SatCLIP vit16l40', 'SINR cap1000': 'SINR cap1000 
           'SatCLIP r50l40': 'SatCLIP r50l40', 'SINR distilled': 'SINR distilled-env (raw)', 'CSP iNat2018': 'CSP iNat2018 grid (norm)',
           'CSP fMoW': 'CSP fMoW grid (norm)', 'Climplicit': 'Climplicit 4-month (raw)'}
 CHART = ('GeoCLIP', 'CSP iNat2018', 'CSP fMoW', 'Climplicit')
-OUT = ROOT / 'outputs/summaries/review_followups.json'
+# Raw collection results; copy to data/measurements/review/ to make them declared inputs.
+# (outputs/summaries/review_followups.json is the pipeline's derived summary.)
+OUT = ROOT / 'outputs/measurements/review/review_followups.json'
 
 
 def load_results():
@@ -110,13 +112,14 @@ def relu_models(models):
     geo_path = Path(models) / 'encoders/geoclip/location_encoder_weights.pth'
     if not geo_path.exists():
         geo_path = loaders.package_root('geoclip') / 'model/weights/location_encoder_weights.pth'
-    geo = loaders.load_geoclip_checkpoint(geo_path)
+    manifest = ROOT / 'data/reference/summaries/checkpoint_manifest.json'
+    geo = loaders.load_geoclip_checkpoint(loaders.verify_checkpoint('GeoCLIP', geo_path, manifest))
     sm = loaders.filemodule('audit_sinr_relu', ROOT / 'src/etissot/models/vendor/sinr/models.py')
     sinr = {}
     for name, tail in [('SINR cap1000', 'hard_cap_num_per_class_1000'), ('SINR cap10', 'hard_cap_num_per_class_10'),
                        ('SINR distilled', 'distilled_from_env')]:
-        c = torch.load(Path(models) / f'encoders/sinr/pretrained_models/model_an_full_input_enc_sin_cos_{tail}.pt',
-                       map_location='cpu', weights_only=False)
+        path = loaders.verify_checkpoint(name, Path(models) / f'encoders/sinr/pretrained_models/model_an_full_input_enc_sin_cos_{tail}.pt', manifest)
+        c = torch.load(path, map_location='cpu', weights_only=False)  # trusted only after the hash check
         p = c['params']
         m = sm.ResidualFCNet(p['input_dim'], p['num_classes'], p['num_filts'], p['depth']).double().eval()
         m.load_state_dict(c['state_dict'])
@@ -157,7 +160,8 @@ def crossing(model, make_input, la, lo, n, groups=None):
             per_group.append(np.stack([torch.stack([diff[i] for i in g], 1).any(1).numpy() for g in groups], 1))
     for h in hooks:
         h.remove()
-    return np.concatenate(res), (np.concatenate(per_group) if groups is not None else None), np.concatenate(flips)
+    units = int(sum(p.shape[-1] for p in P))  # ReLU units per evaluated point, across all ReLU modules
+    return np.concatenate(res), (np.concatenate(per_group) if groups is not None else None), np.concatenate(flips), units
 
 
 def sinr_jacobian_A(model, lat_deg, lon_deg):
@@ -216,8 +220,9 @@ def relu(models, only_sinr=False):
     for r, prof in ([] if only_sinr else [(1.0, g['prof__GeoCLIP'][sel]), (0.3, small['prof_0.3'][sel])]):
         err = abs(fit_many(prof, B32)['A_fit'] / aj - 1)
         la, lo = rings(lat, lon, r)
-        cross, per, flips = crossing(geo, geo_input, la, lo, 32, groups=caps)
+        cross, per, flips, units = crossing(geo, geo_input, la, lo, 32, groups=caps)
         d = summary(err, cross, aj, flips)
+        d['relu_units'] = units
         d['crossing_fraction_by_branch_sigma_1_16_256'] = [float(np.average(per[:, k], weights=w)) for k in range(3)]
         out[f'GeoCLIP {r:g} km'] = d
         print('GeoCLIP', r, json.dumps(d), flush=True)
@@ -234,8 +239,9 @@ def relu(models, only_sinr=False):
             prof = g['prof__' + name][sel]
         err = abs(fit_many(prof, B32)['A_fit'] / aj - 1)
         la, lo = rings(lat, lon, 0.3)
-        cross, _, flips = crossing(m, sinr_input, la, lo, 32)
+        cross, _, flips, units = crossing(m, sinr_input, la, lo, 32)
         d = summary(err, cross, aj, flips)
+        d['relu_units'] = units
         d['jacobian_cache_max_relative_difference'] = check
         out[name] = d
         print(name, json.dumps(d), flush=True)
@@ -377,64 +383,10 @@ def pct(v):
 
 
 def tables():
-    res = load_results()
-    files = {}
-    L = []
-    if 'relu_crossing' in res:
-        R = res['relu_crossing']
-        L += [r'\begin{table}[htbp]\centering\small',
-              r'\caption{Activation-region crossings at the 2,340 Jacobian sites. A probe disc crosses when any probe point has a different ReLU activation pattern from the center. Errors are area-weighted $|A_r/A_J-1|$ in percent.}',
-              r'\label{tab:relu}', r'\begin{adjustbox}{max width=\textwidth}', r'\begin{tabular}{@{}lrrrrr@{}}\toprule',
-              r'&&\multicolumn{2}{c}{Median error (\%)}&\multicolumn{2}{c}{95th percentile (\%)}\\',
-              r'Checkpoint, radius&Crossing discs&Within&Crossing&Within&Crossing\\\midrule']
-        for key, lab in [('SINR cap1000', 'SINR cap-1000, 0.3 km'), ('SINR cap10', 'SINR cap-10, 0.3 km'), ('SINR distilled', 'SINR distilled, 0.3 km')]:
-            d = R[key]
-            L.append(f"{lab}&{100 * d['crossing_fraction']:.1f}\\%&{pct(d['median_error_within'])}&{pct(d['median_error_crossing'])}&{pct(d['p95_error_within'])}&{pct(d['p95_error_crossing'])}\\\\")
-        L += [r'\midrule', r'&Median switching units&\multicolumn{2}{c}{Lowest / highest switching tercile}&\multicolumn{2}{c}{Lowest / highest switching tercile}\\']
-        for key, lab in [('GeoCLIP 1 km', 'GeoCLIP, 1 km'), ('GeoCLIP 0.3 km', 'GeoCLIP, 0.3 km')]:
-            d = R[key]
-            m, q = d['median_error_by_flip_tercile'], d['p95_error_by_flip_tercile']
-            L.append(f"{lab}&{d['median_flipped_units']:.0f}&\\multicolumn{{2}}{{c}}{{{pct(m[0])} / {pct(m[2])}}}&\\multicolumn{{2}}{{c}}{{{pct(q[0])} / {pct(q[2])}}}\\\\")
-        g1, g3 = R['GeoCLIP 1 km'], R['GeoCLIP 0.3 km']
-        L += [r'\bottomrule\end{tabular}', r'\end{adjustbox}',
-              r'\par\smallskip\parbox{.97\textwidth}{\footnotesize SINR Jacobians are double-precision automatic derivatives; for cap-1000 they reproduce the cached values to $'
-              + f"{R['SINR cap1000']['jacobian_cache_max_relative_difference']:.0e}".replace('e-', r'\times10^{-').replace('e+', r'\times10^{') + r'}$. For all three SINR checkpoints, every site with error above 0.1\% is a crossing disc. Every GeoCLIP disc crosses at least one of its 9,216 units at both radii; the rows therefore compare terciles of the number of units whose pattern changes within the disc (Spearman correlation with error '
-              + f"{g1['spearman_flips_error']:.2f} at 1 km, {g3['spearman_flips_error']:.2f} at 0.3 km). Crossing fractions by branch ($\\sigma=1,16,256$) are "
-              + ', '.join(f'{100 * v:.0f}' for v in g1['crossing_fraction_by_branch_sigma_1_16_256']) + r'\% at 1 km and '
-              + ', '.join(f'{100 * v:.0f}' for v in g3['crossing_fraction_by_branch_sigma_1_16_256']) + r'\% at 0.3 km.}',
-              r'\end{table}']
-        files['review_relu'], L = L, []
-    if 'land_only' in res:
-        R = res['land_only']
-        L += [r'\begin{table}[htbp]\centering\small',
-              r'\caption{Table~\ref{tab:enc} statistics over all sites and over land sites only. Land is defined by the 0.5$^\circ$ land mask used for the map coastlines; land covers '
-              + f"{100 * R['GeoCLIP']['land_area_fraction_85']:.0f}" + r'\% of the area within $85^\circ$. Same samples, weights and exclusions as Table~\ref{tab:enc}.}',
-              r'\label{tab:land}', r'\begin{tabular}{@{}lrrrrrr@{}}\toprule',
-              r'&\multicolumn{2}{c}{Median $A$}&\multicolumn{2}{c}{$r_A$}&\multicolumn{2}{c}{$C_\theta$}\\',
-              r'Checkpoint&All&Land&All&Land&All&Land\\\midrule']
-        for n in NAMES:
-            a, b = R[n]['all'], R[n]['land']
-            L.append(f"{SHORT[n]}&{num(a['median'])}&{num(b['median'])}&{num(a['corr60'])}&{num(b['corr60'])}&{num(a['bearing'])}&{num(b['bearing'])}\\\\")
-        L += [r'\bottomrule\end{tabular}', r'\end{table}']
-        files['review_land'], L = L, []
-    if 'bearing_count' in res:
-        R = res['bearing_count']
-        L += [r'\begin{table}[htbp]\centering\small',
-              r'\caption{Sensitivity to the number of bearings at 200 sites per checkpoint within $60^\circ$ (seed 20261016), each checkpoint at its primary radius. Profiles with 64 bearings are fitted in full and subsampled to 32 and 16. Entries are 95th percentiles over sites of the relative change in anisotropy (percent) and of the bearing change (degrees, sites with $A>1.05$), relative to 32 bearings.}',
-              r'\label{tab:bearingcount}', r'\begin{tabular}{@{}lrrrr@{}}\toprule',
-              r'&\multicolumn{2}{c}{$A$ change (\%)}&\multicolumn{2}{c}{Bearing change ($^\circ$)}\\',
-              r'Checkpoint&16 bearings&64 bearings&16 bearings&64 bearings\\\midrule']
-        for n in NAMES:
-            d = R[n]
-            sm = lambda v: '$<$0.01' if v < 0.005 else f'{v:.2f}'
-            L.append(f"{SHORT[n]}&{sm(100 * d['p95_rel_A_16_vs_32'])}&{sm(100 * d['p95_rel_A_64_vs_32'])}&{sm(d['p95_bearing_deg_16_vs_32'])}&{sm(d['p95_bearing_deg_64_vs_32'])}\\\\")
-        L += [r'\bottomrule\end{tabular}', r'\end{table}']
-        files['review_bearings'], L = L, []
-    dest = ROOT / 'outputs/tables'
-    dest.mkdir(parents=True, exist_ok=True)
-    for name, lines in files.items():
-        (dest / f'{name}.tex').write_text('\n'.join(lines) + '\n')
-        print('wrote', dest / f'{name}.tex')
+    """Write the review tables with the package generator, so the prose is computed in one place."""
+    from types import SimpleNamespace
+    from etissot.reporting.checkpoint_audits import tables as write_tables
+    write_tables(SimpleNamespace(output=ROOT / 'outputs'), load_results())
 
 
 def main():

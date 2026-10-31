@@ -7,7 +7,7 @@ basemaps for global fields:
   fig_tissot_schematic.png    projection ellipse, forward indicatrix, reach ellipse (Fig. 1)
   geoclip_equal_earth.png     Equal Earth vs GeoCLIP fields with Tissot-style glyphs (Fig. 4)
   fig_indicatrix_v2.png       directional profiles (Fig. 2)
-  fig_validation_v2.png       analytic input references (Fig. 3)
+  fig_validation_v2.png       analytic input references (supplementary Fig. S1)
   dense_regional_v2.png       dense regional fields (Fig. 5)
   dense_regional_v3.png       world maps above the dense regional fields (not used; run 'dense_world')
   other_families_ee.png       fixed-grid world maps for CSP, Climplicit and SINR (supplement)
@@ -15,10 +15,8 @@ basemaps for global fields:
   satclip_backbones_ee.png    SatCLIP backbone fields (supplement)
 
 Inputs are the cached profiles and measurements already in the package; only
-numpy and matplotlib are required. Figures are written to outputs/figures/ and
-copied to manuscript/figures/.
-
-Usage: python scripts/make_revision_figures.py
+numpy and matplotlib are required. Figures are written to outputs/figures/ only;
+the manuscript folder is never modified. Run through `etissot reproduce`.
 """
 import shutil
 import sys
@@ -329,6 +327,8 @@ def validation():
     I = np.load(DATA / 'profiles/input_references.npz')
     lat = GLAT[:, 0]
     phi = np.radians(lat)
+    fine = np.linspace(-85, 85, 3401)
+    phi_fine = np.radians(fine)
 
     def sh_reference(degree):
         t = phi + np.pi / 2
@@ -342,34 +342,60 @@ def validation():
 
     def zonal(profile):
         return np.median(fit_many(profile, B)['A_fit'].reshape(GLAT.shape), axis=1)
-    fig, axs = plt.subplots(1, 3, figsize=(WIDTH, 2.25), sharey=True)
-    axs[0].plot(lat, 1 / np.cos(phi), 'k-', lw=0.9, label=r'Analytic $\sec\varphi$')
-    axs[0].plot(lat, np.ones_like(lat), 'k:', lw=0.9, label='Isotropic')
-    for key, label, marker in [('grid', 'Planar sinusoids', 'o'), ('cart3d', '3-D Cartesian', '^')]:
-        axs[0].plot(lat, zonal(G['prof__ref ' + key]), marker, ms=2.2, mfc='none', mew=0.6,
+    point = dict(ms=2.2, mfc='none', mew=0.6, ls='none')
+    # Solid analytic lines in a darker shade of the colour of the matching estimates.
+    est = ('#1f77b4', '#ff7f0e')
+    ref = ('#0b3c6b', '#a34700')
+    line = dict(lw=1.0, ls='-')
+    fig, axs = plt.subplots(2, 2, figsize=(WIDTH, 4.3), sharey=True)
+    axs = axs.ravel()
+    axs[0].plot(lat, 1 / np.cos(phi), color=ref[0], **line, label=r'Analytic $\sec\varphi$')
+    axs[0].plot(lat, np.ones_like(lat), color=ref[1], **line, label='Analytic, isotropic')
+    for i, (key, label, marker) in enumerate([('grid', 'Space2Vec grid', 'o'), ('cart3d', '3-D Cartesian', '^')]):
+        axs[0].plot(lat, zonal(G['prof__ref ' + key]), marker=marker, color=est[i], **point,
                     label=f"{label}, {float(G['r__ref ' + key]):g} km")
-    axs[0].set_title('Planar and isotropic inputs')
-    axs[1].plot(lat, np.maximum(2 * np.cos(phi), 1 / (2 * np.cos(phi))), 'k-', lw=0.9, label='Analytic 2:1')
-    axs[1].plot(lat, zonal(G['prof__ref SINR-input']), 'o', ms=2.2, mfc='none', mew=0.6,
-                label=f"Wrap input, {float(G['r__ref SINR-input']):g} km")
-    axs[1].set_title('SINR wrap input')
-    for degree, marker, style in [(10, 'o', '-'), (40, 's', '--')]:
-        axs[2].plot(lat, sh_reference(degree), 'k' + style, lw=0.9, label=rf'Analytic, $L={degree}$')
-        axs[2].plot(lat, zonal(I[f'in__SatCLIP vit16l{degree}']), marker, ms=2.2, mfc='none', mew=0.6,
+    axs[0].set_title('(a) Longitude-latitude sinusoids; Cartesian')
+    axs[1].plot(lat, np.maximum(2 * np.cos(phi), 1 / (2 * np.cos(phi))), color=ref[0], **line, label='Analytic 2:1')
+    axs[1].plot(lat, zonal(G['prof__ref SINR-input']), marker='o', color=est[0], **point,
+                label=f"SINR wrap, {float(G['r__ref SINR-input']):g} km")
+    axs[1].set_title('(b) 2:1 coordinates (SINR, Climplicit)')
+    # (c) Equal Earth input reference of GeoCLIP along three meridians; varies with longitude.
+    pin = fit_many(I['in__GeoCLIP'], B)['A_fit'].reshape(GLAT.shape)
+    lon_grid = GLON[0]
+    ee_est = est + ('#2ca02c',)
+    ee_ref = ref + ('#17621a',)
+    ee_handles = []
+    for i, (lon0, marker) in enumerate([(2.5, 'o'), (92.5, 's'), (177.5, '^')]):
+        j = int(np.argmin(np.abs(lon_grid - lon0)))
+        a_line, _ = equal_earth_metric(fine, np.full(fine.size, lon_grid[j]))
+        axs[2].plot(fine, a_line, color=ee_ref[i], **line)
+        axs[2].plot(lat, pin[:, j], marker=marker, color=ee_est[i], **point)
+        ee_handles.append(Line2D([], [], color=ee_ref[i], lw=1.0, marker=marker, ms=2.6, mfc='none',
+                                 mec=ee_est[i], mew=0.6, label=rf'$\lambda={lon_grid[j]:g}^\circ$'))
+    axs[2].set_title('(c) Equal Earth coordinates (GeoCLIP)')
+    for i, (degree, marker) in enumerate([(10, 'o'), (40, 's')]):
+        axs[3].plot(lat, sh_reference(degree), color=ref[i], **line, label=rf'Analytic, $L={degree}$')
+        axs[3].plot(lat, zonal(I[f'in__SatCLIP vit16l{degree}']), marker=marker, color=est[i], **point,
                     label=rf'Implemented, $L={degree}$, 1 km')
-    axs[2].set_title('SatCLIP harmonic input')
-    for ax in axs:
+    axs[3].set_title('(d) Spherical harmonics (SatCLIP)')
+    for i, ax in enumerate(axs):
         ax.set_yscale('log')
         ax.set_ylim(0.9, 12)
         ax.set_yticks([1, 1.5, 2, 3, 5, 10])
         ax.set_yticklabels(['1', '1.5', '2', '3', '5', '10'])
         ax.minorticks_off()
-        ax.set_xlabel('Latitude (°)')
+        if i >= 2:
+            ax.set_xlabel('Latitude (°)')
         ax.set_xticks([-80, -40, 0, 40, 80])
         ax.grid(alpha=0.25, lw=0.4)
-        ax.legend(fontsize=5.8, frameon=False, loc='upper center', handlelength=1.6)
-    axs[0].set_ylabel('Anisotropy $A$ (log scale)')
-    fig.tight_layout(w_pad=0.6)
+        if i == 2:
+            ax.legend(handles=ee_handles, title='Analytic (line), 1 km (symbols)', title_fontsize=5.6,
+                      fontsize=5.8, frameon=False, loc='upper center', handlelength=1.8)
+        else:
+            ax.legend(fontsize=5.8, frameon=False, loc='upper center', handlelength=1.6)
+        if i % 2 == 0:
+            ax.set_ylabel('Anisotropy $A$ (log scale)')
+    fig.tight_layout(w_pad=0.6, h_pad=1.0)
     save(fig, 'fig_validation_v2.png')
 
 
@@ -633,6 +659,10 @@ def run(workspace):
     DATA, OUTPUT = workspace.data, workspace.output
     OUT = OUTPUT / 'figures'
     COAST = np.load(DATA / 'reference/maps/coastlines.npz', allow_pickle=False)
+    if not (OUTPUT / 'profiles/dense_fitted.npz').exists():
+        # A fresh output folder has no refitted dense maps yet; create them as maps.py does.
+        from etissot.diagnostics.dense_cached import run as refit_dense
+        refit_dense(workspace)
     try:
         for function in [schematic, geoclip_equal_earth, indicatrix, validation,
                          dense, other_families, satclip_backbones, neighbourhood_maps]:

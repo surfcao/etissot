@@ -1,13 +1,13 @@
 # Unit tests
 
-From the repository root or extracted release directory, after installing the package:
+From the repository root (or the extracted release directory), run the following after installing the package:
 
 ```sh
 python -m pip install ".[test]"
 python -m unittest discover -s tests -v
 ```
 
-The suite uses Python's standard-library unittest runner and the package's dependencies and the `test` extra (`einops`, needed by the vendored harmonic interface). No pytest installation, model downloads, checkpoints or study NPZ files are needed. Tests use analytic examples, seeded synthetic data and temporary directories.
+The suite uses the standard-library unittest runner, the package dependencies and the `test` extra (`einops`, needed by the vendored harmonic interface). It needs no pytest, model downloads, checkpoints or study NPZ files, since the tests use analytic examples, seeded synthetic data and temporary directories.
 
 | File | Coverage |
 |---|---|
@@ -17,22 +17,22 @@ The suite uses Python's standard-library unittest runner and the package's depen
 | test_workflows.py | Input/output separation, reference preservation, missing data, selected CLI analysis, success/failure reports, stop-on-failure and check-only dispatch |
 | test_public_api.py | Rotated tensor reconstruction, path overlap rejection and output-fit precedence |
 
-There are 120 test methods, with additional parameterized subcases. Coverage includes zero-weight and invalid-weight quantiles, every registered CLI analysis, environment preflight, round-off-tolerant dense validation that still rejects substantive changes, strict versus numerical-only figure checking, and mandatory verification of relocated package documents. Current code-review evidence is in `docs/validation/code_review_2026-09-30.json`. Older `UNIT_TEST_RESULTS` files retain historical installed-wheel evidence and do not describe this source snapshot.
+The suite has 152 test methods in 16 files, plus parameterized subcases; the table lists the core files. Coverage also includes zero-weight and invalid-weight quantiles, every registered CLI analysis, environment preflight, round-off-tolerant dense validation that still rejects substantive changes, strict versus numerical-only figure checking and mandatory verification of relocated package documents.
 
-For full scientific reproduction using the provided study data, run separately:
+For full scientific reproduction with the provided study data, run separately:
 
 ```sh
 etissot reproduce --data ./data --output ./outputs
 ```
 
-The unit suite uses small, independent examples; the full reproduction also validates saved fits, dense profiles, tables and downstream bootstrap results. The 30 September code review also reruns full scientific reproduction in a clean directory, including strict manuscript artifact comparison; its report distinguishes this cached-measurement reproduction from fresh checkpoint collection.
+The unit suite uses small, independent examples, whereas the full reproduction also validates saved fits, dense profiles, tables and downstream bootstrap results. Code-review, restructuring and earlier unit-test records are kept with the author's working files rather than in this repository.
 
-Workspace restructuring validation is recorded separately in `docs/maintenance/restructure_2026-09-17.json`.
+Five tests ensure that clean preparation cannot prefill finished outputs, that missing or stale manuscript blocks fail while valid blocks pass, and that isotropic neighbor geometry is recovered; the clean-wheel reproduction of 0.2.0 is recorded in `docs/validation/reproduction_v0.2.0.json`.
 
-The five new tests ensure that clean preparation cannot prefill finished outputs, missing or stale manuscript blocks fail, valid blocks pass, and isotropic neighbour geometry is recovered. Current clean-wheel reproduction is recorded in `docs/validation/reproduction_v0.2.0.json`.
+Additional coverage includes `measure_indicatrix`, matched neighborhood tensors and inverse-stretch ellipses, SatCLIP input rescaling, rejection of nonfinite manuscript claims, invalid fit, probe and GP inputs, numerical overflow in residual diagnostics, small-block identifier collisions, scoped loader settings, checkpoint hash rejection, preservation of input measurements, rejection of optimized Python and standalone wheel verification (22 test methods plus parameterized failure cases).
 
-Additional coverage includes `measure_indicatrix`, matched neighborhood tensors and inverse-stretch ellipses, SatCLIP input rescaling, rejection of nonfinite manuscript claims, invalid fit/probe/GP inputs, numerical overflow in residual diagnostics, small-block identifier collisions, scoped loader settings, checkpoint hash rejection, preservation of input measurements, optimized-Python rejection, and standalone wheel verification. The review adds 22 test methods plus parameterized failure cases.
+Tests of the encoder extension cover coordinate conversion, output selection, explicit normalization, arbitrary feature dimensions, equivalence of batched and scalar evaluation, per-site radii, provenance, domain checks, chunk consistency and core imports without study or ML framework dependencies.
 
-Encoder extension tests cover coordinate conversion, output selection, explicit normalization, arbitrary feature dimensions, batched/scalar equivalence, per-site radii, provenance, domain checks, chunk consistency, and core imports without study or ML framework dependencies.
+A synthetic test of the cached SatCLIP report reproduces the complete report path and catches unescaped LaTeX braces in an interpolated reference, without real model weights or study data.
 
-The October software review adds a synthetic cached SatCLIP report test. It reproduces the complete report path and catches unescaped LaTeX braces in an interpolated reference without real model weights or study data.
+The October 2026 review added `tests/test_edge_cases.py` (bearing range, extreme scales, odd-ring fallback bound, seam and pole policy, lon/lat array layout, bootstrap pool) and `tests/test_reproducibility_guards.py` (seeded reference copies, generated-block markers, computed seam prose). A second review added tests of constant-variable correlation, float32 bearings, subnormal stretches, refinement levels that cannot be fitted, scalar Equal Earth input, combined-kernel priors and refusal of modified CSP sources. Checker tests cover the prose-number register (changed, added and removed numbers, commented copies, bounds and stated approximations, and links carried over after a register update), required generated blocks, every table environment and the analytic-table hash, failed-verification reports, output freshness and refusal of an output folder inside the manuscript.

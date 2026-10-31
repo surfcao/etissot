@@ -2,12 +2,16 @@
 import numpy as np
 
 def _validated_bearings(bearings):
-    bearings = np.asarray(bearings, dtype=float)
+    raw = np.asarray(bearings)
+    # Spacing tolerance follows the input precision so float32 rings are accepted.
+    eps = np.finfo(raw.dtype).eps if np.issubdtype(raw.dtype, np.floating) else np.finfo(float).eps
+    atol = max(1e-10, 64 * eps * 2 * np.pi)
+    bearings = np.asarray(raw, dtype=float)
     if bearings.ndim != 1 or bearings.size < 5 or not np.isfinite(bearings).all():
         raise ValueError('At least five finite bearings are required in a one-dimensional array.')
     ordered = np.sort(bearings % (2 * np.pi))
     gaps = np.diff(np.r_[ordered, ordered[0] + 2 * np.pi])
-    if not np.allclose(gaps, 2 * np.pi / bearings.size, rtol=0, atol=1e-10):
+    if not np.allclose(gaps, 2 * np.pi / bearings.size, rtol=0, atol=atol):
         raise ValueError('Bearings must be equally spaced over a complete circle.')
     return bearings
 
@@ -26,8 +30,10 @@ def fit_ellipse(profile, bearings, legacy=False, tol=1e-06):
         raise ValueError('Fallback tolerance must be finite and nonnegative.')
     with np.errstate(over='ignore', under='ignore'):
         s2 = profile ** 2
-    if not np.isfinite(s2).all() or not np.any(s2 > 0):
-        raise ValueError('Squared stretches are outside the measurable floating-point range.')
+    # Subnormal squares lose precision silently, so they are treated as out of range too.
+    if not np.isfinite(s2).all() or np.any((s2 > 0) & (s2 < np.finfo(float).tiny)) or not np.any(s2 > 0):
+        raise ValueError('Squared stretches are outside the floating-point range; rescale the encoder output '
+                         '(anisotropy and bearing do not depend on a common factor).')
     X = np.column_stack([np.ones_like(bearings), np.cos(2 * bearings), np.sin(2 * bearings), np.cos(bearings), np.sin(bearings)])
     coef, *_ = np.linalg.lstsq(X, s2, rcond=None)
     a0, a2, b2, a1, b1 = coef
@@ -42,14 +48,21 @@ def fit_ellipse(profile, bearings, legacy=False, tol=1e-06):
         fallback = True
     else:
         n = len(bearings)
-        allowed = lam2 * (1 + (lam1 / lam2 - 1) * np.sin(np.pi / n) ** 2)
+        # Modulo 180 degrees, an even ring samples every 2*pi/n and an odd ring
+        # every pi/n, so the nearest bearing to the minor axis lies within
+        # pi/n (even) or pi/(2n) (odd) of it.
+        offset = np.pi / n if n % 2 == 0 else np.pi / (2 * n)
+        allowed = lam2 * (1 + (lam1 / lam2 - 1) * np.sin(offset) ** 2)
         if s2.min() > allowed * (1 + tol):
             lam2 = s2.min()
             fallback = True
     resid = s2 - X[:, :3] @ coef[:3]
     residual_scale = np.max(abs(resid))
     rms = residual_scale * np.sqrt(np.mean((resid / residual_scale) ** 2)) if residual_scale > 0 else 0.0
-    return {'A_fit': float(np.sqrt(lam1 / lam2)), 'theta_fit': float(0.5 * np.arctan2(b2, a2) % np.pi), 'ne': float(rms / a0), 'asym': float(np.hypot(a1, b1) / a0), 'fallback': fallback, 'lambda1': float(lam1), 'lambda2': float(lam2), 'residual_minor': float(rms / lam2) if lam2 > 0 else float('inf')}
+    theta = float(0.5 * np.arctan2(b2, a2) % np.pi)
+    if theta >= np.pi:  # -0.0 or a tiny negative angle wraps to exactly pi
+        theta = 0.0
+    return {'A_fit': float(np.sqrt(lam1 / lam2)), 'theta_fit': theta, 'ne': float(rms / a0), 'asym': float(np.hypot(a1, b1) / a0), 'fallback': fallback, 'lambda1': float(lam1), 'lambda2': float(lam2), 'residual_minor': float(rms / lam2) if lam2 > 0 else float('inf')}
 
 def fit_many(profiles, bearings, legacy=False):
     bearings = _validated_bearings(bearings)
@@ -93,7 +106,16 @@ def refine_radius(profile_at_radius, initial_radius, bearings, tolerance=0.005, 
     streak = 0
     for level in range(max_halvings + 1):
         radius = initial_radius / 2 ** level
-        fit = fit_ellipse(profile_at_radius(radius), bearings)
+        try:
+            fit = fit_ellipse(profile_at_radius(radius), bearings)
+        except ValueError as error:
+            # A level whose profile cannot be fitted (e.g. identical float32 features
+            # at a tiny radius) ends refinement without convergence; the trail and the
+            # last fitted level are kept. Nothing can be reported if the first level fails.
+            if previous is None:
+                raise
+            return {'converged': False, 'radius': trail[-1]['radius'], 'fit': previous[1], 'trail': trail,
+                    'failed_level': {'radius': radius, 'error': str(error)}}
         tensor = fitted_tensor(fit)
         change = float('inf')
         if previous is not None and fit['lambda2'] > 0:

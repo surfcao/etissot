@@ -108,6 +108,8 @@ class GaussianProcess:
         iso = np.array(iso if iso is not None else base)
         if not self.is_combo:
             return [np.r_[iso, 0.0], np.r_[base, 0.5], np.r_[np.log(1000), 0.0, -2.0, 1.5]]
+        if emb is None or (self.tensor and (tensor is None or spatial is None)):
+            raise ValueError('Combined kernels start from earlier fits: pass emb (and tensor and spatial for tensor+embedding).')
         ep = np.array(emb)
         if self.tensor:
             return [np.r_[tensor, np.log(max(emed, 1e-09)), -4.0], np.insert(np.asarray(spatial), 3, 0.0), np.r_[base, 1.5, ep[0], ep[1]]]

@@ -13,7 +13,7 @@ import numpy as np
 
 def collect(data, models, output=None):
     from etissot.workspace import Workspace
-    data = Path(data).resolve()
+    data, models = Path(data).resolve(), Path(models)
     destination_directory = Workspace(data, output or data.parent/'outputs/measurements').output
     destination_directory.mkdir(parents=True, exist_ok=True)
     import os

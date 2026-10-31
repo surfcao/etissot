@@ -60,7 +60,7 @@ def run(workspace):
         fitted=np.array([[q[0]+q[1],q[2]],[q[2],q[0]-q[1]]])
         assert np.linalg.norm(fitted-true,2)<=kappa_32*np.max(abs(noise))+1e-9
     report={'sinusoidal_cases':len(rows),'max_refined_error':max(x['refined_error'] for x in rows),
-            'rows':rows,'spherical':spherical,'perturbation_checks':1000}
+            'rows':rows,'spherical':spherical,'perturbation_checks':1000,'kappa_32':float(kappa_32)}
     (workspace.output/'summaries/estimator_validity.json').write_text(json.dumps(report,indent=2)+'\n')
     counterexamples=[]
     for a in [2,3,5,10,20]:

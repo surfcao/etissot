@@ -87,7 +87,8 @@ class EncoderAdapter:
             longitude = (longitude + np.pi) % (2 * np.pi) - np.pi
         coordinates = np.column_stack([latitude, longitude])
         if self.coordinate_order == 'lonlat':
-            coordinates = coordinates[:, ::-1]
+            # A reversed view has negative strides, which some frameworks reject.
+            coordinates = np.ascontiguousarray(coordinates[:, ::-1])
         if self.input_units == 'degrees':
             coordinates = np.degrees(coordinates)
         output = self.encode(coordinates)

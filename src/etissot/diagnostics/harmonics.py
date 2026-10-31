@@ -39,5 +39,7 @@ def run(workspace):
             maximum=np.maximum(maximum,abs(actual-expected))
         errors[str(degree)]=maximum.tolist()
     a=zonal_anisotropy(np.arange(-85,85.01,2.5),10)
-    report=dict(zonal_multiplier_by_degree=zonal,degree10_anisotropy_range=[float(a.min()),float(a.max())],latitude_degrees=[0,-30,-60,-70,-80,-85],maximum_basis_error_by_degree=errors)
+    # Ranges within 60 degrees on a 0.1-degree latitude grid, as stated in the text.
+    within60={str(d):[float(x) for x in (lambda v:(v.min(),v.max()))(zonal_anisotropy(np.arange(-60,60.0001,0.1),d))] for d in (10,40)}
+    report=dict(zonal_multiplier_by_degree=zonal,degree10_anisotropy_range=[float(a.min()),float(a.max())],within60_anisotropy_range=within60,latitude_degrees=[0,-30,-60,-70,-80,-85],maximum_basis_error_by_degree=errors)
     (workspace.output/'summaries/harmonics.json').write_text(json.dumps(report,indent=2)+'\n')

@@ -86,3 +86,17 @@ class WeightedStatisticsTests(unittest.TestCase):
         self.assertAlmostEqual(result[0], wcorr(x, y, mask=mask))
         self.assertLessEqual(result[1], result[2])
         self.assertTrue(np.isfinite(result).all())
+
+
+class LatitudeProfileDecomposition(unittest.TestCase):
+    def test_correlation_factors_for_a_latitude_only_reference(self):
+        from etissot.reporting.latitude_profiles import decompose
+        rng = np.random.default_rng(4)
+        rows = np.arange(-60, 61, 2.5)
+        lat = np.repeat(rows, 30)
+        y = np.log(1 / np.cos(np.radians(lat)))
+        x = 0.4 * y + rng.normal(scale=0.2, size=lat.size)
+        w = np.cos(np.radians(lat))
+        r_a, r_zonal, share = decompose(x, y, w, lat, rows)
+        self.assertAlmostEqual(r_a, r_zonal * np.sqrt(share), places=12)
+        self.assertGreater(r_zonal, r_a)

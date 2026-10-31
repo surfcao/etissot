@@ -89,7 +89,31 @@ def main(argv=None):
     if missing:
         parser.error('Study dependencies are missing (' + ', '.join(missing) +
                      '). Install etissot[study], or requirements-reproduce.txt for the pinned study environment.')
-    workspace = Workspace(args.data, args.output).prepare(seed_reference=args.command != 'reproduce')
+    # Outputs must not land in the manuscript or the package source.
+    from pathlib import Path as _Path
+    import etissot as _package
+    output = args.output.expanduser().resolve()
+    protected = [_Path(_package.__file__).resolve().parent]
+    if getattr(args, 'manuscript', None) is not None:
+        protected.append(args.manuscript.expanduser().resolve())
+    for folder in protected:
+        if output == folder or output.is_relative_to(folder) or folder.is_relative_to(output):
+            parser.error(f'The output folder must not overlap {folder}.')
+    # Only single analyses may borrow distributed reference outputs; full
+    # reproduction and checks must use outputs regenerated in this folder.
+    workspace = Workspace(args.data, args.output).prepare(seed_reference=args.command not in ('reproduce', 'check'))
+    if args.command in ('reproduce', 'check'):
+        removed = workspace.discard_seeded_copies()
+        if removed:
+            print(f'Removed {len(removed)} unmodified reference copies seeded by earlier standalone steps.', flush=True)
+    if args.command == 'check':
+        import json
+        report = workspace.output / 'reproduce_report.json'
+        if not report.is_file():
+            parser.error(f'No full reproduction in {workspace.output}; run `etissot reproduce` first.')
+        record = json.loads(report.read_text())
+        if record.get('status') != 'passed' or any(step.get('status') != 'passed' for step in record.get('steps', [])):
+            parser.error(f'The last full reproduction in {workspace.output} did not complete; rerun `etissot reproduce` before checking.')
     if args.command == 'reproduce':
         import json
         report = inspect_environment()

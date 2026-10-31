@@ -1,6 +1,6 @@
 # Data guide
 
-These are derived research inputs and outputs, not a distribution of the original imagery, checkpoint weights, species observation records or complete source rasters. Array names and dimensions are enumerated in data/inventory.json; scripts are the authoritative definition of how keys are joined and transformed. NumPy archives load without pickle.
+These files are derived research inputs and outputs rather than a distribution of the original imagery, checkpoint weights, species observation records or complete source rasters. Array names and dimensions are enumerated in data/inventory.json, while the scripts are the authoritative definition of how keys are joined and transformed. All NumPy archives load without pickle.
 
 | File | Role |
 |---|---|
@@ -20,14 +20,14 @@ These are derived research inputs and outputs, not a distribution of the origina
 
 ## Coordinate and statistical conventions
 
-Geographic coordinate arrays used for displays are degrees; probe functions take radians and physical radii in kilometres, with a spherical Earth radius of 6,371 km. The directional profile arrays used by the current analyses have 32 equally spaced bearings. Fitted bearings are radians, modulo pi; inspect the relevant script before interpreting a flattened grid. Anisotropy is dimensionless. Respect fallback masks and omit bearings there.
+Geographic coordinate arrays used for displays are in degrees, whereas probe functions take radians and physical radii in kilometers on a spherical Earth with a radius of 6,371 km. The directional profile arrays used by the current analyses have 32 equally spaced bearings. Fitted bearings are in radians, modulo pi; inspect the relevant script before interpreting a flattened grid. Anisotropy is dimensionless. Respect fallback masks and omit bearings there.
 
-SINR cell IDs encode one-degree cells: latitude centre = cell // 360 - 90 + 0.5; longitude centre = cell % 360 - 180 + 0.5. The retained land analysis uses 13,045 cells per model. Resampling blocks are 10 by 10 degrees with 500 paired draws per row, seed 0. Each draw refits ranks and adjustment regressions.
+SINR cell IDs encode one-degree cells, with latitude center = cell // 360 - 90 + 0.5 and longitude center = cell % 360 - 180 + 0.5. The retained land analysis uses 13,045 cells per model. Resampling blocks are 10 by 10 degrees, with 500 paired draws per row (seed 0), and each draw refits the ranks and adjustment regressions.
 
-GP targets derive from the SINR evaluation rasters: GMTED2010 elevation, GFCC tree cover and TerraClimate soil moisture at 0.09-degree resolution. Soil moisture uses log(1 + value) for prediction. The target-derived tensor is a privileged diagnostic. New train/test splits do not establish independence from encoder pretraining information.
+GP targets derive from the SINR evaluation rasters (GMTED2010 elevation, GFCC tree cover and TerraClimate soil moisture at 0.09-degree resolution), with log(1 + value) applied to soil moisture for prediction. The target-derived tensor is a privileged diagnostic. New train/test splits do not establish independence from encoder pretraining information.
 
-The land-mask and coarse coastline caches derive from global-land-mask 1.0.0. They are supplied so reproduction does not download its underlying grid. Do not interpret coarse display coastlines as the analysis mask.
+The land-mask and coarse coastline caches derive from global-land-mask 1.0.0 and are supplied so that reproduction does not download its grid. The coarse display coastlines are not the analysis mask.
 
 ## Additional manuscript measurements in 0.2.0
 
-`measurements/released_checkpoints.json` retains radius profiles and full Jacobian metrics for replay; `measurements/neighbour_candidates.npz` retains query/candidate coordinates and measured similarities; `measurements/hidden_space_seeds.npz` retains the historical per-seed fields and held-out scores. See `data/measurements/README.md` for exact roles and units. `reference/manuscript_claims.json` is the machine-readable manuscript coverage contract. Finished reference summaries/figures/tables are optional comparison artifacts and are not copied into a full reproduction run.
+`measurements/released_checkpoints.json` retains radius profiles and full Jacobian metrics for replay; `measurements/neighbour_candidates.npz` retains query and candidate coordinates and measured similarities; and `measurements/hidden_space_seeds.npz` retains the historical per-seed fields and held-out scores. See `data/measurements/README.md` for their exact roles and units. `reference/manuscript_claims.json` is the machine-readable manuscript coverage contract. Finished reference summaries, figures and tables are optional comparison artifacts and are not copied into a full reproduction run.

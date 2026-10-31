@@ -33,11 +33,18 @@ def run(workspace):
         compare_dense_fit(a, theta, D['fallback__' + tag], f)
         count += len(p)
     assert count == 135165
-    old = json.loads((P / 'baselines/kriging_before_display_update.json').read_text())
-    new = json.loads((P / 'baselines/kriging_before_downstream_update.json').read_text())
-    assert old == new
-    stats = json.loads((P / 'baselines/radius_audit.json').read_text())
-    assert stats['total_converged'] == 34 and stats['total_tested'] == 50
-    geo = next((r for r in stats['radius_by_checkpoint'] if r['encoder'] == 'GeoCLIP'))
-    assert abs(geo['max_accepted_tensor_error_pct'] - 0.7799526109224139) < 1e-12
-    print('135,165 dense profiles, all fitted maps and fallback flags verified. Primary GP results unchanged. Tensor-error reporting verified.')
+    # Compare the audit summary regenerated in this run with the archived baseline;
+    # the GP results themselves are compared in validation.downstream.
+    regenerated = json.loads((P / 'summaries/audit_summary.json').read_text())
+    baseline = json.loads((workspace.data / 'reference/baselines/radius_audit.json').read_text())  # data folder, not outputs
+    assert regenerated['total_converged'] == baseline['total_converged'] == 34
+    assert regenerated['total_tested'] == baseline['total_tested'] == 50
+    by_name = {r['encoder']: r for r in baseline['radius_by_checkpoint']}
+    for row in regenerated['radius_by_checkpoint']:
+        old = by_name[row['encoder']]
+        assert (row['tested'], row['converged']) == (old['tested'], old['converged']), row['encoder']
+        for key in ('max_accepted_A_error_pct', 'max_accepted_tensor_error_pct', 'max_accepted_shape_discrepancy'):
+            assert (row[key] is None) == (old[key] is None), (row['encoder'], key)
+            if row[key] is not None:
+                assert abs(row[key] - old[key]) <= 1e-9 * max(1.0, abs(old[key])), (row['encoder'], key)
+    print('135,165 dense profiles, all fitted maps and fallback flags verified. Regenerated refinement audit matches its baseline.')

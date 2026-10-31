@@ -108,8 +108,16 @@ def run(workspace):
     text += [r'\bottomrule\end{tabular}',
              r'\par\smallskip\parbox{.97\textwidth}{\footnotesize Medians include flagged fallback values. Released/rescaled fallback counts at 1 km, in row order: '+', '.join(str(row['radii']['1.0']['output_released']['fallbacks'])+'/'+str(row['radii']['1.0']['output_corrected']['fallbacks']) for row in rows)+r'.}',
              r'\end{table}']
-    maximum_input = max(row['radii']['1.0']['input_corrected']['max_A'] for row in rows)
-    maximum_half = max(row['radii']['0.5']['input_corrected']['max_A'] for row in rows)
+    l10 = [row for row in rows if row['name'].endswith('L10')]
+    l40 = [row for row in rows if row['name'].endswith('L40')]
+    maximum_input = max(row['radii']['1.0']['input_corrected']['max_A'] for row in l40)
+    maximum_half = max(row['radii']['0.5']['input_corrected']['max_A'] for row in l40)
+    # The sentences below state these properties; refuse to write them if the data disagree.
+    one_l10 = all(round(row['radii']['1.0']['input_corrected']['max_A'], 5) == 1 for row in l10)
+    above_one = all(row['radii']['1.0']['output_corrected']['median_A'] > 1 for row in l40)
+    reduced = [row['radii']['1.0']['output_corrected']['median_A'] < row['radii']['1.0']['output_released']['median_A'] for row in l40]
+    if not (len(l10) == len(l40) == 3 and one_l10 and maximum_half > maximum_input and above_one and 0 < sum(reduced) < len(reduced)):
+        raise ValueError('SatCLIP rescaling results no longer match the prose of the rescaling table')
     preservation = max(row['compensated_max_output_difference'] for row in rows)
     mantissa, exponent = f'{preservation:.1e}'.split('e')
     preservation_tex = mantissa + r'\times10^{' + str(int(exponent)) + '}'

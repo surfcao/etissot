@@ -142,6 +142,8 @@ def main():
     summary['per_query'] = per_query
 
     out = ROOT / 'outputs/summaries/neighbourhood_nulls.json'
+    out.parent.mkdir(parents=True, exist_ok=True)
+    (ROOT / 'outputs/tables').mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(summary, indent=1))
 
     # LaTeX tables

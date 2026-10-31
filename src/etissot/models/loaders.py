@@ -4,7 +4,7 @@ For other encoders or versions, use models.interface.EncoderAdapter and the
 public geometry API. This study loader intentionally retains its pinned roster.
 """
 from pathlib import Path
-import sys, types, importlib, importlib.util
+import sys, types, importlib, importlib.machinery, importlib.util
 import numpy as np
 import torch
 import hashlib
@@ -44,6 +44,14 @@ def load_satclip_checkpoint(path, device='cpu'):
         else:
             os.environ[key] = previous
 
+def verify_checkpoint(name, path, manifest):
+    """Raise unless ``path`` matches the study manifest entry for checkpoint ``name``."""
+    expected = json.loads(Path(manifest).read_text())[name]['sha256']
+    with Path(path).open('rb') as stream:
+        if hashlib.file_digest(stream, 'sha256').hexdigest() != expected:
+            raise ValueError(f'Checkpoint does not match the study manifest: {name}: {path}')
+    return Path(path)
+
 def load_geoclip_checkpoint(path):
     """Use an explicit weight file with the pinned GeoCLIP architecture."""
     pkg = types.ModuleType('audit_geo')
@@ -52,6 +60,47 @@ def load_geoclip_checkpoint(path):
     model = importlib.import_module('audit_geo.location_encoder').LocationEncoder(from_pretrained=False)
     model.load_state_dict(torch.load(path, map_location='cpu', weights_only=True))
     return model.double().eval()
+
+CSP_SOURCE_MODULES = ('SpatialRelationEncoder', 'module', 'data_utils', 'paths')
+
+
+def import_csp_sources(model_root):
+    """Import the CSP runtime classes after checking the four upstream sources.
+
+    The sources are hashed against the package checkpoint manifest before any of
+    them runs, imported without bytecode caches, and removed from ``sys.path`` and
+    ``sys.modules`` afterwards so their generic module names do not shadow others.
+    """
+    folder = Path(model_root) / 'csp/main'
+    manifest = json.loads((Path(__file__).with_name('checkpoints.json')).read_text())
+    for entry in manifest['external_sources']:
+        if entry['family'] != 'csp':
+            continue
+        path = Path(model_root) / entry['path']
+        with path.open('rb') as stream:
+            if hashlib.file_digest(stream, 'sha256').hexdigest() != entry['sha256']:
+                raise ValueError(f'CSP source does not match the package manifest: {path}')
+    saved = {name: sys.modules.pop(name) for name in CSP_SOURCE_MODULES if name in sys.modules}
+    writes_bytecode = sys.dont_write_bytecode
+    sys.path.insert(0, str(folder))
+    sys.dont_write_bytecode = True
+    try:
+        # Skip cached bytecode in the model folder, which the manifest does not cover.
+        loaded = {}
+        for name in ('paths', 'data_utils', 'module', 'SpatialRelationEncoder'):
+            spec = importlib.util.spec_from_loader(name, importlib.machinery.SourceFileLoader(name, str(folder / f'{name}.py')))
+            module = importlib.util.module_from_spec(spec)
+            sys.modules[name] = module
+            spec.loader.exec_module(module)
+            loaded[name] = module
+        return loaded['SpatialRelationEncoder'].GridCellSpatialRelationEncoder, loaded['module'].MultiLayerFeedForwardNN
+    finally:
+        sys.dont_write_bytecode = writes_bytecode
+        sys.path.remove(str(folder))
+        for name in CSP_SOURCE_MODULES:
+            sys.modules.pop(name, None)
+        sys.modules.update(saved)
+
 
 def load_all(model_dir, checkpoint_manifest=None):
     ROOT = Path(model_dir).resolve()
@@ -107,9 +156,7 @@ def load_all(model_dir, checkpoint_manifest=None):
                 return norm(m(torch.stack([(torch.rad2deg(lo) + 180) % 360 - 180, torch.rad2deg(la)], 1)))
             enc[name] = fn
             meta[name] = {'dim': int(fn(torch.tensor([0.0], dtype=torch.float64), torch.tensor([0.0], dtype=torch.float64)).shape[1]), 'normalization': 'L2', 'radius': 1.0, 'checkpoint': str(path), 'precision': 'float64'}
-    sys.path.insert(0, str(ROOT / 'csp/main'))
-    from SpatialRelationEncoder import GridCellSpatialRelationEncoder
-    from module import MultiLayerFeedForwardNN
+    GridCellSpatialRelationEncoder, MultiLayerFeedForwardNN = import_csp_sources(ROOT)
     for name, folder in [('CSP iNat2018', 'model_inat_2018'), ('CSP fMoW', 'model_fmow')]:
         candidates = list((ROOT / 'encoders/csp/model_dir' / folder).glob('*UNSUPER*.pth.tar'))
         if len(candidates) != 1:

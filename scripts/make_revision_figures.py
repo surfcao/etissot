@@ -1,4 +1,9 @@
-"""Revised manuscript figures (review revision, 2026-10-13).
+"""Revised manuscript figures (review revision, 2026-10-13); superseded.
+
+The manuscript figures are now drawn by etissot.reporting.manuscript_figures
+during `etissot reproduce`. This script is kept as a record of the 2026-10-13
+revision. Its fig_validation_v2.png is the earlier three-panel version (no
+GeoCLIP/Equal Earth panel), so do not use it for the manuscript.
 
 Regenerates the main-text and supplementary figures at print width (34 pc,
 5.65 in) with legible type, a common anisotropy colour scale, and Equal Earth
@@ -14,13 +19,13 @@ basemaps for global fields:
   neighbourhood_maps_v2.png   neighborhood maps and overlap counts (Fig. 6)
   satclip_backbones_ee.png    SatCLIP backbone fields (supplement)
 
-Inputs are the cached profiles and measurements already in the package; only
-numpy and matplotlib are required. Figures are written to outputs/figures/ and
-copied to manuscript/figures/.
+Inputs are the cached profiles and measurements in the package, plus
+outputs/profiles/dense_fitted.npz for the dense figure, which the reproduction
+pipeline writes. Only numpy and matplotlib are required. Figures are written to
+outputs/figures/ only; the manuscript folder is never modified.
 
 Usage: python scripts/make_revision_figures.py
 """
-import shutil
 import sys
 from pathlib import Path
 
@@ -41,7 +46,6 @@ from etissot.statistics.spatial import GLAT, GLON  # noqa: E402
 from etissot.geometry.references import equal_earth_metric  # noqa: E402
 
 OUT = ROOT / 'outputs/figures'
-MS = ROOT / 'manuscript/figures'
 WIDTH = 5.65
 B = np.arange(32) * 2 * np.pi / 32
 A_NORM = LogNorm(vmin=1, vmax=8)
@@ -69,9 +73,7 @@ def save(fig, name):
     OUT.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUT / name, bbox_inches='tight', pad_inches=0.02)
     plt.close(fig)
-    if MS.exists():
-        shutil.copyfile(OUT / name, MS / name)
-    print('wrote', name)
+    print('wrote', name)  # outputs only: the manuscript figures come from the package pipeline
 
 
 def latlon_label(lat, lon):

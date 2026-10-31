@@ -56,7 +56,7 @@ def stage(destination, include_manuscript=False):
     shutil.copy2(ROOT/'scripts/verify_releases.py',destination/'scripts/verify_releases.py')
     shutil.copy2(ROOT/'scripts/validate_review_fixes.py',destination/'scripts/validate_review_fixes.py')
     shutil.copy2(ROOT/'scripts/build_release.py',destination/'scripts/build_release.py')
-    for name in ['make_revision_figures.py','review_followups.py','neighbourhood_nulls.py','csp_precision_check.py']:
+    for name in ['make_revision_figures.py','review_followups.py','neighbourhood_nulls.py','csp_precision_check.py','radius_screening.py','plot_radius_screening.py']:
         shutil.copy2(ROOT/'scripts'/name,destination/'scripts'/name)
     with tempfile.TemporaryDirectory(prefix='ld-wheel-build-') as temp:
         build=Path(temp)/'source';build.mkdir()

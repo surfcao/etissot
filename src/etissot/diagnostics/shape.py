@@ -34,5 +34,13 @@ def run(workspace):
     def summary(x):
         return {'median': float(wquantile(x, 0.5, w)), 'p95': float(wquantile(x, 0.95, w))}
     report = {'geoclip_shape_same_sites': {'n': len(w), 'finite_vs_reference': summary(distance(g, h)), 'jacobian_vs_reference': summary(distance(j, h)), 'finite_vs_jacobian': summary(distance(g, j)), 'isotropic_vs_reference': summary(distance(np.broadcast_to(np.eye(2), h.shape), h)), 'jacobian_input_corr': float(wcorr(np.log(J['AJ__GeoCLIP'][mask]), np.log(a), w)), 'finite_input_corr': float(wcorr(np.log(f['A_fit']), np.log(a), w))}}
+    # Anisotropy that random Fourier frequencies alone add (supplementary GeoCLIP section):
+    # B has 256 rows of independent standard Gaussian entries; the input metric is B^T B.
+    rng = np.random.default_rng(20261025)
+    B = rng.standard_normal((20000, 256, 2))
+    eig = np.linalg.eigvalsh(np.einsum('nki,nkj->nij', B, B))
+    rff = np.sqrt(eig[:, 1] / eig[:, 0])
+    report['gaussian_frequency_anisotropy'] = dict(rows=256, draws=20000, seed=20261025,
+                                                   median=float(np.median(rff)), p95=float(np.percentile(rff, 95)))
     (P / 'summaries/shape.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))

@@ -13,7 +13,9 @@ It also records, for the leaky-ReLU CSP-iNat network, whether any probe point's
 activation pattern differs from the centre's (piecewise-linear region crossing),
 and sweeps the probe radius at a few sites to expose float32 rounding.
 
-Writes outputs/summaries/csp_precision.json and outputs/tables/csp_precision.tex.
+Writes outputs/measurements/review/csp_precision.json (site-level rows). Copy it to
+data/measurements/review/ to make it a declared input; `etissot analyze checkpoint-audits`
+then recomputes the summary quantiles and writes tables/csp_precision_table.tex.
 Usage: python scripts/csp_precision_check.py   (requires torch)
 """
 import json
@@ -25,10 +27,10 @@ import numpy as np
 import torch
 
 ROOT = Path(os.environ.get('ETISSOT_ROOT', Path(__file__).resolve().parents[1]))
-sys.path.insert(0, str(ROOT / 'models/csp/main'))
 sys.path.insert(0, str(ROOT / 'src'))
-from SpatialRelationEncoder import GridCellSpatialRelationEncoder  # noqa: E402
-from module import MultiLayerFeedForwardNN  # noqa: E402
+from etissot.models.loaders import import_csp_sources  # noqa: E402
+# The CSP sources are hashed against the package manifest before they run.
+GridCellSpatialRelationEncoder, MultiLayerFeedForwardNN = import_csp_sources(ROOT / 'models')
 try:
     from etissot.geometry.fitting import fit_ellipse  # noqa: E402
     from etissot.geometry.probing import probe_points  # noqa: E402
@@ -53,7 +55,9 @@ REFINEMENT_SITES = {
 
 
 def load(name):
-    c = torch.load(ROOT / CKPT[name], map_location='cpu', weights_only=False)
+    from etissot.models.loaders import verify_checkpoint
+    path = verify_checkpoint(name, ROOT / CKPT[name], ROOT / 'data/reference/summaries/checkpoint_manifest.json')
+    c = torch.load(path, map_location='cpu', weights_only=False)  # trusted only after the hash check
     p = c['params']
     ffn = MultiLayerFeedForwardNN(input_dim=4 * p['frequency_num'], output_dim=p['num_filts'],
                                   num_hidden_layers=p['num_hidden_layer'], dropout_rate=p['dropout'],
@@ -197,7 +201,7 @@ def main():
         for r in rows:
             if r['refinement_site']:
                 print('  refinement site', r)
-    dest = ROOT / 'outputs/summaries'
+    dest = ROOT / 'outputs/measurements/review'
     dest.mkdir(parents=True, exist_ok=True)
     (dest / 'csp_precision.json').write_text(json.dumps(out, indent=1))
 

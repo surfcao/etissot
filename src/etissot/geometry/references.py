@@ -7,7 +7,7 @@ def shapes(a, theta):
 
 def equal_earth_metric(lat, lon):
     """Analytic Equal Earth derivative, common Earth-radius scale omitted."""
-    phi, lam = (np.radians(lat), np.radians(lon))
+    phi, lam = (np.radians(np.atleast_1d(np.asarray(lat, dtype=float))), np.radians(np.atleast_1d(np.asarray(lon, dtype=float))))
     t = np.arcsin(np.sqrt(3) / 2 * np.sin(phi))
     ct = np.cos(t)
     a1, a2, a3, a4 = (1.340264, -0.081106, 0.000893, 0.003796)

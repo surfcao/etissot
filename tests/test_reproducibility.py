@@ -47,18 +47,20 @@ class ReproducibilityTests(unittest.TestCase):
             for folder in [workspace.data/'reference',workspace.output/'tables',workspace.output/'figures',manuscript/'figures']:
                 folder.mkdir(parents=True,exist_ok=True)
             text='% BEGIN GENERATED: example\n42\n% END GENERATED: example\n'
-            for i in range(15):
+            for i in range(16):
                 name=f'{i}.png'; text+='\\includegraphics{'+name+'}\n'
                 Image.new('RGB',(2,2),'white').save(manuscript/'figures'/name)
                 Image.new('RGB',(2,2),'black').save(workspace.output/'figures'/name)
-            text = text.replace('\\includegraphics{14.png}\n', '')
+            text = text.replace('\\includegraphics{15.png}\n', '')
             (manuscript/'main.tex').write_text(text); (manuscript/'supplement.tex').write_text('')
-            extra='% BEGIN GENERATED: retained\n99\n% END GENERATED: retained\n\\includegraphics{14.png}\n'
+            extra='% BEGIN GENERATED: retained\n99\n% END GENERATED: retained\n\\includegraphics{15.png}\n'
             (manuscript/'additional_results.tex').write_text(extra)
             (workspace.output/'tables/retained.tex').write_text('99')
             (manuscript/'numbers.tex').write_text(''); (workspace.output/'tables/numbers.tex').write_text('')
             (workspace.output/'tables/example.tex').write_text('42')
-            (workspace.data/'reference/manuscript_claims.json').write_text(json.dumps(dict(numerical_claims=[],coverage=[],scope='test',documents=['main.tex','supplement.tex','additional_results.tex'])))
+            (workspace.data/'reference/manuscript_claims.json').write_text(json.dumps(dict(numerical_claims=[],coverage=[],scope='test',documents=['main.tex','supplement.tex','additional_results.tex'],
+                prose_numbers={'main.tex': [], 'supplement.tex': [], 'additional_results.tex': []})))
+            (workspace.output/'reproduce_report.json').write_text(json.dumps(dict(started=0, status='passed', steps=[])))
             with self.assertRaisesRegex(ValueError,'pixels differ'):
                 verify(workspace,manuscript)
             report=verify(workspace,manuscript,exact_figures=False)

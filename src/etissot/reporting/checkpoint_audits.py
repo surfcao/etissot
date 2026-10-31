@@ -22,13 +22,32 @@ def pct(v):
         return f'${v / 10 ** e:.1f}\\times10^{{{e}}}$'
     return f'{v:.2f}' if v < 10 else f'{v:.1f}'
 
+# ReLU units in the released GeoCLIP location encoder. New runs of
+# scripts/review_followups.py record this count as 'relu_units'; the default
+# applies to results saved before that field existed.
+GEOCLIP_RELU_UNITS = 9216
+
+
 def tables(workspace, res):
     files = {}
     L = []
     if 'relu_crossing' in res:
         R = res['relu_crossing']
+        sites = {d['n'] for d in R.values()}
+        if len(sites) != 1:
+            raise ValueError('Activation-crossing rows use different site counts.')
+        sinr = [R[k] for k in ['SINR cap1000', 'SINR cap10', 'SINR distilled']]
+        if all(d['crossing_fraction_error_above_0p1pct'] == 1 for d in sinr):
+            sinr_sentence = r'For all three SINR checkpoints, every site with error above 0.1\% is a crossing disc.'
+        else:
+            sinr_sentence = ('Crossing discs account for ' + ', '.join(f"{100 * d['crossing_fraction_error_above_0p1pct']:.0f}" for d in sinr)
+                             + r'\% of sites with error above 0.1\% in SINR cap-1000, cap-10 and distilled.')
+        geo_all = all(R[k]['crossing_fraction'] == 1 for k in ['GeoCLIP 1 km', 'GeoCLIP 0.3 km'])
+        units = R['GeoCLIP 1 km'].get('relu_units', GEOCLIP_RELU_UNITS)
+        geo_sentence = (f'Every GeoCLIP disc crosses at least one of its {units:,} units at both radii; ' if geo_all else
+                        f"{100 * R['GeoCLIP 1 km']['crossing_fraction']:.0f}\\% and {100 * R['GeoCLIP 0.3 km']['crossing_fraction']:.0f}\\% of GeoCLIP discs cross at least one of its {units:,} units at 1 and 0.3 km; ")
         L += [r'\begin{table}[htbp]\centering\small',
-              r'\caption{Activation-region crossings at the 2,340 Jacobian sites. A probe disc crosses when any probe point has a different ReLU activation pattern from the center. Errors are area-weighted $|A_r/A_J-1|$ in percent.}',
+              r'\caption{Activation-region crossings at the ' + f'{sites.pop():,}' + r' Jacobian sites. A probe disc crosses when any probe point has a different ReLU activation pattern from the center. Errors are area-weighted $|A_r/A_J-1|$ in percent.}',
               r'\label{tab:relu}', r'\begin{adjustbox}{max width=\textwidth}', r'\begin{tabular}{@{}lrrrrr@{}}\toprule',
               r'&&\multicolumn{2}{c}{Median error (\%)}&\multicolumn{2}{c}{95th percentile (\%)}\\',
               r'Checkpoint, radius&Crossing discs&Within&Crossing&Within&Crossing\\\midrule']
@@ -43,7 +62,7 @@ def tables(workspace, res):
         g1, g3 = R['GeoCLIP 1 km'], R['GeoCLIP 0.3 km']
         L += [r'\bottomrule\end{tabular}', r'\end{adjustbox}',
               r'\par\smallskip\parbox{.97\textwidth}{\footnotesize SINR Jacobians are double-precision automatic derivatives; for cap-1000 they reproduce the cached values to $'
-              + f"{R['SINR cap1000']['jacobian_cache_max_relative_difference']:.0e}".replace('e-', r'\times10^{-').replace('e+', r'\times10^{') + r'}$. For all three SINR checkpoints, every site with error above 0.1\% is a crossing disc. Every GeoCLIP disc crosses at least one of its 9,216 units at both radii; the rows therefore compare terciles of the number of units whose pattern changes within the disc (Spearman correlation with error '
+              + f"{R['SINR cap1000']['jacobian_cache_max_relative_difference']:.0e}".replace('e-', r'\times10^{-').replace('e+', r'\times10^{') + r'}$. ' + sinr_sentence + ' ' + geo_sentence + r'the rows therefore compare terciles of the number of units whose pattern changes within the disc (Spearman correlation with error '
               + f"{g1['spearman_flips_error']:.2f} at 1 km, {g3['spearman_flips_error']:.2f} at 0.3 km). Crossing fractions by branch ($\\sigma=1,16,256$) are "
               + ', '.join(f'{100 * v:.0f}' for v in g1['crossing_fraction_by_branch_sigma_1_16_256']) + r'\% at 1 km and '
               + ', '.join(f'{100 * v:.0f}' for v in g3['crossing_fraction_by_branch_sigma_1_16_256']) + r'\% at 0.3 km.}',
@@ -108,6 +127,23 @@ def run(workspace):
         summary=model['summary']
         quant=lambda values,q:float(np.sort(values)[min(int(np.ceil(q*len(values)))-1,len(values)-1)])
         summary['median_AJ']=quant(aj,.5)
+        # Table entries come from the site rows, not from the declared summary.
+        summary['n']=len(rows)
+        flags=[r['crossing'] for r in rows]
+        summary['crossing_fraction']=None if all(c is None for c in flags) else float(np.mean([bool(c) for c in flags]))
+        if summary['crossing_fraction'] is not None:
+            # Double-precision error split by whether the probe disc crosses an activation boundary.
+            error64=np.abs(np.array([r['A64'] for r in rows])/aj-1)
+            crossing=np.array([bool(c) for c in flags])
+            summary.update(n_crossing=int(crossing.sum()), n_noncrossing=int((~crossing).sum()),
+                           crossing_f64_median_err=float(np.median(error64[crossing])), noncrossing_f64_median_err=float(np.median(error64[~crossing])))
+        # Refinement sites outside the radius sweep: errors of both precisions against the Jacobian.
+        swept={(s['lat'],s['lon']) for s in model.get('sweep',[])}
+        refinement=[r for r in model['sites'] if r['refinement_site'] and (r['lat'],r['lon']) not in swept]
+        if refinement:
+            errors=[abs(r[key]/r['AJ']-1) for r in refinement for key in ('A32','A64')]
+            summary.update(refinement_n=len(refinement), refinement_err_min=float(min(errors)),
+                           refinement_err_max=float(max(errors)), refinement_min_AJ=float(min(r['AJ'] for r in refinement)))
         for precision,key in [('f32','A32'),('f64','A64')]:
             error=np.abs(np.array([r[key] for r in rows])/aj-1)
             for label,values,q in [('median_err',error,.5),('p95_err',error,.95),('highA_p95',error[high],.95)]:
@@ -127,6 +163,15 @@ def run(workspace):
         f"{100*f['f32_p95_err']:.3f}", f"{100*f['f32_highA_p95']:.3f}",
         f"{100*f['f64_median_err']:.4f}", f"{100*f['f64_p95_err']:.4f}",
         f"{100*f['f64_highA_p95']:.4f}", '---'])+r'\\'
-    template='\\begin{table}[htbp]\\centering\\small\n\\caption{CSP anisotropy error against double-precision Jacobians at 300 sites within $60^\\circ$ and the 0.1\\,km primary radius, in percent. High-$A$ denotes the upper decile of Jacobian anisotropy. Crossing is the fraction of probe discs in which at least one probe point has a different activation pattern from the center.}\n\\label{tab:cspprecision}\n\\begin{adjustbox}{max width=\\textwidth}\n\\begin{tabular}{@{}lrrrrrrrr@{}}\\toprule\n&&\\multicolumn{3}{c}{Single precision (released)}&\\multicolumn{3}{c}{Double precision}&\\\\\nCheckpoint&Median $A_J$&Median&95th&High-$A$ 95th&Median&95th&High-$A$ 95th&Crossing\\\\\\midrule\n{row_inat}\n{row_fmow}\n\\bottomrule\\end{tabular}\n\\end{adjustbox}\n\\par\\smallskip\\parbox{.97\\textwidth}{\\footnotesize No site required a fallback in either precision. Crossing is undefined for the smooth GELU activation.}\n\\end{table}'
-    table=template.replace("{row_inat}",row_inat).replace("{row_fmow}",row_fmow)
+    if i['n']!=f['n']:
+        raise ValueError('The CSP checkpoints were evaluated at different numbers of sites.')
+    template='\\begin{table}[htbp]\\centering\\small\n\\caption{CSP anisotropy error against double-precision Jacobians at {n_sites} sites within $60^\\circ$ and the 0.1\\,km primary radius, in percent. High-$A$ denotes the upper decile of Jacobian anisotropy. Crossing is the fraction of probe discs in which at least one probe point has a different activation pattern from the center.}\n\\label{tab:cspprecision}\n\\begin{adjustbox}{max width=\\textwidth}\n\\begin{tabular}{@{}lrrrrrrrr@{}}\\toprule\n&&\\multicolumn{3}{c}{Single precision (released)}&\\multicolumn{3}{c}{Double precision}&\\\\\nCheckpoint&Median $A_J$&Median&95th&High-$A$ 95th&Median&95th&High-$A$ 95th&Crossing\\\\\\midrule\n{row_inat}\n{row_fmow}\n\\bottomrule\\end{tabular}\n\\end{adjustbox}\n\\par\\smallskip\\parbox{.97\\textwidth}{\\footnotesize No site required a fallback in either precision. Crossing is undefined for the smooth GELU activation.}\n\\end{table}'
+    fallbacks = sum(int(model['summary'][key]) for model in csp['models'].values() for key in ('f32_fallbacks', 'f64_fallbacks'))
+    sites_with_fallback = sum(bool(r['fb32'] or r['fb64']) for model in csp['models'].values() for r in model['sites'] if not r['refinement_site'])
+    if (fallbacks == 0) != (sites_with_fallback == 0):
+        raise ValueError('CSP fallback summary disagrees with site-level fallback flags.')
+    fallback_sentence = ('No site required a fallback in either precision.' if fallbacks == 0 else
+                         f"{sites_with_fallback} site{'s' if sites_with_fallback != 1 else ''} required a fallback in at least one precision.")
+    template = template.replace('No site required a fallback in either precision.', fallback_sentence)
+    table=template.replace("{row_inat}",row_inat).replace("{row_fmow}",row_fmow).replace("{n_sites}",str(i['n']))
     (workspace.output/"tables/csp_precision_table.tex").write_text(table+"\n")
