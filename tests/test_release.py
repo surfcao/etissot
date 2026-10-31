@@ -12,12 +12,13 @@ import zipfile
 class ReleaseTests(unittest.TestCase):
     def test_standalone_wheel_must_match_verified_archive(self):
         script = Path(__file__).resolve().parents[1]/'scripts/verify_releases.py'
-        main = runpy.run_path(str(script))['main']
+        module = runpy.run_path(str(script))
+        main, version = module['main'], module['VERSION']
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp); release = root/'releases'; release.mkdir()
-            wheel = 'etissot-0.2.0-py3-none-any.whl'
+            wheel = f'etissot-{version}-py3-none-any.whl'
             for name, prefix, members in [
-                ('etissot-0.2.0.zip', 'etissot-0.2.0', {'dist/'+wheel: b'original wheel'}),
+                (f'etissot-{version}.zip', f'etissot-{version}', {'dist/'+wheel: b'original wheel'}),
                 ('etissot-manuscript-tex.zip', 'etissot-manuscript', {})]:
                 path = release/name
                 manifest = ''.join(hashlib.sha256(data).hexdigest()+'  '+member+'\n' for member, data in members.items())

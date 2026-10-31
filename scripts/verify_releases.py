@@ -2,9 +2,11 @@
 from pathlib import Path
 import hashlib
 import json
+import tomllib
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+VERSION = tomllib.loads((ROOT / 'pyproject.toml').read_text())['project']['version']
 
 def main():
     if (ROOT / 'SHA256SUMS.txt').exists():
@@ -16,8 +18,11 @@ def main():
                     raise SystemExit(f'File checksum mismatch: {relative}')
         print(f'Verified {len(lines)} release files')
         return
-    names = ['etissot-0.2.0.zip', 'etissot-manuscript-tex.zip']
-    companion = ROOT / 'releases/etissot-models-0.2.0.zip'
+    # The sharing archive of this version is required; the manuscript and model archives are optional.
+    names = [f'etissot-{VERSION}.zip']
+    names += [p.name for p in [ROOT / 'releases/etissot-manuscript-tex.zip'] if p.exists()]
+    companions = sorted((ROOT / 'releases').glob('etissot-models-*.zip'))
+    companion = companions[-1] if companions else ROOT / 'releases/etissot-models.zip'
     if companion.exists():
         names.append(companion.name)
     for name in names:
@@ -62,7 +67,7 @@ def main():
                     if present != (entry['id'] in info['included']):
                         raise SystemExit(f'Companion inventory mismatch: {entry["id"]}')
         print(f"Verified {name}: {len(lines)} manifest files")
-    with zipfile.ZipFile(ROOT/'releases/etissot-0.2.0.zip') as archive:
+    with zipfile.ZipFile(ROOT/f'releases/etissot-{VERSION}.zip') as archive:
         wheels = [name for name in archive.namelist() if '/dist/' in name and name.endswith('.whl')]
         if len(wheels) != 1:
             raise SystemExit('Expected exactly one wheel in the sharing archive')
