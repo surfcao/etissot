@@ -9,7 +9,7 @@ These files are derived research inputs and outputs rather than a distribution o
 | profiles/input_references.npz | Cached input/reference and mixture profiles |
 | geometry/jacobians.npz | Cached Jacobian diagnostics for matched comparisons |
 | profiles/geoclip_multiradius.npz | GeoCLIP radius-dependent profiles |
-| profiles/dense_regional.npz | 135,165 dense regional locations; 32-bearing profiles, coordinates, fits and fallback flags |
+| profiles/dense_regional.npz | 355,765 dense regional locations; 32-bearing profiles, coordinates, fits and fallback flags |
 | prediction/regions_original.npz, prediction/regions_additional.npz | Original and additional regional GP inputs, embeddings and sampled target values |
 | prediction/geometry_fields.npz | Geometry fields for GP comparisons |
 | downstream/cell_outcomes.npz | SINR aggregated cell errors and adjustment covariates |

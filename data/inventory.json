@@ -3002,27 +3002,27 @@
       {
         "key": "prof__CSP iNat2018__NA",
         "shape": [
-          60501,
+          281101,
           32
         ],
         "dtype": "float64",
-        "bytes_uncompressed": 15488256
+        "bytes_uncompressed": 71961856
       },
       {
         "key": "lat__CSP iNat2018__NA",
         "shape": [
-          201
+          401
         ],
         "dtype": "float64",
-        "bytes_uncompressed": 1608
+        "bytes_uncompressed": 3208
       },
       {
         "key": "lon__CSP iNat2018__NA",
         "shape": [
-          301
+          701
         ],
         "dtype": "float64",
-        "bytes_uncompressed": 2408
+        "bytes_uncompressed": 5608
       },
       {
         "key": "r__CSP iNat2018__NA",
@@ -3033,29 +3033,29 @@
       {
         "key": "A__CSP iNat2018__NA",
         "shape": [
-          201,
-          301
+          401,
+          701
         ],
         "dtype": "float64",
-        "bytes_uncompressed": 484008
+        "bytes_uncompressed": 2248808
       },
       {
         "key": "B__CSP iNat2018__NA",
         "shape": [
-          201,
-          301
+          401,
+          701
         ],
         "dtype": "float64",
-        "bytes_uncompressed": 484008
+        "bytes_uncompressed": 2248808
       },
       {
         "key": "fallback__CSP iNat2018__NA",
         "shape": [
-          201,
-          301
+          401,
+          701
         ],
         "dtype": "bool",
-        "bytes_uncompressed": 60501
+        "bytes_uncompressed": 281101
       },
       {
         "key": "prof__CSP iNat2018__AF",

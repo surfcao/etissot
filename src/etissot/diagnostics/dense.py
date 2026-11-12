@@ -6,7 +6,7 @@ import torch
 from etissot.models.loaders import load_all
 from etissot.geometry.probing import destination_point
 from etissot.geometry.fitting import fit_many
-PANELS = [('CSP iNat2018', 'NA', (30, 50, -110, -80), 0.1, 0.1), ('CSP iNat2018', 'AF', (-10, 10, 10, 30), 0.1, 0.1), ('SINR cap1000', 'NA', (20, 60, -130, -60), 0.5, 0.3), ('Climplicit', 'NA', (20, 60, -130, -60), 0.5, 0.1), ('SatCLIP r18l40', 'NA', (20, 60, -130, -60), 0.5, 1.0)]
+PANELS = [('CSP iNat2018', 'NA', (20, 60, -130, -60), 0.1, 0.1), ('CSP iNat2018', 'AF', (-10, 10, 10, 30), 0.1, 0.1), ('SINR cap1000', 'NA', (20, 60, -130, -60), 0.5, 0.3), ('Climplicit', 'NA', (20, 60, -130, -60), 0.5, 0.1), ('SatCLIP r18l40', 'NA', (20, 60, -130, -60), 0.5, 1.0)]
 
 def run(workspace, model_dir):
     ROOT = workspace.data

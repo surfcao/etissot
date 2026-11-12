@@ -4,8 +4,7 @@ Fits the 32-bearing profiles of the input references on the fixed 2.5 x 5 degree
 (|latitude| <= 85 degrees) and compares the fitted anisotropy with its analytic value at
 every site:
 
-  grid      equally scaled longitude-latitude sinusoids, sec(lat)            global.npz 'prof__ref grid'
-  cart3d    three-dimensional Cartesian coordinates, A = 1                     global.npz 'prof__ref cart3d'
+  grid      equally scaled longitude-latitude sinusoids, sec(lat), 1 km      global.npz 'prof__ref grid'
   wrap      SINR 2:1 wrap, max(2 cos lat, sec(lat)/2)                          global.npz 'prof__ref SINR-input'
   equal     Equal Earth coordinates, Tissot axis ratio of the projection       input_references.npz 'in__GeoCLIP'
   sh_l10    SatCLIP harmonics as implemented (m = 0 scaled by pi), L = 10      input_references.npz 'in__SatCLIP vit16l10'
@@ -50,7 +49,6 @@ def references(global_profiles, input_profiles):
     phi = np.radians(lat)
     return {
         'grid': (global_profiles['prof__ref grid'], 1 / np.cos(phi), float(global_profiles['r__ref grid'])),
-        'cart3d': (global_profiles['prof__ref cart3d'], np.ones_like(phi), float(global_profiles['r__ref cart3d'])),
         'wrap': (global_profiles['prof__ref SINR-input'], np.maximum(2 * np.cos(phi), 1 / (2 * np.cos(phi))),
                  float(global_profiles['r__ref SINR-input'])),
         'equal': (input_profiles['in__GeoCLIP'], equal_earth_metric(lat, lon)[0], 1.0),

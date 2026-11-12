@@ -350,11 +350,10 @@ def validation():
     fig, axs = plt.subplots(2, 2, figsize=(WIDTH, 4.3), sharey=True)
     axs = axs.ravel()
     axs[0].plot(lat, 1 / np.cos(phi), color=ref[0], **line, label=r'Analytic $\sec\varphi$')
-    axs[0].plot(lat, np.ones_like(lat), color=ref[1], **line, label='Analytic, isotropic')
-    for i, (key, label, marker) in enumerate([('grid', 'Space2Vec grid', 'o'), ('cart3d', '3-D Cartesian', '^')]):
+    for i, (key, label, marker) in enumerate([('grid', 'Space2Vec grid', 'o')]):
         axs[0].plot(lat, zonal(G['prof__ref ' + key]), marker=marker, color=est[i], **point,
                     label=f"{label}, {float(G['r__ref ' + key]):g} km")
-    axs[0].set_title('(a) Longitude-latitude sinusoids; Cartesian')
+    axs[0].set_title('(a) Longitude-latitude sinusoids (CSP)')
     axs[1].plot(lat, np.maximum(2 * np.cos(phi), 1 / (2 * np.cos(phi))), color=ref[0], **line, label='Analytic 2:1')
     axs[1].plot(lat, zonal(G['prof__ref SINR-input']), marker='o', color=est[0], **point,
                 label=f"SINR wrap, {float(G['r__ref SINR-input']):g} km")
@@ -414,12 +413,11 @@ def bearing_ticks(ax, lon, lat, a, b, fb, skip, length):
 def dense():
     D = dict(np.load(DATA / 'profiles/dense_regional.npz'))
     D.update(dict(np.load(OUTPUT / 'profiles/dense_fitted.npz')))
-    panels = [('CSP iNat2018__NA', 'CSP-iNat, North America', 0.1), ('CSP iNat2018__AF', 'CSP-iNat, Central Africa', 0.1),
-              ('SINR cap1000__NA', 'SINR cap-1000', 0.3), ('Climplicit__NA', 'Climplicit', 0.1),
-              ('SatCLIP r18l40__NA', 'SatCLIP R18-L40', 1.0)]
-    fig = plt.figure(figsize=(WIDTH, 4.2))
-    gs = fig.add_gridspec(2, 6, hspace=0.32, wspace=1.6, top=0.95, bottom=0.17)
-    slots = [gs[0, :2], gs[0, 2:4], gs[0, 4:6], gs[1, 1:3], gs[1, 3:5]]
+    panels = [('CSP iNat2018__NA', 'CSP-iNat', 0.1), ('SINR cap1000__NA', 'SINR cap-1000', 0.3),
+              ('Climplicit__NA', 'Climplicit', 0.1), ('SatCLIP r18l40__NA', 'SatCLIP R18-L40', 1.0)]
+    fig = plt.figure(figsize=(WIDTH, 4.6))
+    gs = fig.add_gridspec(2, 2, hspace=0.36, wspace=0.18, top=0.94, bottom=0.2)
+    slots = [gs[0, 0], gs[0, 1], gs[1, 0], gs[1, 1]]
     LO, LA = np.meshgrid(COAST['lon'], COAST['lat'])
     for slot, (key, label, r) in zip(slots, panels):
         lat, lon = D['lat__' + key], D['lon__' + key]
@@ -436,10 +434,11 @@ def dense():
         ax.set_aspect(1 / np.cos(np.radians(0.5 * (lat[0] + lat[-1]))))
         ax.set_title(f'{label}\n{r:g} km; median $A$ = {np.median(a):.2f}', fontsize=7)
         ax.tick_params(labelsize=6)
-        ax.set_xlabel('Longitude (°)', fontsize=6.5)
-        if slot in (slots[0], slots[3]):
+        if slot in (slots[2], slots[3]):
+            ax.set_xlabel('Longitude (°)', fontsize=6.5)
+        if slot in (slots[0], slots[2]):
             ax.set_ylabel('Latitude (°)', fontsize=6.5)
-    cax = fig.add_axes([0.25, 0.085, 0.5, 0.016])
+    cax = fig.add_axes([0.25, 0.075, 0.5, 0.016])
     cb = fig.colorbar(im, cax=cax, orientation='horizontal', ticks=A_TICKS, extend='max')
     cb.ax.set_xticklabels([f'{t:g}' for t in A_TICKS])
     cb.ax.minorticks_off()
