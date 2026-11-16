@@ -6,7 +6,7 @@ eTissot is an installable Python package for measuring the local geographic dist
 
 ## What eTissot measures
 
-![Tissot's indicatrix, the forward indicatrix of an encoder, and the reach ellipse](docs/images/fig_tissot_schematic.png)
+![Tissot's indicatrix, the image ellipse of an encoder in feature space, and the reach ellipse](docs/images/fig_tissot_schematic.png)
 
 In cartography, Tissot's indicatrix records how a map projection stretches a small circle on the Earth into an ellipse (a). eTissot applies the same idea to a location encoder by evaluating the encoder on a ring of 32 geodesic probes around a location and fitting the ellipse that describes how feature distance grows with geographic displacement in each direction (b). The fitted tensor also defines the *reach ellipse* (c), that is, the geographic displacements with equal predicted feature distance, which is longest across the direction of greatest stretch.
 

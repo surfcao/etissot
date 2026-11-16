@@ -4,7 +4,7 @@ Regenerates the main-text and supplementary figures at print width (34 pc,
 5.65 in) with legible type, a common anisotropy colour scale, and Equal Earth
 basemaps for global fields:
 
-  fig_tissot_schematic.png    projection ellipse, forward indicatrix, reach ellipse (Fig. 1)
+  fig_tissot_schematic.png    projection ellipse, image ellipse in feature space, reach ellipse (Fig. 1)
   geoclip_equal_earth.png     Equal Earth vs GeoCLIP fields with Tissot-style glyphs (Fig. 4)
   fig_indicatrix_v2.png       directional profiles (Fig. 2)
   fig_validation_v2.png       analytic input references (supplementary Fig. S1)
@@ -53,7 +53,7 @@ FALLBACK = '#d6246e'
 
 plt.rcParams.update(plt.rcParamsDefault)
 plt.rcParams.update({
-    'font.size': 7.5, 'axes.titlesize': 8, 'axes.labelsize': 7.5,
+    'font.family': 'DejaVu Sans', 'font.size': 7.5, 'axes.titlesize': 8, 'axes.labelsize': 7.5,
     'xtick.labelsize': 7, 'ytick.labelsize': 7, 'legend.fontsize': 7,
     'axes.linewidth': 0.6, 'xtick.major.width': 0.6, 'ytick.major.width': 0.6,
     'savefig.dpi': 400, 'figure.dpi': 100,
@@ -228,10 +228,10 @@ def schematic():
     ax.plot(*np.c_[Rc - a_short * v, Rc + a_short * v], color='k', lw=0.6, ls=(0, (2, 1.5)))
     ax.text(*(Rc + a_long * u + np.array([0.12, -0.04])), 'greatest\nstretch', ha='left', va='center', fontsize=6.9)
     ax.text(*(Rc - a_short * v + np.array([0.25, 0.0])), 'least\nstretch', ha='left', va='center', fontsize=6.9)
-    arrow(ax, 'encoder $f$')
+    arrow(ax, r'encoder $\mathbf{f}$')
     ax.text(L[0], -0.8, '32 probes at\nradius $r$', ha='center', va='top', fontsize=7.1)
     ax.text(Rc[0], -0.8, 'plane in\nfeature space', ha='center', va='top', fontsize=7.1)
-    ax.set_title('(b) Forward indicatrix', loc='left', fontsize=7.5)
+    ax.set_title('(b) Image in feature space', loc='left', fontsize=7.5)
 
     # (c) reach ellipse on the ground
     ax = axs[2]
