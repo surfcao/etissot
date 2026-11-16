@@ -218,10 +218,16 @@ def schematic():
     ring = np.c_[np.sin(B), np.cos(B)] * 0.55
     ax.plot(L[0] + ring[:, 0], L[1] + ring[:, 1], 'o', ms=1.4, color='#2166ac')
     ax.plot(*L, 'k*', ms=3.5)
-    fwd = np.outer(0.55 * np.sqrt(A) * np.cos(t), np.array([1, 0])) + np.outer(0.55 / np.sqrt(A) * np.sin(t), np.array([0, 1]))
+    # The plane in feature space has no geographic orientation; it is drawn rotated so that
+    # its axes line up with panel (c): the long axis is the image of the bearing of greatest
+    # stretch, along which the reach ellipse in (c) is shortest.
+    a_long, a_short = 0.55 * np.sqrt(A), 0.55 / np.sqrt(A)
+    fwd = np.outer(a_long * np.cos(t), u) + np.outer(a_short * np.sin(t), v)
     ax.plot(Rc[0] + fwd[:, 0], Rc[1] + fwd[:, 1], color='#c23b32', lw=1.0)
-    ax.plot([Rc[0] - 0.55 * np.sqrt(A), Rc[0] + 0.55 * np.sqrt(A)], [0, 0], color='k', lw=0.6)
-    ax.text(Rc[0], 0.44, 'greatest stretch', ha='center', va='bottom', fontsize=6.9)
+    ax.plot(*np.c_[Rc - a_long * u, Rc + a_long * u], color='k', lw=0.6)
+    ax.plot(*np.c_[Rc - a_short * v, Rc + a_short * v], color='k', lw=0.6, ls=(0, (2, 1.5)))
+    ax.text(*(Rc + a_long * u + np.array([0.12, -0.04])), 'greatest\nstretch', ha='left', va='center', fontsize=6.9)
+    ax.text(*(Rc - a_short * v + np.array([0.25, 0.0])), 'least\nstretch', ha='left', va='center', fontsize=6.9)
     arrow(ax, 'encoder $f$')
     ax.text(L[0], -0.8, '32 probes at\nradius $r$', ha='center', va='top', fontsize=7.1)
     ax.text(Rc[0], -0.8, 'plane in\nfeature space', ha='center', va='top', fontsize=7.1)
