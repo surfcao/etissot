@@ -236,16 +236,18 @@ def schematic():
     # (c) reach ellipse on the ground
     ax = axs[2]
     R0 = 0.62
-    reach = np.outer(R0 / np.sqrt(A) * np.cos(t), u) + np.outer(R0 * np.sqrt(A) * np.sin(t), v)
-    ax.add_patch(Circle((0, 0), R0, fill=False, lw=0.8, ls='--', color='#2166ac'))
+    c0 = np.array([-0.85, 0.15])
+    reach = c0 + np.outer(R0 / np.sqrt(A) * np.cos(t), u) + np.outer(R0 * np.sqrt(A) * np.sin(t), v)
+    ax.add_patch(Circle(c0, R0, fill=False, lw=0.8, ls='--', color='#2166ac'))
     ax.plot(reach[:, 0], reach[:, 1], color='#e68a28', lw=1.1)
-    ax.plot(0, 0, 'k*', ms=3.5)
+    ax.plot(*c0, 'k*', ms=3.5)
     g = R0 / np.sqrt(A) * u
-    ax.annotate('', xy=g, xytext=-g, arrowprops=dict(arrowstyle='<->', lw=0.6, color='k', mutation_scale=5, shrinkA=0, shrinkB=0))
-    ax.text(*(g + np.array([0.32, 0.12])), 'greatest\nstretch', fontsize=6.9, ha='left', va='bottom')
+    ax.annotate('', xy=c0 + g, xytext=c0 - g, arrowprops=dict(arrowstyle='<->', lw=0.6, color='k', mutation_scale=5, shrinkA=0, shrinkB=0))
+    ax.text(*(c0 + g + np.array([0.3, 0.1])), 'greatest\nstretch in (b)', fontsize=6.9, ha='left', va='bottom')
     h = R0 * np.sqrt(A) * v
-    ax.text(*(h + np.array([-0.08, 0.0])), 'longest\nreach', fontsize=6.9, ha='right', va='center')
-    ne_cross(ax, np.array([1.35, -0.95]))
+    ax.plot(*np.c_[c0 - h, c0 + h], color='k', lw=0.6, ls=(0, (2, 1.5)))
+    ax.text(*(c0 - h + np.array([0.12, -0.02])), 'longest reach =\nleast stretch in (b)', fontsize=6.9, ha='left', va='top')
+    ne_cross(ax, np.array([1.45, 0.1]))
     ax.text(0, -1.0, 'equal predicted feature\ndistance (orange) vs equal\ngeographic distance (blue)',
             ha='center', va='top', fontsize=6.9)
     ax.set_title('(c) Reach ellipse', loc='left', fontsize=7.5)
