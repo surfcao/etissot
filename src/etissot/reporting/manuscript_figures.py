@@ -229,7 +229,7 @@ def schematic():
     ax.text(*(Rc + a_long * u + np.array([0.12, -0.04])), 'greatest\nstretch', ha='left', va='center', fontsize=6.9)
     ax.text(*(Rc - a_short * v + np.array([0.25, 0.0])), 'least\nstretch', ha='left', va='center', fontsize=6.9)
     arrow(ax, r'encoder $\mathbf{f}$')
-    ax.text(L[0], -0.8, '32 probes at\nradius $r$', ha='center', va='top', fontsize=7.1)
+    ax.text(L[0], -0.8, 'small circle of\nradius $\\epsilon$', ha='center', va='top', fontsize=7.1)
     ax.text(Rc[0], -0.8, 'plane in\nfeature space', ha='center', va='top', fontsize=7.1)
     ax.set_title('(b) Feature-space ellipse', loc='left', fontsize=7.5)
 
