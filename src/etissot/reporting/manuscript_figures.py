@@ -4,7 +4,7 @@ Regenerates the main-text and supplementary figures at print width (34 pc,
 5.65 in) with legible type, a common anisotropy colour scale, and Equal Earth
 basemaps for global fields:
 
-  fig_tissot_schematic.png    projection ellipse, image ellipse in feature space, reach ellipse (Fig. 1)
+  fig_tissot_schematic.png    projection ellipse, feature-space ellipse, reach ellipse (Fig. 1)
   geoclip_equal_earth.png     Equal Earth vs GeoCLIP fields with Tissot-style glyphs (Fig. 4)
   fig_indicatrix_v2.png       directional profiles (Fig. 2)
   fig_validation_v2.png       analytic input references (supplementary Fig. S1)
@@ -231,7 +231,7 @@ def schematic():
     arrow(ax, r'encoder $\mathbf{f}$')
     ax.text(L[0], -0.8, '32 probes at\nradius $r$', ha='center', va='top', fontsize=7.1)
     ax.text(Rc[0], -0.8, 'plane in\nfeature space', ha='center', va='top', fontsize=7.1)
-    ax.set_title('(b) Image in feature space', loc='left', fontsize=7.5)
+    ax.set_title('(b) Feature-space ellipse', loc='left', fontsize=7.5)
 
     # (c) reach ellipse on the ground
     ax = axs[2]
