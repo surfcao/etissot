@@ -2,7 +2,7 @@
 
 **Tissot geometry for geographic embeddings.** The “e” stands for embeddings.
 
-eTissot is an installable Python package for measuring the local geographic distortion of learned location encoders, and version 0.3.2 reproduces the numerical analyses of the accompanying manuscript. Author: Guofeng Cao, STARlab, University of Colorado Boulder.
+eTissot is an installable Python package for measuring the local geographic distortion of learned location encoders, and version 0.3.2 reproduces the numerical analyses of the accompanying manuscript. Authors: Guofeng Cao (STARlab, University of Colorado Boulder) and Gengchen Mai (University of Texas at Austin).
 
 ## What eTissot measures
 
@@ -207,4 +207,4 @@ eTissot is released under the MIT License (see `LICENSE`), while third-party cod
 
 ## Citation
 
-If you use eTissot, please cite the accompanying manuscript: Guofeng Cao, *Tissot indicatrix for location encoders: Characterizing local distortion in learned geographic embeddings*. Full citation details will be added when the manuscript becomes available.
+If you use eTissot, please cite the accompanying manuscript: Guofeng Cao and Gengchen Mai, *Tissot indicatrix for location encoders: Characterizing local distortion in learned geographic embeddings*. Full citation details will be added when the manuscript becomes available.
