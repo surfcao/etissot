@@ -12,7 +12,7 @@ In cartography, Tissot's indicatrix records how a map projection stretches a sma
 
 ![Anisotropy and principal bearing of the Equal Earth projection and of GeoCLIP](docs/images/geoclip_equal_earth.png)
 
-The figure above shows the anisotropy (top) and principal bearing (bottom) of the analytic Equal Earth projection and of GeoCLIP's embedding at a 1 km probe radius. Because GeoCLIP feeds Equal Earth coordinates into its encoder, its learned field closely follows the shape distortion of the projection. White ellipses show the local stretch shape, and pink crosses mark flagged fallback fits.
+The figure above shows the anisotropy (top) and principal bearing (bottom) of the analytic Equal Earth projection and of GeoCLIP's embedding at a 1 km probe radius. Because GeoCLIP feeds Equal Earth coordinates into its encoder, its learned field closely follows the shape distortion of the projection. White ellipses, drawn at a common size, show the axis ratio and the principal bearing (along the long axis), and pink crosses mark flagged fallback fits.
 
 ![Dense regional anisotropy maps for CSP, SINR, Climplicit and SatCLIP](docs/images/dense_regional_v2.png)
 
@@ -38,7 +38,7 @@ The repository contains the cached profiles, measurements, reference summaries a
 
 ## Package name
 
-eTissot uses `etissot` for Python imports, distribution filenames and the command-line tool, which replaces the earlier `localdistortion` name; existing imports and commands should be updated accordingly, while the API and data formats are unchanged. The package is provided through this repository and its releases, and no release has been made to a public package index (e.g., PyPI).
+eTissot uses `etissot` for Python imports, distribution filenames and the command-line tool, which replaces the earlier `localdistortion` name; existing imports and commands should be updated accordingly, while the API and data formats are unchanged. The package is distributed through this repository and its releases and has not been released to a public package index (e.g., PyPI).
 
 ## Install
 
@@ -57,7 +57,7 @@ etissot environment
 
 On Windows, use `.venv\Scripts\activate`. Python 3.11+ is declared, and the tested environment is Python 3.13.2 with the exact versions in `requirements-reproduce.txt`; other compatible dependency versions have not been numerically validated. Installation needs access to the dependency packages, whereas the cached analysis makes no downloads.
 
-The wheel installs code only, and the study data stay in the separate `data/` directory, so the library can be used on your own encoder without hundreds of megabytes of reference data. Version 0.3.1 installs from this repository with `python -m pip install .`.
+The wheel installs code only, and the study data stay in the separate `data/` directory, so the library can be used on your own encoder without hundreds of megabytes of reference data.
 
 ## Optional encoder checkpoints
 
@@ -87,7 +87,7 @@ print(result["A_fit"])  # 3.0
 metric = fitted_tensor(result)
 ```
 
-In the package, `geometry.probing` constructs geodesic rings, and `geometry.fitting` fits the harmonic tensor and returns anisotropy, bearing, residuals and fallback flags. Bearings and coordinates passed to probe functions are in radians, and the radius is in kilometers. `fit_many` accepts an N-by-K array of directional profiles. `refine_radius` takes a callable that returns a profile at a given radius; it should be noted that its stopping rule measures successive changes rather than a guaranteed error against a reference. See `examples/fit_indicatrix.py` and [the API guide](docs/api.md).
+In the package, `geometry.probing` constructs geodesic rings, and `geometry.fitting` fits the harmonic tensor and returns anisotropy, bearing, residuals and fallback flags. Bearings and coordinates passed to probe functions are in radians, and the radius is in kilometers. `fit_many` accepts an N-by-K array of directional profiles. `refine_radius` takes a callable that returns a profile at a given radius, and its stopping rule measures successive changes rather than a guaranteed error against a reference. See `examples/fit_indicatrix.py` and [the API guide](docs/api.md).
 
 ### Measure your encoder at a location
 
@@ -120,7 +120,7 @@ results = measure_locations(encoder, latitudes_radians, longitudes_radians,
                             radius_km=0.3, n_directions=32, batch_size=1024)
 ```
 
-The number of embedding components is inferred from the output, while locations, radii and angular resolution are supplied by the caller, and the results retain their order and the adapter metadata. Because changing model weights, an output head or the normalization defines a new measured representation, the metadata should be updated when comparing versions. An optional `domain_check` can reject an inadmissible probe disc before model evaluation. It should be noted that longitude wrapping is explicit and does not certify continuity across the seam.
+The number of embedding components is inferred from the output, while locations, radii and angular resolution are supplied by the caller, and the results retain their order and the adapter metadata. Because changing model weights, an output head or the normalization defines a new measured representation, the metadata should be updated when comparing versions. An optional `domain_check` can reject an inadmissible probe disc before model evaluation, whereas longitude wrapping is explicit and does not certify continuity across the seam.
 
 See [the complete runnable example](examples/custom_encoder.py). Different from this public interface, the fixed `models.loaders.load_all` roster belongs to the manuscript reproduction, and new encoders do not need to modify it. The scalar `measure_indicatrix` interface remains supported.
 
@@ -133,7 +133,7 @@ etissot check --data ./data --output ./reproduced
 
 The `--manuscript` verification needs the manuscript sources, which are not yet public and will be released after publication.
 
-The full workflow regenerates the empirical tables and all 16 figures of the manuscript and the additional package results, including analytic examples, historical five-seed summaries, neighbor statistics and downstream bootstrap results. It replays all 360 selected GP predictions and then checks the 19 required generated manuscript blocks, the complete CSP precision table and every number in the manuscript prose, where results are recomputed from the regenerated outputs and other numbers are pinned in a register (see [the complete reproduction guide](docs/reproducibility.md)). The workflow neither downloads model files nor reruns GP fitting. Data and output directories must not overlap, and input data are never overwritten. Different from standalone steps, which may seed reference prerequisites (recorded in `.seeded_reference.json`), full reproduction does not copy finished figures, tables or summaries into outputs. `check` reruns the numerical checks on a folder whose last full `reproduce` completed, and it refuses folders that still contain unregenerated reference copies. Results are saved under `outputs/summaries`, `outputs/tables` and `outputs/figures`, and a run report and logs record success or failure.
+The full workflow regenerates the empirical tables, the 16 manuscript and package figures and the additional package results, including analytic examples, historical five-seed summaries, neighbor statistics and downstream bootstrap results. It replays all 360 selected GP predictions and then checks the 19 required generated manuscript blocks, the complete CSP precision table and every number in the manuscript prose, where results are recomputed from the regenerated outputs and other numbers are pinned in a register (see [the complete reproduction guide](docs/reproducibility.md)). The workflow neither downloads model files nor reruns GP fitting. Data and output directories must not overlap, and input data are never overwritten. Different from standalone steps, which may seed reference prerequisites (recorded in `.seeded_reference.json`), full reproduction does not copy finished figures, tables or summaries into outputs. `check` reruns the numerical checks on a folder whose last full `reproduce` completed, and it refuses folders that still contain unregenerated reference copies. Results are saved under `outputs/summaries`, `outputs/tables` and `outputs/figures`, and a run report and logs record success or failure.
 
 `environment` checks Python 3.11+ and the installed versions against `requirements-reproduce.txt` in the working directory, and each reproduction records the result in `environment.json`. By default, manuscript verification requires identical figure pixels; adding `--numerical-only` verifies all numerical content and the presence of figures while recording pixel differences separately, which is therefore not an exact artifact check.
 
@@ -201,10 +201,10 @@ A new output directory starts fresh, whereas existing fits in an output director
 
 Run the unit tests with `python -m unittest discover -s tests -v`, which require no study data or checkpoints (see `docs/testing.md`). `docs/validation/` holds the clean-wheel reproduction record of 0.2.0, and `python scripts/verify_releases.py` checks the author's local release archives; the repository is the editable source.
 
-The primary estimand is the finite-lag geometry, and all failed refinement cases and negative prediction results are retained; for example, the shape-only GP kernel has no pooled gain (relative RMSE approximately 1.009). Reproduction uses the declared measurements and selected fit parameters, and the package does not retrain upstream models or historical miniature models, reacquire original rasters, or rerun unrelated exploratory experiments.
+The primary estimand is the finite-radius geometry. All failed refinement cases and negative prediction results are retained; for example, the shape-only GP kernel gives no pooled gain (relative RMSE of about 1.009). Reproduction uses the declared measurements and selected fit parameters, and the package does not retrain upstream models or historical miniature models, reacquire original rasters, or rerun unrelated exploratory experiments.
 
 eTissot is released under the MIT License (see `LICENSE`), while third-party code, model weights and upstream datasets keep their own terms (see `RIGHTS_AND_ATTRIBUTION.md`).
 
 ## Citation
 
-If you use eTissot, please cite the accompanying manuscript: Guofeng Cao, *Tissot indicatrix for location encoders: Characterizing local distortion in learned geographic embeddings* (under review). Full citation details will be added on publication.
+If you use eTissot, please cite the accompanying manuscript: Guofeng Cao, *Tissot indicatrix for location encoders: Characterizing local distortion in learned geographic embeddings*. Full citation details will be added when the manuscript becomes available.

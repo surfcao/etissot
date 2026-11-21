@@ -52,19 +52,13 @@ Use a working copy. The dense generator resumes existing panels; move its output
 
 The external model directory contains `encoders/` and `csp/main/` with the documented relative paths. Licensed SatCLIP and SINR source modules are installed under `etissot/models/vendor/` and need not be copied into the external model directory. All new evaluation outputs go into the requested output directory.
 
-## This local workspace
+## Model directory
 
-The external model root is now `models/`, for example:
-
-```sh
-etissot evaluate-models boundaries --data ./data --output ./fresh-models --models ./models
-```
-
-Historical checkpoint-manifest paths are relative to this external model root, and GeoCLIP still resolves its installed package weights. Upstream SINR training and evaluation data were moved to `data/raw/sinr/`, which the package checkpoint loaders do not use.
+Historical checkpoint-manifest paths are relative to the external model root (e.g., `--models ./models`), and GeoCLIP still resolves its installed package weights when the historical path is absent.
 
 ## SatCLIP zonal-normalization comparison
 
-The opt-in function `etissot.models.satclip_correction.correct_zonal_normalization` returns a deep copy of an inspected analytic-harmonic SIREN location encoder with the degree-major zonal channels (indices `l*(l+1)`) divided by pi. It does not modify the vendor code, original checkpoints, default loaders or primary results. With `preserve_outputs=False` (the default), the learned weights are held fixed, so the correction is an input intervention rather than a retrained checkpoint. With `preserve_outputs=True`, the matching first-layer weight columns are multiplied by pi, which preserves the released function to floating-point precision. The correction does not address the cancellation of high-degree expanded polynomials, and it rejects other harmonic implementations.
+The opt-in function `etissot.models.satclip_correction.correct_zonal_normalization` returns a deep copy of an inspected analytic-harmonic SIREN location encoder with the degree-major zonal channels (indices `l*(l+1)`) divided by pi. It does not modify the vendor code, original checkpoints, default loaders or primary results. With `preserve_outputs=False` (the default), the learned weights are held fixed, so the correction is an input intervention rather than a retrained checkpoint. With `preserve_outputs=True`, the matching first-layer weight columns are multiplied by pi, which preserves the released function to floating-point precision. The correction does not address the cancellation of high-degree expanded polynomials near the poles, which `scripts/satclip_cancellation.py` quantifies against SciPy references (see `docs/reproducibility.md`), and it rejects other harmonic implementations.
 
 To collect the comparison over six checkpoints and 35 sites from the trusted original weights:
 
