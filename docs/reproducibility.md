@@ -1,6 +1,14 @@
 # Reproduce the manuscript results
 
-Version 0.3.1 regenerates the figures, tables and generated blocks of the manuscript and the package-only additional results. The manuscript sources are not yet public, so the manuscript check described below (`--manuscript`) can be run only after publication; the register of numbers in the prose (`data/reference/manuscript_claims.json`) still corresponds to the 0.3.0 manuscript and will be updated with the published version.
+Version 0.3.2 regenerates the figures, tables and generated blocks of the manuscript and the package-only additional results. The manuscript sources are not yet public, so the manuscript check described below (`--manuscript`) can be run only after publication; the register of numbers in the prose (`data/reference/manuscript_claims.json`) still corresponds to the 0.3.0 manuscript and will be updated with the published version.
+
+## Changes in 0.3.2
+
+- The Figure 1 schematic labels panel (b) as the feature-space ellipse of a small circle of radius ε, marks its least-stretch axis and aligns its axes with the reach ellipse in panel (c).
+- `scripts/satclip_cancellation.py` reproduces the numerical-cancellation results of supplementary Section S6 for the SatCLIP spherical-harmonic input (see below).
+- The documentation describes the white ellipses of the anisotropy maps by their axis ratio and principal bearing and no longer gives a review status for the manuscript.
+
+No data, fitted results or numerical outputs of the reproduction change.
 
 ## Changes in 0.3.1
 
